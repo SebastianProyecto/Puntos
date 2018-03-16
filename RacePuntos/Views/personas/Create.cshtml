@@ -1,0 +1,140 @@
+﻿@model RacePuntos.Datos.personas
+
+@{
+  ViewBag.Title = "Registrarse";
+}
+
+<h2>Registrarse</h2>
+
+
+@using(Html.BeginForm()) {
+@Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    @*<h4>personas</h4>*@
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        <label class="control-label col-md-2">Tipo de documento: </label>
+        <div class="col-md-10">
+            <select class="form-control" id="tipo_documento" name="tipo_documento" required>
+                <option value="">[SELECCIONE]</option>
+                <option value="CC">Cedula de Ciudadania</option>
+                <option value="NIT">NIT Empresa</option>
+                <option value="RC">Registro civil</option>
+                <option value="CE">Cedula de Extranjeria</option>
+            </select>
+            <span class="field-validation-valid text-danger" data-valmsg-for="tipo_documento" data-valmsg-replace="true"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">No. Documento</label>
+        <div class="col-md-10">
+            <input type="text" id="documento" name="documento" class="form-control InputNum" onkeypress="return validaNum(event)" required />
+            <span class="field-validation-valid text-danger" data-valmsg-for="documento" data-valmsg-replace="true"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Nombres</label>
+        <div class="col-md-10">
+            <input type="text" id="nombres" name="nombres" class="form-control" required />
+            <span class="field-validation-valid text-danger" data-valmsg-for="nombres" data-valmsg-replace="true"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Apellidos</label>
+        <div class="col-md-10">
+            <input type="text" id="apellidos" name="apellidos" class="form-control" required />
+            <span class="field-validation-valid text-danger" data-valmsg-for="apellidos" data-valmsg-replace="true"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">Fecha de nacimiento</label>
+        <div class="col-md-10">
+            <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" class="form-control" required />
+            <span class="field-validation-valid text-danger" data-valmsg-for="fecha_nacimiento" data-valmsg-replace="true"></span>
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Dirección</label>
+        <div class="col-md-10">
+            <input type="text" class="form-control" id="direccion" name="direccion" required />
+            <span class="field-validation-valid text-danger" data-valmsg-for="direccion" data-valmsg-replace="true"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Celular</label>
+        <div class="col-md-10">
+            <input type="text" class="form-control" id="numero_celular" name="numero_celular" onkeypress="return validaNum(event)" required />
+            <span class="field-validation-valid text-danger" data-valmsg-for="numero_celular" data-valmsg-replace="true"></span>
+        </div>
+    </div>
+
+    <div class="form-group" style="margin-bottom:10%">
+        <label class="control-label col-md-2">Contraseña</label>
+        <div class="col-md-10">
+            <input type="password" class="form-control" id="contrasena" name="contrasena" required />
+            <span class="field-validation-valid text-danger" data-valmsg-for="contrasena" data-valmsg-replace="true"></span>
+        </div>
+    </div>
+
+
+    @*<div class="form-group">
+                @Html.LabelFor(model => model.rol, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.rol, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.rol, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+            @Html.LabelFor(model => model.cargo, "cargo", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("cargo", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.cargo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.id_usuario_creacion, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.id_usuario_creacion, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.id_usuario_creacion, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $("#contrasena").attr('title', 'La contraseña debe contener minimo 8 carateres, \n una letra minuscula, una mayuscula y un numero.');
+        $("#contrasena").tooltipster();
+
+        var mensaje = "@TempData["Mensaje"]";
+        if (mensaje != "") {
+            alert(mensaje);
+        }
+    });
+
+</script>
+
+}
+
+<div>
+    @*@Html.ActionLink("Back to List", "Index")*@
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
