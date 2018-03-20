@@ -42,38 +42,34 @@ namespace RacePuntos.Controllers {
 		[HttpPost]
 		[ValidateAntiForgeryToken]
 		public ActionResult Create([Bind(Include = "tipo_documento,documento,contrasena,cargo,rol,id_usuario_creacion,nombres,apellidos,fecha_nacimiento,direccion,numero_celular")] personas personas) {
-			try {
-				if(ModelState.IsValid) {
-					int ValidateInsert = db.personas.Where(x => x.documento == personas.documento).Count();
-					//(from pers in db.personas
-					//											where pers.documento == personas.documento.ToString()
-					//											select pers);
+			//try {
+			if(ModelState.IsValid) {
+				int ValidateInsert = db.personas.Where(x => x.documento == personas.documento).Count();
 
-					if(ValidateInsert == 0) {
-						string id_usuario = db.personas.Select(x => x.id_usuario_creacion).Max();
-						id_usuario = (id_usuario == null) ? "1" : id_usuario;
-						personas.id_usuario_creacion = id_usuario;
-						personas.rol = "USUARIO";
-						personas.cargo = "100";
-						db.personas.Add(personas);
-						db.SaveChanges();
-						TempData["Mensaje"] = "Registro guardado con Exito.";
-						Response.Redirect("Create");
-						return null;
-					} else {
-						throw new Exception("El Usuario ya existe.");
-						TempData["Mensaje"] = "El Usuario ya existe , Verifique";
-						Response.Redirect("Create");
-						return null;
-					}
-
+				if(ValidateInsert == 0) {
+					string id_usuario = db.personas.Select(x => x.id_usuario_creacion).Max();
+					id_usuario = (id_usuario == null) ? "1" : id_usuario;
+					personas.id_usuario_creacion = id_usuario;
+					personas.rol = "USUARIO";
+					personas.cargo = "100";
+					db.personas.Add(personas);
+					db.SaveChanges();
+					ViewBag.Message = "1";
+					Response.Redirect("Create");
+					return null;
+				} else {
+					ViewBag.Message = "0";
+					Response.Redirect("Create");
+					return null;
 				}
 
-				ViewBag.cargo = new SelectList(db.cargos, "id_cargo", "nombre_cargo", personas.cargo);
-				return View(personas);
-			} catch(Exception exc) {
-				throw new Exception("Erro: " + exc);
 			}
+
+			ViewBag.cargo = new SelectList(db.cargos, "id_cargo", "nombre_cargo", personas.cargo);
+			return View(personas);
+			//} catch(Exception exc) {
+			//	throw new Exception("Erro: " + exc);
+			//}
 		}
 
 		// GET: personas/Edit/5
@@ -124,6 +120,35 @@ namespace RacePuntos.Controllers {
 			db.personas.Remove(personas);
 			db.SaveChanges();
 			return RedirectToAction("Index");
+		}
+
+		//
+		// GET: /Account/Login
+		[AllowAnonymous]
+		public ActionResult Login() {
+			return View();
+		}
+
+		//
+		// POST: /Account/Login
+		[HttpPost]
+		[AllowAnonymous]
+		[ValidateAntiForgeryToken]
+		public ActionResult Login([Bind(Include = "documento,contrasena")] personas personas) {
+			if(!ModelState.IsValid) {
+				Response.Redirect("Login");
+				return null;
+			}
+
+			int ValidateLogin = db.personas.Where(x => (x.documento == personas.documento && x.contrasena == personas.contrasena)).Count();
+
+			if(ValidateLogin > 0) {
+
+				Response.Redirect("../Manage/Index");
+				return null;
+			}
+			Response.Redirect("Login");
+			return null;
 		}
 
 		protected override void Dispose(bool disposing) {

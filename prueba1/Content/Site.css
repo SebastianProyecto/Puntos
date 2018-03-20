@@ -1,17 +1,12 @@
 ﻿body {
-    padding-top: 40px;
-    padding-bottom: 10px;
-    /*background-image:url(../Images/HOME1.png);
-    background-repeat:no-repeat;
-    background-attachment:fixed;
-    background-position:center top;
-    background-color:rgba(255,255,255,0.9);*/
+    padding-top: 50px;
+    padding-bottom: 20px;
 }
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 

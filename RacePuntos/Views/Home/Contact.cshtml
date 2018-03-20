@@ -1,17 +1,52 @@
 ﻿@{
-    ViewBag.Title = "Contact";
+  ViewBag.Title = "Contactenos";
 }
 <h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
+@*<h3>@ViewBag.Message</h3>*@
 
+<div class="form-horizontal">
+    <div class="form-group">
+        <label class="control-label col-md-2">Nombre</label>
+        <div class="col-md-10">
+            <input type="text" id="nombre" name="nombre" class="form-control" required />
+            <span class="field-validation-valid text-danger" data-valmsg-for="nombre" data-valmsg-replace="true"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">Correo</label>
+        <div class="col-md-10">
+            <input type="text" id="correo" name="correo" class="form-control" required />
+            <span class="field-validation-valid text-danger" data-valmsg-for="correo" data-valmsg-replace="true"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">Celular</label>
+        <div class="col-md-10">
+            <input type="text" id="celular" name="celular" class="form-control" onkeypress="return validaNum(event)" required />
+            <span class="field-validation-valid text-danger" data-valmsg-for="celular" data-valmsg-replace="true"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">Inquietud</label>
+        <div class="col-md-10">
+            <textarea type="text" id="celular" name="celular" rows="5" cols="50" class="form-control" required></textarea>
+            <span class="field-validation-valid text-danger" data-valmsg-for="celular" data-valmsg-replace="true"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="button" value="Enviar" class="btn btn-default" />
+        </div>
+    </div>
+</div>
 <address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
+
+    Universidad INPAHU<br />
+    <abbr title="Phone">PBX:</abbr>
+    332 3500 - 317 576 2547
 </address>
 
 <address>
-    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
+    <strong>Correo:</strong>   <a href="mailto:communitymanager@uninpahu.edu.co">communitymanager@uninpahu.edu.co</a><br />
+    @*<strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>*@
 </address>
