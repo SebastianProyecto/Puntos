@@ -143,8 +143,9 @@ namespace RacePuntos.Controllers {
 			int ValidateLogin = db.personas.Where(x => (x.documento == personas.documento && x.contrasena == personas.contrasena)).Count();
 
 			if(ValidateLogin > 0) {
-
-				Response.Redirect("../Manage/Index");
+				ViewData["ShowMenu"] = "show";
+				ViewData["Showlogin"] = "hide";
+				Response.Redirect("../Home/Index");
 				return null;
 			}
 			Response.Redirect("Login");
