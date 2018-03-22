@@ -11,6 +11,7 @@ using RacePuntos.Datos;
 namespace RacePuntos.Controllers {
 	public class personasController : Controller {
 		private RacePuntosEntities db = new RacePuntosEntities();
+		//private Security sg = new Security();
 
 		// GET: personas
 		public ActionResult Index() {
@@ -47,11 +48,14 @@ namespace RacePuntos.Controllers {
 				int ValidateInsert = db.personas.Where(x => x.documento == personas.documento).Count();
 
 				if(ValidateInsert == 0) {
+
+					string pass = Security.Encriptar(personas.contrasena);
 					string id_usuario = db.personas.Select(x => x.id_usuario_creacion).Max();
 					id_usuario = (id_usuario == null) ? "1" : id_usuario;
 					personas.id_usuario_creacion = id_usuario;
 					personas.rol = "USUARIO";
 					personas.cargo = "100";
+					personas.contrasena = pass;
 					db.personas.Add(personas);
 					db.SaveChanges();
 					ViewBag.Message = "1";
@@ -126,6 +130,7 @@ namespace RacePuntos.Controllers {
 		// GET: /Account/Login
 		[AllowAnonymous]
 		public ActionResult Login() {
+			//ViewData["Rol"] = "";
 			return View();
 		}
 
@@ -140,12 +145,13 @@ namespace RacePuntos.Controllers {
 				return null;
 			}
 
-			int ValidateLogin = db.personas.Where(x => (x.documento == personas.documento && x.contrasena == personas.contrasena)).Count();
+			string pass = Security.Encriptar(personas.contrasena);
+
+			int ValidateLogin = db.personas.Where(x => (x.documento == personas.documento && x.contrasena == pass)).Count();
 
 			if(ValidateLogin > 0) {
-				ViewData["ShowMenu"] = "show";
-				ViewData["Showlogin"] = "hide";
-				Response.Redirect("../Home/Index");
+				TempData["Rol"] = db.personas.Where(c => c.documento == personas.documento).First().rol;
+				Response.Redirect("~/Home/Index");
 				return null;
 			}
 			Response.Redirect("Login");

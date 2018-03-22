@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="RacePuntosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="RacePuntosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="cargos">
           <Key>
             <PropertyRef Name="id_cargo" />
@@ -55,7 +55,6 @@
           </Key>
           <Property Name="tipo_documento" Type="nvarchar" MaxLength="4" />
           <Property Name="documento" Type="nvarchar" MaxLength="15" Nullable="false" />
-          <Property Name="contrasena" Type="nvarchar" MaxLength="15" />
           <Property Name="rol" Type="nvarchar" MaxLength="14" />
           <Property Name="cargo" Type="nvarchar" MaxLength="4" />
           <Property Name="id_usuario_creacion" Type="nvarchar" MaxLength="15" />
@@ -64,6 +63,7 @@
           <Property Name="fecha_nacimiento" Type="datetime" />
           <Property Name="direccion" Type="nvarchar" MaxLength="50" />
           <Property Name="numero_celular" Type="nvarchar" MaxLength="50" />
+          <Property Name="contrasena" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="puntos">
           <Key>
@@ -287,8 +287,7 @@
             <End Role="vehiculo" EntitySet="vehiculo" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="RacePuntosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -350,7 +349,7 @@
           </Key>
           <Property Name="tipo_documento" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
           <Property Name="documento" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="contrasena" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="contrasena" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="rol" Type="String" MaxLength="14" FixedLength="false" Unicode="true" />
           <Property Name="cargo" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
           <Property Name="id_usuario_creacion" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />

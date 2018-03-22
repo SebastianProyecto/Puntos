@@ -6,10 +6,7 @@ using System.Web.Mvc;
 
 namespace RacePuntos.Controllers {
 	public class HomeController : Controller {
-
 		public ActionResult Index() {
-			ViewData["ShowMenu"] = "hide";
-			ViewData["Showlogin"] = "show";
 			return View();
 		}
 

@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@{
+  object validate = TempData["Rol"];
+}
+<!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -31,38 +34,49 @@
                 </button>
                 @Html.ActionLink("RacePuntos", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
-            
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Quienes Somos<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>
-                        <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("Misión", "", "")</li>
-                            <li>@Html.ActionLink("Visión", "", "")</li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Puntos<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>
-                        <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("Historial adquisición de puntos", "", "")</li>
-                            <li>@Html.ActionLink("Historial de servicios redimidos", "", "")</li>
-                        </ul>
-                    </li>
-                    <li class="dropdown-toggle">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Gestión<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>
-                        <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("usuarios", "", "")</li>
-                            <li>@Html.ActionLink("servicios - redimir puntos", "", "")</li>
-                        </ul>
-                    </li>
 
-                    @*<li>@Html.ActionLink("Quienes Somos", "QuienesSomos", "Home")</li>
-                        <li>@Html.ActionLink("Puntos", "Puntos", "Home")</li>
-                        <li>@Html.ActionLink("Getión", "Gestion", "Home")</li>*@
-                    <li>@Html.ActionLink("Ayuda", "Ayuda", "Home")</li>
-                    <li>@Html.ActionLink("Contactenos", "Contact", "Home")</li>
-                </ul>
+            <div class="navbar-collapse collapse">
+                @if(validate != null) {
+                    if(validate.ToString() == "USUARIO") {
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Quienes Somos<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Misión", "", "")</li>
+                                <li>@Html.ActionLink("Visión", "", "")</li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Puntos<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Historial adquisición de puntos", "", "")</li>
+                                <li>@Html.ActionLink("Historial de servicios redimidos", "", "")</li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-toggle">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Gestión<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("usuarios", "", "")</li>
+                                <li>@Html.ActionLink("servicios - redimir puntos", "", "")</li>
+                            </ul>
+                        </li>
+
+                        @*<li>@Html.ActionLink("Quienes Somos", "QuienesSomos", "Home")</li>
+                            <li>@Html.ActionLink("Puntos", "Puntos", "Home")</li>
+                            <li>@Html.ActionLink("Getión", "Gestion", "Home")</li>*@
+                        <li>@Html.ActionLink("Ayuda", "Ayuda", "Home")</li>
+                        <li>@Html.ActionLink("Contactenos", "Contact", "Home")</li>
+                    </ul>} else if(validate.ToString() == "ADMIN") {
+
+                    }
+                } else {
+
                 @Html.Partial("_LoginPartial")
+}
+
+
+                
+
             </div>
         </div>
     </div>
