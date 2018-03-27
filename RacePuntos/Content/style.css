@@ -111,3 +111,16 @@
         -o-box-shadow: inset 0px 1px 0px #60c9f0, 0px 3px 0px #0e3871, 0px 6px 3px #1a80a6;
         box-shadow: inset 0px 1px 0px #60c9f0, 0px 3px 0px #0e3871, 0px 6px 3px #1a80a6;
     }
+
+
+.Text_manual {
+    width: 40%;
+    position: relative;
+    color: #FFF;
+    left: 78%;
+    margin: -110px 0px 0px -264px;
+    background: rgb(59, 180, 225);
+    padding: 20px 30px;
+    border-radius: 100px;
+    box-shadow: 7px 9px 20px 8px rgba(0, 0, 0, 0.2), inset 0px 0px 79px 0px rgba(0, 0, 0, 0);
+}
