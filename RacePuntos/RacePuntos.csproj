@@ -264,6 +264,7 @@
     <Content Include="Content\alertify.default.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\style.css" />
     <Content Include="Content\tooltipster.css" />
     <Content Include="Datos\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -287,6 +288,9 @@
     <Content Include="Images\Everis1.fw.png" />
     <Content Include="Images\Everis1.jpg" />
     <Content Include="Images\Everis2.jpg" />
+    <Content Include="Images\fonts\BebasNeue-webfont.svg" />
+    <Content Include="Images\fonts\Dharma Type Font License.txt" />
+    <Content Include="Images\fonts\Fondo Login Web.png" />
     <Content Include="Images\fonts\icomoon.dev.svg" />
     <Content Include="Images\fonts\icomoon.svg" />
     <Content Include="Images\fonts\license.txt" />
@@ -323,6 +327,7 @@
     <Content Include="Images\IconosMenu\Imagen7.png" />
     <Content Include="Images\LogoSGD.png" />
     <Content Include="Images\modificar.png" />
+    <Content Include="Images\right_arrow.png" />
     <Content Include="Images\Semaforo\BanderaAmarilla.png" />
     <Content Include="Images\Semaforo\BanderaRoja.png" />
     <Content Include="Images\Semaforo\BanderaVerde.png" />
@@ -355,6 +360,9 @@
     <Content Include="Datos\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
+    <Content Include="Images\fonts\BebasNeue-webfont.eot" />
+    <Content Include="Images\fonts\BebasNeue-webfont.ttf" />
+    <Content Include="Images\fonts\BebasNeue-webfont.woff" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

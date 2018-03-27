@@ -1,15 +1,7 @@
 ﻿body {
-    padding-top: 40px;
+    /*padding-top: 40px;
     padding-bottom: 10px;
-    background: rgba(7,74,133,1);
-    background: -moz-linear-gradient(45deg, rgba(7,74,133,1) 0%, rgba(32,123,227,1) 98%, rgba(32,124,229,1) 100%);
-    background: -webkit-gradient(left bottom, right top, color-stop(0%, rgba(7,74,133,1)), color-stop(98%, rgba(32,123,227,1)), color-stop(100%, rgba(32,124,229,1)));
-    background: -webkit-linear-gradient(45deg, rgba(7,74,133,1) 0%, rgba(32,123,227,1) 98%, rgba(32,124,229,1) 100%);
-    background: -o-linear-gradient(45deg, rgba(7,74,133,1) 0%, rgba(32,123,227,1) 98%, rgba(32,124,229,1) 100%);
-    background: -ms-linear-gradient(45deg, rgba(7,74,133,1) 0%, rgba(32,123,227,1) 98%, rgba(32,124,229,1) 100%);
-    background: linear-gradient(45deg, rgba(7,74,133,1) 0%, rgba(32,123,227,1) 98%, rgba(32,124,229,1) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#074a85', endColorstr='#207ce5', GradientType=1 );
-    /*background-image:url(../Images/HOME1.png);
+    background-image:url(../Images/HOME1.png);
     background-repeat:no-repeat;
     background-attachment:fixed;
     background-position:center top;

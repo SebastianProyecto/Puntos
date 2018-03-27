@@ -2,60 +2,71 @@
 @{
   ViewBag.Title = "Iniciar sesión  ";
 }
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - RacePuntos</title>
+    @*JS*@
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/alertify.js"></script>
+    <script src="~/Scripts/alertify.min.js"></script>
+    <script src="~/Scripts/jquery.tooltipster.js"></script>
+    <script src="~/Scripts/jquery.tooltipster.min.js"></script>
+    <script src="~/Scripts/Validations.js"></script>
+    <link href="~/Content/style.css" rel="stylesheet" />
 
-<h2>@ViewBag.Title.</h2>
-<div class="row">
-    <div class="col-md-8">
-        <section id="loginForm">
-            @using(Html.BeginForm("Login", "personas", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" })) {
-            @Html.AntiForgeryToken()
-            @*<h4>Use una cuenta local para iniciar sesión.</h4>*@
-            <hr />
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <div class="form-group">
-                    <label class="control-label col-md-3">No. Documento</label>
-                    <div class="col-md-9">
-                        <input type="text" id="documento" name="documento" class="form-control InputNum" onkeypress="return validaNum(event)" required />
-                        <span class="field-validation-valid text-danger" data-valmsg-for="documento" data-valmsg-replace="true"></span>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="control-label col-md-3">Contraseña</label>
-                    <div class="col-md-9">
-                        <input type="password" class="form-control" id="contrasena" name="contrasena" required />
-                        <span class="field-validation-valid text-danger" data-valmsg-for="contrasena" data-valmsg-replace="true"></span>
-                    </div>
-                </div>
-                @*<div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
-                            <div class="checkbox">
-                                @Html.CheckBoxFor(m => m.RememberMe)
-                                @Html.LabelFor(m => m.RememberMe)
+    @*CSS*@
+    <link href="~/Content/alertify.core.css" rel="stylesheet" />
+    <link href="~/Content/alertify.default.css" rel="stylesheet" />
+    <link href="~/Content/tooltipster.css" rel="stylesheet" />
+</head>
+<body>
+
+    <div class="body_login">
+        <div class="row">
+            <div class="col-md-8">
+                <section id="loginForm">
+                    @using(Html.BeginForm("Login", "personas", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" })) {
+                    @Html.AntiForgeryToken()
+                    <div class='login'>
+                        <h2 class="h_login">Login</h2>
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            <label class="control-label col-md-3 label_login">Usuario</label>
+                            <div class="col-md-9">
+                                <input type="text" id="documento" name="documento" class="form-control InputNum input_login" onkeypress="return validaNum(event)" required />
+                                <span class="field-validation-valid text-danger" data-valmsg-for="documento" data-valmsg-replace="true"></span>
                             </div>
                         </div>
-                    </div>*@
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Iniciar sesión" class="btn btn-default" />
-                    </div>
-                </div>
-                <p>
-                    @Html.ActionLink("Registrar como nuevo usuario", "Create")
-                </p>
-                @* Habilite esta opción después de habilitar la confirmación de la cuenta para la función de restablecimiento de contraseña
-                    <p>
-                        @Html.ActionLink("¿Ha olvidado su contraseña?", "ForgotPassword")
-                    </p>*@
-}
-        </section>
+                        <div class="form-group" style="margin-bottom:15%">
+                            <label class="control-label col-md-3 label_login">Contraseña</label>
+                            <div class="col-md-9">
+                                <input type="password" class="form-control input_login" id="contrasena" name="contrasena" required />
+                                <span class="field-validation-valid text-danger" data-valmsg-for="contrasena" data-valmsg-replace="true"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-3 col-md-10">
+                                <a class="button_login" href="#">Ingresar</a>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-left: 17%;">
+                            <div class="col-md-offset-1 col-md-10">
+                                <a class="" href="#" style="font-size:10px">Olvido su contraseña</a>
+                            </div>
+                        </div>
+                    </div>}
+                </section>
+            </div>
+        </div>
     </div>
-    @*<div class="col-md-4">
-            <section id="socialLoginForm">
-                @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
-            </section>
-        </div>*@
-</div>
-
+</body>
+</html>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

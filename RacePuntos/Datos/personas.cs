@@ -33,6 +33,7 @@ namespace RacePuntos.Datos
         public Nullable<System.DateTime> fecha_nacimiento { get; set; }
         public string direccion { get; set; }
         public string numero_celular { get; set; }
+        public string correoElectronico { get; set; }
     
         public virtual cargos cargos { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

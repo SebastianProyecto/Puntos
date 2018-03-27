@@ -54,7 +54,7 @@ namespace RacePuntos.Controllers {
 					id_usuario = (id_usuario == null) ? "1" : id_usuario;
 					personas.id_usuario_creacion = id_usuario;
 					personas.rol = "USUARIO";
-					personas.cargo = "100";
+					personas.cargo = "1";
 					personas.contrasena = pass;
 					db.personas.Add(personas);
 					db.SaveChanges();
