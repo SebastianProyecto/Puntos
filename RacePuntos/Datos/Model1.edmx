@@ -122,6 +122,24 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="logeo_persona" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="documento_ingresado" Type="nvarchar" Mode="In" />
+          <Parameter Name="contrasena_ingresada" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="registro_persona" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="tipo_documento_ingresado" Type="nvarchar" Mode="In" />
+          <Parameter Name="documento_ingresado" Type="nvarchar" Mode="In" />
+          <Parameter Name="contrasena_ingresada" Type="nvarchar" Mode="In" />
+          <Parameter Name="rol_ingresado" Type="nvarchar" Mode="In" />
+          <Parameter Name="cargo_ingresado" Type="nvarchar" Mode="In" />
+          <Parameter Name="id_usuario_creacion" Type="nvarchar" Mode="In" />
+          <Parameter Name="nombres_ingresados" Type="nvarchar" Mode="In" />
+          <Parameter Name="apellidos_ingresados" Type="nvarchar" Mode="In" />
+          <Parameter Name="fecha_nacimiento_ingresado" Type="nvarchar" Mode="In" />
+          <Parameter Name="direccion_ingresado" Type="nvarchar" Mode="In" />
+          <Parameter Name="numero_celular_ingresado" Type="nvarchar" Mode="In" />
+          <Parameter Name="correo_ingresado" Type="nvarchar" Mode="In" />
+        </Function>
         <EntityContainer Name="RacePuntosModelStoreContainer">
           <EntitySet Name="cargos" EntityType="Self.cargos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="detalle_vehiculos" EntityType="Self.detalle_vehiculos" Schema="dbo" store:Type="Tables" />
@@ -453,7 +471,29 @@
             <End Role="personas" EntitySet="personas" />
             <End Role="vehiculo" EntitySet="vehiculo" />
           </AssociationSet>
+          <FunctionImport Name="logeo_persona" ReturnType="Collection(RacePuntosModel.logeo_persona_Result)">
+            <Parameter Name="documento_ingresado" Mode="In" Type="String" />
+            <Parameter Name="contrasena_ingresada" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="registro_persona">
+            <Parameter Name="tipo_documento_ingresado" Mode="In" Type="String" />
+            <Parameter Name="documento_ingresado" Mode="In" Type="String" />
+            <Parameter Name="contrasena_ingresada" Mode="In" Type="String" />
+            <Parameter Name="rol_ingresado" Mode="In" Type="String" />
+            <Parameter Name="cargo_ingresado" Mode="In" Type="String" />
+            <Parameter Name="id_usuario_creacion" Mode="In" Type="String" />
+            <Parameter Name="nombres_ingresados" Mode="In" Type="String" />
+            <Parameter Name="apellidos_ingresados" Mode="In" Type="String" />
+            <Parameter Name="fecha_nacimiento_ingresado" Mode="In" Type="String" />
+            <Parameter Name="direccion_ingresado" Mode="In" Type="String" />
+            <Parameter Name="numero_celular_ingresado" Mode="In" Type="String" />
+            <Parameter Name="correo_ingresado" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
+        <ComplexType Name="logeo_persona_Result">
+          <Property Type="String" Name="documento" Nullable="false" MaxLength="15" />
+          <Property Type="String" Name="Column1" Nullable="true" MaxLength="30" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -536,6 +576,15 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="logeo_persona" FunctionName="RacePuntosModel.Store.logeo_persona">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RacePuntosModel.logeo_persona_Result">
+                <ScalarProperty Name="documento" ColumnName="documento" />
+                <ScalarProperty Name="Column1" ColumnName="Column1" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="registro_persona" FunctionName="RacePuntosModel.Store.registro_persona" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

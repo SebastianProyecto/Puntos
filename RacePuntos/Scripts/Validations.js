@@ -2,6 +2,16 @@
     $("#contrasena").focusout(function () {
         Validar_Password($("#contrasena").val());
     });
+
+    $("#submit_login").click(function () {
+        if ($("#documento").val() != "" && $("#contrasena").val() != "") {
+            $("#Login_Form").submit();
+        } else {
+            swal("Error", "Se debe diligenciar todos los campos.", "error");
+        }
+        
+    });
+
 });
 
 function validaNum(e) {
@@ -21,7 +31,7 @@ function validaNum(e) {
 function Validar_Password(clave) {
     var expreg = /(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*/;
 
-    if (!expreg.test(clave) && $("#CLAVE").val() != "") {
+    if (!expreg.test(clave) && $("#contrasena").val().trim() != "") {
         alert("La clave ingresa no es valida, verifique.");
         $("#contrasena").val("");
         return false;

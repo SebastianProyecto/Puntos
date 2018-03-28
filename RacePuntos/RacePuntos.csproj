@@ -217,6 +217,9 @@
     <Compile Include="Datos\estaciones_de_servicio.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Datos\logeo_persona_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Datos\Model1.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -281,16 +284,18 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\activar.png" />
-    <Content Include="Images\Barra.fw.png" />
+    <Content Include="Images\Carousel\542701_1.jpg" />
+    <Content Include="Images\Carousel\BP-fuels-Spain-Forecourt-only-1-2000x1126-1050x600.jpg" />
+    <Content Include="Images\Carousel\propuesta 1.png" />
+    <Content Include="Images\Carousel\propuesta 2.png" />
+    <Content Include="Images\Carousel\propuesta 3.png" />
     <Content Include="Images\Delete.png" />
     <Content Include="Images\eliminar.png" />
     <Content Include="Images\ErrorPage.png" />
-    <Content Include="Images\Everis1.fw.png" />
-    <Content Include="Images\Everis1.jpg" />
-    <Content Include="Images\Everis2.jpg" />
     <Content Include="Images\fonts\BebasNeue-webfont.svg" />
     <Content Include="Images\fonts\Dharma Type Font License.txt" />
     <Content Include="Images\fonts\Fondo Login Web.png" />
+    <Content Include="Images\fonts\fondo-de-pantalla-degradado-azul.png" />
     <Content Include="Images\fonts\icomoon.dev.svg" />
     <Content Include="Images\fonts\icomoon.svg" />
     <Content Include="Images\fonts\license.txt" />
@@ -312,11 +317,9 @@
     <Content Include="Images\Grilla\tick.png" />
     <Content Include="Images\Grilla\vert-bg.png" />
     <Content Include="Images\Grilla\vert-slider-bg.png" />
-    <Content Include="Images\HOME.png" />
     <Content Include="Images\HOME1.png" />
     <Content Include="Images\HOME2.png" />
     <Content Include="Images\HOME3.png" />
-    <Content Include="Images\Icono.ico" />
     <Content Include="Images\IconosMenu\Boton.png" />
     <Content Include="Images\IconosMenu\Imagen1.png" />
     <Content Include="Images\IconosMenu\Imagen2.png" />
@@ -325,7 +328,6 @@
     <Content Include="Images\IconosMenu\Imagen5.png" />
     <Content Include="Images\IconosMenu\Imagen6.png" />
     <Content Include="Images\IconosMenu\Imagen7.png" />
-    <Content Include="Images\LogoSGD.png" />
     <Content Include="Images\modificar.png" />
     <Content Include="Images\right_arrow.png" />
     <Content Include="Images\Semaforo\BanderaAmarilla.png" />
@@ -376,6 +378,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\sweetalert.min.js" />
     <Content Include="Scripts\Validations.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />

@@ -10,8 +10,7 @@ using RacePuntos.Datos;
 
 namespace RacePuntos.Controllers {
 	public class personasController : Controller {
-		private RacePuntosEntities db = new RacePuntosEntities();
-		//private Security sg = new Security();
+		public RacePuntosEntities db = new RacePuntosEntities();
 
 		// GET: personas
 		public ActionResult Index() {
@@ -145,15 +144,18 @@ namespace RacePuntos.Controllers {
 				return null;
 			}
 
-			string pass = Security.Encriptar(personas.contrasena);
+			
 
-			int ValidateLogin = db.personas.Where(x => (x.documento == personas.documento && x.contrasena == pass)).Count();
+			var pass = Security.ParseHexString(personas.contrasena);
+
+			//object val = db.logeo_persona(personas.documento, personas.contrasena);
+			/*int ValidateLogin = db.personas.Where(x => (x.documento == personas.documento && x.contrasena == pass)).Count();
 
 			if(ValidateLogin > 0) {
 				TempData["Rol"] = db.personas.Where(c => c.documento == personas.documento).First().rol;
 				Response.Redirect("~/Home/Index");
 				return null;
-			}
+			}*/
 			Response.Redirect("Login");
 			return null;
 		}

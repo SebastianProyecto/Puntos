@@ -12,6 +12,8 @@ namespace RacePuntos.Datos
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class RacePuntosEntities : DbContext
     {
@@ -36,5 +38,71 @@ namespace RacePuntos.Datos
         public virtual DbSet<servicios> servicios { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<vehiculo> vehiculo { get; set; }
+    
+        public virtual ObjectResult<logeo_persona_Result> logeo_persona(string documento_ingresado, string contrasena_ingresada)
+        {
+            var documento_ingresadoParameter = documento_ingresado != null ?
+                new ObjectParameter("documento_ingresado", documento_ingresado) :
+                new ObjectParameter("documento_ingresado", typeof(string));
+    
+            var contrasena_ingresadaParameter = contrasena_ingresada != null ?
+                new ObjectParameter("contrasena_ingresada", contrasena_ingresada) :
+                new ObjectParameter("contrasena_ingresada", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<logeo_persona_Result>("logeo_persona", documento_ingresadoParameter, contrasena_ingresadaParameter);
+        }
+    
+        public virtual int registro_persona(string tipo_documento_ingresado, string documento_ingresado, string contrasena_ingresada, string rol_ingresado, string cargo_ingresado, string id_usuario_creacion, string nombres_ingresados, string apellidos_ingresados, string fecha_nacimiento_ingresado, string direccion_ingresado, string numero_celular_ingresado, string correo_ingresado)
+        {
+            var tipo_documento_ingresadoParameter = tipo_documento_ingresado != null ?
+                new ObjectParameter("tipo_documento_ingresado", tipo_documento_ingresado) :
+                new ObjectParameter("tipo_documento_ingresado", typeof(string));
+    
+            var documento_ingresadoParameter = documento_ingresado != null ?
+                new ObjectParameter("documento_ingresado", documento_ingresado) :
+                new ObjectParameter("documento_ingresado", typeof(string));
+    
+            var contrasena_ingresadaParameter = contrasena_ingresada != null ?
+                new ObjectParameter("contrasena_ingresada", contrasena_ingresada) :
+                new ObjectParameter("contrasena_ingresada", typeof(string));
+    
+            var rol_ingresadoParameter = rol_ingresado != null ?
+                new ObjectParameter("rol_ingresado", rol_ingresado) :
+                new ObjectParameter("rol_ingresado", typeof(string));
+    
+            var cargo_ingresadoParameter = cargo_ingresado != null ?
+                new ObjectParameter("cargo_ingresado", cargo_ingresado) :
+                new ObjectParameter("cargo_ingresado", typeof(string));
+    
+            var id_usuario_creacionParameter = id_usuario_creacion != null ?
+                new ObjectParameter("id_usuario_creacion", id_usuario_creacion) :
+                new ObjectParameter("id_usuario_creacion", typeof(string));
+    
+            var nombres_ingresadosParameter = nombres_ingresados != null ?
+                new ObjectParameter("nombres_ingresados", nombres_ingresados) :
+                new ObjectParameter("nombres_ingresados", typeof(string));
+    
+            var apellidos_ingresadosParameter = apellidos_ingresados != null ?
+                new ObjectParameter("apellidos_ingresados", apellidos_ingresados) :
+                new ObjectParameter("apellidos_ingresados", typeof(string));
+    
+            var fecha_nacimiento_ingresadoParameter = fecha_nacimiento_ingresado != null ?
+                new ObjectParameter("fecha_nacimiento_ingresado", fecha_nacimiento_ingresado) :
+                new ObjectParameter("fecha_nacimiento_ingresado", typeof(string));
+    
+            var direccion_ingresadoParameter = direccion_ingresado != null ?
+                new ObjectParameter("direccion_ingresado", direccion_ingresado) :
+                new ObjectParameter("direccion_ingresado", typeof(string));
+    
+            var numero_celular_ingresadoParameter = numero_celular_ingresado != null ?
+                new ObjectParameter("numero_celular_ingresado", numero_celular_ingresado) :
+                new ObjectParameter("numero_celular_ingresado", typeof(string));
+    
+            var correo_ingresadoParameter = correo_ingresado != null ?
+                new ObjectParameter("correo_ingresado", correo_ingresado) :
+                new ObjectParameter("correo_ingresado", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("registro_persona", tipo_documento_ingresadoParameter, documento_ingresadoParameter, contrasena_ingresadaParameter, rol_ingresadoParameter, cargo_ingresadoParameter, id_usuario_creacionParameter, nombres_ingresadosParameter, apellidos_ingresadosParameter, fecha_nacimiento_ingresadoParameter, direccion_ingresadoParameter, numero_celular_ingresadoParameter, correo_ingresadoParameter);
+        }
     }
 }

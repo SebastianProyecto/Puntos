@@ -13,8 +13,7 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-    <script src="~/Scripts/alertify.js"></script>
-    <script src="~/Scripts/alertify.min.js"></script>
+    <script src="~/Scripts/sweetalert.min.js"></script>
     <script src="~/Scripts/jquery.tooltipster.js"></script>
     <script src="~/Scripts/jquery.tooltipster.min.js"></script>
     <script src="~/Scripts/Validations.js"></script>
@@ -31,7 +30,7 @@
         <div class="row">
             <div class="col-md-8">
                 <section id="loginForm">
-                    @using(Html.BeginForm("Login", "personas", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" })) {
+                    @using(Html.BeginForm("Login", "personas", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form", name="Login_Form", id = "Login_Form" })) {
                     @Html.AntiForgeryToken()
                     <div class='login'>
                         <h2 class="h_login">Login</h2>
@@ -52,7 +51,7 @@
                         </div>
                         <div class="form-group">
                             <div class="col-md-offset-3 col-md-10">
-                                <a class="button_login" href="#">Ingresar</a>
+                                <a class="button_login" id="submit_login" href="#">Ingresar</a>
                             </div>
                         </div>
                         <div class="form-group" style="margin-left: 17%;">
