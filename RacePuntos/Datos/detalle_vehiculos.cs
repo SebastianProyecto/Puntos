@@ -14,18 +14,9 @@ namespace RacePuntos.Datos
     
     public partial class detalle_vehiculos
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public detalle_vehiculos()
-        {
-            this.vehiculo = new HashSet<vehiculo>();
-        }
-    
         public string codigo { get; set; }
         public string marca { get; set; }
         public string referencia { get; set; }
         public string cilindraje { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<vehiculo> vehiculo { get; set; }
     }
 }

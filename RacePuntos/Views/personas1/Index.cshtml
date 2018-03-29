@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<RacePuntos.Datos.personas>
 
 @{
-    ViewBag.Title = "Index";
+  ViewBag.Title = "Index";
 }
 
 <h2>Index</h2>
@@ -39,15 +39,12 @@
             @Html.DisplayNameFor(model => model.numero_celular)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.correoElectronico)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.cargos.nombre_cargo)
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+    @foreach(var item in Model) {
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.tipo_documento)
@@ -77,17 +74,28 @@
             @Html.DisplayFor(modelItem => item.numero_celular)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.correoElectronico)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.cargos.nombre_cargo)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.documento }) |
-            @Html.ActionLink("Details", "Details", new { id=item.documento }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.documento })
+            @Html.ActionLink("Edit", "Edit", new { id = item.documento }) |
+            @Html.ActionLink("Details", "Details", new { id = item.documento }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.documento })
         </td>
     </tr>
-}
+    }
 
 </table>
+
+<script>
+
+    $(document).ready(function () {
+        $("#contrasena").attr('title', 'La contraseña debe contener minimo 8 carateres, \n una letra minuscula, una mayuscula y un numero.');
+        $("#contrasena").tooltipster();
+
+        var mensaje = "@TempData["Mensaje"]";
+        if (mensaje != "") {
+            alert(mensaje);
+        }
+    });
+
+</script>

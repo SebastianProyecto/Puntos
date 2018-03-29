@@ -19,18 +19,17 @@ namespace RacePuntos.Datos
         {
             this.puntos = new HashSet<puntos>();
             this.reservas = new HashSet<reservas>();
-            this.vehiculo = new HashSet<vehiculo>();
         }
     
         public string tipo_documento { get; set; }
         public string documento { get; set; }
-        public string contrasena { get; set; }
+        public byte[] contrasena { get; set; }
         public string rol { get; set; }
         public string cargo { get; set; }
         public string id_usuario_creacion { get; set; }
         public string nombres { get; set; }
         public string apellidos { get; set; }
-        public Nullable<System.DateTime> fecha_nacimiento { get; set; }
+        public string fecha_nacimiento { get; set; }
         public string direccion { get; set; }
         public string numero_celular { get; set; }
         public string correoElectronico { get; set; }
@@ -40,7 +39,5 @@ namespace RacePuntos.Datos
         public virtual ICollection<puntos> puntos { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<reservas> reservas { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<vehiculo> vehiculo { get; set; }
     }
 }

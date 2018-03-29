@@ -14,19 +14,11 @@ namespace RacePuntos.Datos
     
     public partial class puntos
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public puntos()
-        {
-            this.detalle_puntos = new HashSet<detalle_puntos>();
-        }
-    
         public int id_puntos_actuales { get; set; }
         public string id_usuario_puntos { get; set; }
         public string id_usuario_plataforma { get; set; }
         public Nullable<int> puntos_acumulados { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<detalle_puntos> detalle_puntos { get; set; }
         public virtual personas personas { get; set; }
     }
 }

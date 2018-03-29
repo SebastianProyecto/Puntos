@@ -17,7 +17,6 @@ namespace RacePuntos.Datos
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public estaciones_de_servicio()
         {
-            this.detalle_puntos = new HashSet<detalle_puntos>();
             this.reservas = new HashSet<reservas>();
         }
     
@@ -26,8 +25,6 @@ namespace RacePuntos.Datos
         public string sede_estacion { get; set; }
         public string direccion_estacion { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<detalle_puntos> detalle_puntos { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<reservas> reservas { get; set; }
     }

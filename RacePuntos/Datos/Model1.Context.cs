@@ -28,16 +28,12 @@ namespace RacePuntos.Datos
         }
     
         public virtual DbSet<cargos> cargos { get; set; }
-        public virtual DbSet<detalle_puntos> detalle_puntos { get; set; }
-        public virtual DbSet<detalle_reserva> detalle_reserva { get; set; }
         public virtual DbSet<detalle_vehiculos> detalle_vehiculos { get; set; }
         public virtual DbSet<estaciones_de_servicio> estaciones_de_servicio { get; set; }
         public virtual DbSet<personas> personas { get; set; }
         public virtual DbSet<puntos> puntos { get; set; }
         public virtual DbSet<reservas> reservas { get; set; }
         public virtual DbSet<servicios> servicios { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
-        public virtual DbSet<vehiculo> vehiculo { get; set; }
     
         public virtual ObjectResult<logeo_persona_Result> logeo_persona(string documento_ingresado, string contrasena_ingresada)
         {

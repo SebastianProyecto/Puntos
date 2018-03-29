@@ -14,20 +14,12 @@ namespace RacePuntos.Datos
     
     public partial class reservas
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public reservas()
-        {
-            this.detalle_reserva = new HashSet<detalle_reserva>();
-        }
-    
         public string id_reserva { get; set; }
         public Nullable<int> id_estacion { get; set; }
         public string id_usuario { get; set; }
         public Nullable<System.DateTime> fecha_reserva { get; set; }
         public Nullable<int> puntos_redimidos { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<detalle_reserva> detalle_reserva { get; set; }
         public virtual estaciones_de_servicio estaciones_de_servicio { get; set; }
         public virtual personas personas { get; set; }
     }

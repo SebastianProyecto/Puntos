@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="RacePuntosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="RacePuntosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="cargos">
           <Key>
             <PropertyRef Name="id_cargo" />
@@ -12,6 +12,22 @@
           <Property Name="id_cargo" Type="nvarchar" MaxLength="4" Nullable="false" />
           <Property Name="nombre_cargo" Type="nvarchar" MaxLength="15" />
         </EntityType>
+        <!--Errores durante la generación:
+advertencia 6013: La tabla o vista 'RacePuntos.dbo.detalle_puntos' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
+        <EntityType Name="detalle_puntos">
+          <Property Name="id_estacion" Type="int" />
+          <Property Name="id_puntos_servicio" Type="int" />
+          <Property Name="id_puntos_actuales" Type="int" />
+          <Property Name="puntos_compra" Type="int" />
+        </EntityType>-->
+        <!--Errores durante la generación:
+advertencia 6013: La tabla o vista 'RacePuntos.dbo.detalle_reserva' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
+        <EntityType Name="detalle_reserva">
+          <Property Name="id_detalle_reserva" Type="nvarchar" MaxLength="15" />
+          <Property Name="id_reserva" Type="nvarchar" MaxLength="10" />
+          <Property Name="id_servicio" Type="int" />
+          <Property Name="puntos_servicios_redimidos" Type="int" />
+        </EntityType>-->
         <EntityType Name="detalle_vehiculos">
           <Key>
             <PropertyRef Name="codigo" />
@@ -74,6 +90,28 @@
           <Property Name="nombre_servicio" Type="nvarchar" MaxLength="50" />
           <Property Name="puntos_servicio" Type="int" />
         </EntityType>
+        <!--Errores durante la generación:
+advertencia 6013: La tabla o vista 'RacePuntos.dbo.vehiculo' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
+        <EntityType Name="vehiculo">
+          <Property Name="documento_usuario" Type="nvarchar" MaxLength="15" />
+          <Property Name="placa_vehiculo_cliente" Type="nvarchar" MaxLength="7" />
+          <Property Name="codigo_vehiculo" Type="nvarchar" MaxLength="7" />
+          <Property Name="marca_vehiculo" Type="nvarchar" MaxLength="20" />
+          <Property Name="referencia_vehiculo" Type="nvarchar" MaxLength="20" />
+          <Property Name="cilindraje_vehiculo" Type="nvarchar" MaxLength="15" />
+        </EntityType>-->
+        <!--Errores durante la generación:
+error 6004: Una relación hace referencia a la tabla 'RacePuntos.dbo.detalle_puntos', pero no se encuentra la tabla.
+        <Association Name="FK__detalle_p__id_es__5535A963" />-->
+        <!--Errores durante la generación:
+error 6004: Una relación hace referencia a la tabla 'RacePuntos.dbo.detalle_puntos', pero no se encuentra la tabla.
+        <Association Name="FK__detalle_p__punto__5441852A" />-->
+        <!--Errores durante la generación:
+error 6004: Una relación hace referencia a la tabla 'RacePuntos.dbo.detalle_reserva', pero no se encuentra la tabla.
+        <Association Name="FK__detalle_r__id_se__60A75C0F" />-->
+        <!--Errores durante la generación:
+error 6004: Una relación hace referencia a la tabla 'RacePuntos.dbo.detalle_reserva', pero no se encuentra la tabla.
+        <Association Name="FK__detalle_r__punto__5FB337D6" />-->
         <Association Name="FK__personas__numero__4BAC3F29">
           <End Role="cargos" Type="Self.cargos" Multiplicity="0..1" />
           <End Role="personas" Type="Self.personas" Multiplicity="*" />
@@ -122,6 +160,12 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <!--Errores durante la generación:
+error 6004: Una relación hace referencia a la tabla 'RacePuntos.dbo.vehiculo', pero no se encuentra la tabla.
+        <Association Name="FK__vehiculo__cilind__59063A47" />-->
+        <!--Errores durante la generación:
+error 6004: Una relación hace referencia a la tabla 'RacePuntos.dbo.vehiculo', pero no se encuentra la tabla.
+        <Association Name="FK__vehiculo__codigo__59FA5E80" />-->
         <Function Name="logeo_persona" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="documento_ingresado" Type="nvarchar" Mode="In" />
           <Parameter Name="contrasena_ingresada" Type="nvarchar" Mode="In" />
@@ -165,7 +209,8 @@
             <End Role="reservas" EntitySet="reservas" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="RacePuntosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -175,30 +220,7 @@
           </Key>
           <Property Name="id_cargo" Type="String" MaxLength="4" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="nombre_cargo" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="personas" Relationship="Self.FK__personas__numero__25869641" FromRole="cargos" ToRole="personas" />
-        </EntityType>
-        <EntityType Name="detalle_puntos">
-          <Key>
-            <PropertyRef Name="id_detalle_puntos" />
-          </Key>
-          <Property Name="id_estacion" Type="Int32" />
-          <Property Name="id_puntos_servicio" Type="Int32" />
-          <Property Name="id_puntos_actuales" Type="Int32" />
-          <Property Name="puntos_compra" Type="Int32" />
-          <Property Name="id_detalle_puntos" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="estaciones_de_servicio" Relationship="Self.FK__detalle_p__id_es__2F10007B" FromRole="detalle_puntos" ToRole="estaciones_de_servicio" />
-          <NavigationProperty Name="puntos" Relationship="Self.FK__detalle_p__punto__2E1BDC42" FromRole="detalle_puntos" ToRole="puntos" />
-        </EntityType>
-        <EntityType Name="detalle_reserva">
-          <Key>
-            <PropertyRef Name="id_detalle_reserva" />
-          </Key>
-          <Property Name="id_reserva" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="id_servicio" Type="Int32" />
-          <Property Name="puntos_servicios_redimidos" Type="Int32" />
-          <Property Name="id_detalle_reserva" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="servicios" Relationship="Self.FK__detalle_r__id_se__3A81B327" FromRole="detalle_reserva" ToRole="servicios" />
-          <NavigationProperty Name="reservas" Relationship="Self.FK__detalle_r__punto__398D8EEE" FromRole="detalle_reserva" ToRole="reservas" />
+          <NavigationProperty Name="personas" Relationship="Self.FK__personas__numero__4BAC3F29" FromRole="cargos" ToRole="personas" />
         </EntityType>
         <EntityType Name="detalle_vehiculos">
           <Key>
@@ -208,7 +230,6 @@
           <Property Name="marca" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="referencia" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="cilindraje" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="vehiculo" Relationship="Self.FK__vehiculo__codigo__33D4B598" FromRole="detalle_vehiculos" ToRole="vehiculo" />
         </EntityType>
         <EntityType Name="estaciones_de_servicio">
           <Key>
@@ -218,8 +239,7 @@
           <Property Name="empresa_estacion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="sede_estacion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="direccion_estacion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="detalle_puntos" Relationship="Self.FK__detalle_p__id_es__2F10007B" FromRole="estaciones_de_servicio" ToRole="detalle_puntos" />
-          <NavigationProperty Name="reservas" Relationship="Self.FK__reservas__puntos__36B12243" FromRole="estaciones_de_servicio" ToRole="reservas" />
+          <NavigationProperty Name="reservas" Relationship="Self.FK__reservas__puntos__5CD6CB2B" FromRole="estaciones_de_servicio" ToRole="reservas" />
         </EntityType>
         <EntityType Name="personas">
           <Key>
@@ -227,20 +247,19 @@
           </Key>
           <Property Name="tipo_documento" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
           <Property Name="documento" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="contrasena" Type="String" MaxLength="Max" FixedLength="false" />
+          <Property Name="contrasena" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="rol" Type="String" MaxLength="14" FixedLength="false" Unicode="true" />
           <Property Name="cargo" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
           <Property Name="id_usuario_creacion" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
           <Property Name="nombres" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="apellidos" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="fecha_nacimiento" Type="DateTime" />
+          <Property Name="fecha_nacimiento" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="direccion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="numero_celular" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="cargos" Relationship="Self.FK__personas__numero__25869641" FromRole="personas" ToRole="cargos" />
-          <NavigationProperty Name="puntos" Relationship="Self.FK__puntos__puntos_a__2C3393D0" FromRole="personas" ToRole="puntos" />
-          <NavigationProperty Name="reservas" Relationship="Self.FK__reservas__id_usu__37A5467C" FromRole="personas" ToRole="reservas" />
-          <NavigationProperty Name="vehiculo" Relationship="Self.FK__vehiculo__cilind__32E0915F" FromRole="personas" ToRole="vehiculo" />
           <Property Name="correoElectronico" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="cargos" Relationship="Self.FK__personas__numero__4BAC3F29" FromRole="personas" ToRole="cargos" />
+          <NavigationProperty Name="puntos" Relationship="Self.FK__puntos__puntos_a__52593CB8" FromRole="personas" ToRole="puntos" />
+          <NavigationProperty Name="reservas" Relationship="Self.FK__reservas__id_usu__5DCAEF64" FromRole="personas" ToRole="reservas" />
         </EntityType>
         <EntityType Name="puntos">
           <Key>
@@ -250,8 +269,7 @@
           <Property Name="id_usuario_puntos" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
           <Property Name="id_usuario_plataforma" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
           <Property Name="puntos_acumulados" Type="Int32" />
-          <NavigationProperty Name="detalle_puntos" Relationship="Self.FK__detalle_p__punto__2E1BDC42" FromRole="puntos" ToRole="detalle_puntos" />
-          <NavigationProperty Name="personas" Relationship="Self.FK__puntos__puntos_a__2C3393D0" FromRole="puntos" ToRole="personas" />
+          <NavigationProperty Name="personas" Relationship="Self.FK__puntos__puntos_a__52593CB8" FromRole="puntos" ToRole="personas" />
         </EntityType>
         <EntityType Name="reservas">
           <Key>
@@ -262,9 +280,8 @@
           <Property Name="id_usuario" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
           <Property Name="fecha_reserva" Type="DateTime" Precision="3" />
           <Property Name="puntos_redimidos" Type="Int32" />
-          <NavigationProperty Name="detalle_reserva" Relationship="Self.FK__detalle_r__punto__398D8EEE" FromRole="reservas" ToRole="detalle_reserva" />
-          <NavigationProperty Name="estaciones_de_servicio" Relationship="Self.FK__reservas__puntos__36B12243" FromRole="reservas" ToRole="estaciones_de_servicio" />
-          <NavigationProperty Name="personas" Relationship="Self.FK__reservas__id_usu__37A5467C" FromRole="reservas" ToRole="personas" />
+          <NavigationProperty Name="estaciones_de_servicio" Relationship="Self.FK__reservas__puntos__5CD6CB2B" FromRole="reservas" ToRole="estaciones_de_servicio" />
+          <NavigationProperty Name="personas" Relationship="Self.FK__reservas__id_usu__5DCAEF64" FromRole="reservas" ToRole="personas" />
         </EntityType>
         <EntityType Name="servicios">
           <Key>
@@ -273,33 +290,8 @@
           <Property Name="id_servicio" Type="Int32" Nullable="false" />
           <Property Name="nombre_servicio" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="puntos_servicio" Type="Int32" />
-          <NavigationProperty Name="detalle_reserva" Relationship="Self.FK__detalle_r__id_se__3A81B327" FromRole="servicios" ToRole="detalle_reserva" />
         </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-        </EntityType>
-        <EntityType Name="vehiculo">
-          <Key>
-            <PropertyRef Name="id_vehiculo" />
-          </Key>
-          <Property Name="documento_usuario" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
-          <Property Name="placa_vehiculo_cliente" Type="String" MaxLength="7" FixedLength="false" Unicode="true" />
-          <Property Name="codigo_vehiculo" Type="String" MaxLength="7" FixedLength="false" Unicode="true" />
-          <Property Name="marca_vehiculo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="referencia_vehiculo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="cilindraje_vehiculo" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
-          <Property Name="id_vehiculo" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="detalle_vehiculos" Relationship="Self.FK__vehiculo__codigo__33D4B598" FromRole="vehiculo" ToRole="detalle_vehiculos" />
-          <NavigationProperty Name="personas" Relationship="Self.FK__vehiculo__cilind__32E0915F" FromRole="vehiculo" ToRole="personas" />
-        </EntityType>
-        <Association Name="FK__personas__numero__25869641">
+        <Association Name="FK__personas__numero__4BAC3F29">
           <End Role="cargos" Type="Self.cargos" Multiplicity="0..1" />
           <End Role="personas" Type="Self.personas" Multiplicity="*" />
           <ReferentialConstraint>
@@ -311,67 +303,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__detalle_p__id_es__2F10007B">
-          <End Role="estaciones_de_servicio" Type="Self.estaciones_de_servicio" Multiplicity="0..1" />
-          <End Role="detalle_puntos" Type="Self.detalle_puntos" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="estaciones_de_servicio">
-              <PropertyRef Name="id_estacion" />
-            </Principal>
-            <Dependent Role="detalle_puntos">
-              <PropertyRef Name="id_estacion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__detalle_p__punto__2E1BDC42">
-          <End Role="puntos" Type="Self.puntos" Multiplicity="0..1" />
-          <End Role="detalle_puntos" Type="Self.detalle_puntos" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="puntos">
-              <PropertyRef Name="id_puntos_actuales" />
-            </Principal>
-            <Dependent Role="detalle_puntos">
-              <PropertyRef Name="id_puntos_actuales" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__detalle_r__id_se__3A81B327">
-          <End Role="servicios" Type="Self.servicios" Multiplicity="0..1" />
-          <End Role="detalle_reserva" Type="Self.detalle_reserva" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="servicios">
-              <PropertyRef Name="id_servicio" />
-            </Principal>
-            <Dependent Role="detalle_reserva">
-              <PropertyRef Name="id_servicio" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__detalle_r__punto__398D8EEE">
-          <End Role="reservas" Type="Self.reservas" Multiplicity="0..1" />
-          <End Role="detalle_reserva" Type="Self.detalle_reserva" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="reservas">
-              <PropertyRef Name="id_reserva" />
-            </Principal>
-            <Dependent Role="detalle_reserva">
-              <PropertyRef Name="id_reserva" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__vehiculo__codigo__33D4B598">
-          <End Role="detalle_vehiculos" Type="Self.detalle_vehiculos" Multiplicity="0..1" />
-          <End Role="vehiculo" Type="Self.vehiculo" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="detalle_vehiculos">
-              <PropertyRef Name="codigo" />
-            </Principal>
-            <Dependent Role="vehiculo">
-              <PropertyRef Name="codigo_vehiculo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__reservas__puntos__36B12243">
+        <Association Name="FK__reservas__puntos__5CD6CB2B">
           <End Role="estaciones_de_servicio" Type="Self.estaciones_de_servicio" Multiplicity="0..1" />
           <End Role="reservas" Type="Self.reservas" Multiplicity="*" />
           <ReferentialConstraint>
@@ -383,7 +315,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__puntos__puntos_a__2C3393D0">
+        <Association Name="FK__puntos__puntos_a__52593CB8">
           <End Role="personas" Type="Self.personas" Multiplicity="0..1" />
           <End Role="puntos" Type="Self.puntos" Multiplicity="*" />
           <ReferentialConstraint>
@@ -395,7 +327,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__reservas__id_usu__37A5467C">
+        <Association Name="FK__reservas__id_usu__5DCAEF64">
           <End Role="personas" Type="Self.personas" Multiplicity="0..1" />
           <End Role="reservas" Type="Self.reservas" Multiplicity="*" />
           <ReferentialConstraint>
@@ -407,69 +339,29 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__vehiculo__cilind__32E0915F">
-          <End Role="personas" Type="Self.personas" Multiplicity="0..1" />
-          <End Role="vehiculo" Type="Self.vehiculo" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="personas">
-              <PropertyRef Name="documento" />
-            </Principal>
-            <Dependent Role="vehiculo">
-              <PropertyRef Name="documento_usuario" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="RacePuntosEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="cargos" EntityType="Self.cargos" />
-          <EntitySet Name="detalle_puntos" EntityType="Self.detalle_puntos" />
-          <EntitySet Name="detalle_reserva" EntityType="Self.detalle_reserva" />
           <EntitySet Name="detalle_vehiculos" EntityType="Self.detalle_vehiculos" />
           <EntitySet Name="estaciones_de_servicio" EntityType="Self.estaciones_de_servicio" />
           <EntitySet Name="personas" EntityType="Self.personas" />
           <EntitySet Name="puntos" EntityType="Self.puntos" />
           <EntitySet Name="reservas" EntityType="Self.reservas" />
           <EntitySet Name="servicios" EntityType="Self.servicios" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
-          <EntitySet Name="vehiculo" EntityType="Self.vehiculo" />
-          <AssociationSet Name="FK__personas__numero__25869641" Association="Self.FK__personas__numero__25869641">
+          <AssociationSet Name="FK__personas__numero__4BAC3F29" Association="Self.FK__personas__numero__4BAC3F29">
             <End Role="cargos" EntitySet="cargos" />
             <End Role="personas" EntitySet="personas" />
           </AssociationSet>
-          <AssociationSet Name="FK__detalle_p__id_es__2F10007B" Association="Self.FK__detalle_p__id_es__2F10007B">
-            <End Role="estaciones_de_servicio" EntitySet="estaciones_de_servicio" />
-            <End Role="detalle_puntos" EntitySet="detalle_puntos" />
-          </AssociationSet>
-          <AssociationSet Name="FK__detalle_p__punto__2E1BDC42" Association="Self.FK__detalle_p__punto__2E1BDC42">
-            <End Role="puntos" EntitySet="puntos" />
-            <End Role="detalle_puntos" EntitySet="detalle_puntos" />
-          </AssociationSet>
-          <AssociationSet Name="FK__detalle_r__id_se__3A81B327" Association="Self.FK__detalle_r__id_se__3A81B327">
-            <End Role="servicios" EntitySet="servicios" />
-            <End Role="detalle_reserva" EntitySet="detalle_reserva" />
-          </AssociationSet>
-          <AssociationSet Name="FK__detalle_r__punto__398D8EEE" Association="Self.FK__detalle_r__punto__398D8EEE">
-            <End Role="reservas" EntitySet="reservas" />
-            <End Role="detalle_reserva" EntitySet="detalle_reserva" />
-          </AssociationSet>
-          <AssociationSet Name="FK__vehiculo__codigo__33D4B598" Association="Self.FK__vehiculo__codigo__33D4B598">
-            <End Role="detalle_vehiculos" EntitySet="detalle_vehiculos" />
-            <End Role="vehiculo" EntitySet="vehiculo" />
-          </AssociationSet>
-          <AssociationSet Name="FK__reservas__puntos__36B12243" Association="Self.FK__reservas__puntos__36B12243">
+          <AssociationSet Name="FK__reservas__puntos__5CD6CB2B" Association="Self.FK__reservas__puntos__5CD6CB2B">
             <End Role="estaciones_de_servicio" EntitySet="estaciones_de_servicio" />
             <End Role="reservas" EntitySet="reservas" />
           </AssociationSet>
-          <AssociationSet Name="FK__puntos__puntos_a__2C3393D0" Association="Self.FK__puntos__puntos_a__2C3393D0">
+          <AssociationSet Name="FK__puntos__puntos_a__52593CB8" Association="Self.FK__puntos__puntos_a__52593CB8">
             <End Role="personas" EntitySet="personas" />
             <End Role="puntos" EntitySet="puntos" />
           </AssociationSet>
-          <AssociationSet Name="FK__reservas__id_usu__37A5467C" Association="Self.FK__reservas__id_usu__37A5467C">
+          <AssociationSet Name="FK__reservas__id_usu__5DCAEF64" Association="Self.FK__reservas__id_usu__5DCAEF64">
             <End Role="personas" EntitySet="personas" />
             <End Role="reservas" EntitySet="reservas" />
-          </AssociationSet>
-          <AssociationSet Name="FK__vehiculo__cilind__32E0915F" Association="Self.FK__vehiculo__cilind__32E0915F">
-            <End Role="personas" EntitySet="personas" />
-            <End Role="vehiculo" EntitySet="vehiculo" />
           </AssociationSet>
           <FunctionImport Name="logeo_persona" ReturnType="Collection(RacePuntosModel.logeo_persona_Result)">
             <Parameter Name="documento_ingresado" Mode="In" Type="String" />
@@ -531,7 +423,6 @@
           <EntitySetMapping Name="personas">
             <EntityTypeMapping TypeName="RacePuntosModel.personas">
               <MappingFragment StoreEntitySet="personas">
-                <ScalarProperty Name="correoElectronico" ColumnName="correoElectronico" />
                 <ScalarProperty Name="tipo_documento" ColumnName="tipo_documento" />
                 <ScalarProperty Name="documento" ColumnName="documento" />
                 <ScalarProperty Name="contrasena" ColumnName="contrasena" />
@@ -543,6 +434,7 @@
                 <ScalarProperty Name="fecha_nacimiento" ColumnName="fecha_nacimiento" />
                 <ScalarProperty Name="direccion" ColumnName="direccion" />
                 <ScalarProperty Name="numero_celular" ColumnName="numero_celular" />
+                <ScalarProperty Name="correoElectronico" ColumnName="correoElectronico" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -585,7 +477,7 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="registro_persona" FunctionName="RacePuntosModel.Store.registro_persona" />
-          </EntityContainerMapping>
+        </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

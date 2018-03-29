@@ -205,12 +205,6 @@
     <Compile Include="Datos\cargos.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Datos\detalle_puntos.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Datos\detalle_reserva.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Datos\detalle_vehiculos.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -245,12 +239,6 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Datos\servicios.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Datos\sysdiagrams.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Datos\vehiculo.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
@@ -355,6 +343,9 @@
     <Content Include="Images\fonts\icomoon.eot" />
     <Content Include="Images\fonts\icomoon.ttf" />
     <Content Include="Images\fonts\icomoon.woff" />
+    <Content Include="Images\fonts\BebasNeue-webfont.eot" />
+    <Content Include="Images\fonts\BebasNeue-webfont.ttf" />
+    <Content Include="Images\fonts\BebasNeue-webfont.woff" />
     <EntityDeploy Include="Datos\Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>
@@ -362,9 +353,6 @@
     <Content Include="Datos\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
-    <Content Include="Images\fonts\BebasNeue-webfont.eot" />
-    <Content Include="Images\fonts\BebasNeue-webfont.ttf" />
-    <Content Include="Images\fonts\BebasNeue-webfont.woff" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -419,12 +407,17 @@
     <Content Include="Views\Home\QuienesSomos.cshtml" />
     <Content Include="Views\Home\Gestion.cshtml" />
     <Content Include="Views\Home\Ayuda.cshtml" />
+    <Content Include="Views\personas1\Create.cshtml" />
+    <Content Include="Views\personas1\Delete.cshtml" />
+    <Content Include="Views\personas1\Details.cshtml" />
+    <Content Include="Views\personas1\Edit.cshtml" />
+    <Content Include="Views\personas1\Index.cshtml" />
+    <Content Include="Views\personas\Login.cshtml" />
     <Content Include="Views\personas\Create.cshtml" />
     <Content Include="Views\personas\Delete.cshtml" />
     <Content Include="Views\personas\Details.cshtml" />
     <Content Include="Views\personas\Edit.cshtml" />
     <Content Include="Views\personas\Index.cshtml" />
-    <Content Include="Views\personas\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

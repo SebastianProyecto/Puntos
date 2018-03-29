@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
@@ -10,20 +11,20 @@ using RacePuntos.Datos;
 
 namespace RacePuntos.Controllers {
 	public class personasController : Controller {
-		public RacePuntosEntities db = new RacePuntosEntities();
+		private RacePuntosEntities db = new RacePuntosEntities();
 
 		// GET: personas
-		public ActionResult Index() {
+		public async Task<ActionResult> Index() {
 			var personas = db.personas.Include(p => p.cargos);
-			return View(personas.ToList());
+			return View(await personas.ToListAsync());
 		}
 
 		// GET: personas/Details/5
-		public ActionResult Details(string id) {
+		public async Task<ActionResult> Details(string id) {
 			if(id == null) {
 				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 			}
-			personas personas = db.personas.Find(id);
+			personas personas = await db.personas.FindAsync(id);
 			if(personas == null) {
 				return HttpNotFound();
 			}
@@ -41,46 +42,23 @@ namespace RacePuntos.Controllers {
 		// más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public ActionResult Create([Bind(Include = "tipo_documento,documento,contrasena,cargo,rol,id_usuario_creacion,nombres,apellidos,fecha_nacimiento,direccion,numero_celular")] personas personas) {
-			//try {
+		public async Task<ActionResult> Create([Bind(Include = "tipo_documento,documento,contrasena,rol,cargo,id_usuario_creacion,nombres,apellidos,fecha_nacimiento,direccion,numero_celular,correoElectronico")] personas personas) {
 			if(ModelState.IsValid) {
-				int ValidateInsert = db.personas.Where(x => x.documento == personas.documento).Count();
-
-				if(ValidateInsert == 0) {
-
-					string pass = Security.Encriptar(personas.contrasena);
-					string id_usuario = db.personas.Select(x => x.id_usuario_creacion).Max();
-					id_usuario = (id_usuario == null) ? "1" : id_usuario;
-					personas.id_usuario_creacion = id_usuario;
-					personas.rol = "USUARIO";
-					personas.cargo = "1";
-					personas.contrasena = pass;
-					db.personas.Add(personas);
-					db.SaveChanges();
-					ViewBag.Message = "1";
-					Response.Redirect("Create");
-					return null;
-				} else {
-					ViewBag.Message = "0";
-					Response.Redirect("Create");
-					return null;
-				}
-
+				db.personas.Add(personas);
+				await db.SaveChangesAsync();
+				return RedirectToAction("Index");
 			}
 
 			ViewBag.cargo = new SelectList(db.cargos, "id_cargo", "nombre_cargo", personas.cargo);
 			return View(personas);
-			//} catch(Exception exc) {
-			//	throw new Exception("Erro: " + exc);
-			//}
 		}
 
 		// GET: personas/Edit/5
-		public ActionResult Edit(string id) {
+		public async Task<ActionResult> Edit(string id) {
 			if(id == null) {
 				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 			}
-			personas personas = db.personas.Find(id);
+			personas personas = await db.personas.FindAsync(id);
 			if(personas == null) {
 				return HttpNotFound();
 			}
@@ -93,10 +71,10 @@ namespace RacePuntos.Controllers {
 		// más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public ActionResult Edit([Bind(Include = "tipo_documento,documento,contrasena,rol,cargo,id_usuario_creacion,nombres,apellidos,fecha_nacimiento,direccion,numero_celular")] personas personas) {
+		public async Task<ActionResult> Edit([Bind(Include = "tipo_documento,documento,contrasena,rol,cargo,id_usuario_creacion,nombres,apellidos,fecha_nacimiento,direccion,numero_celular,correoElectronico")] personas personas) {
 			if(ModelState.IsValid) {
 				db.Entry(personas).State = EntityState.Modified;
-				db.SaveChanges();
+				await db.SaveChangesAsync();
 				return RedirectToAction("Index");
 			}
 			ViewBag.cargo = new SelectList(db.cargos, "id_cargo", "nombre_cargo", personas.cargo);
@@ -104,11 +82,11 @@ namespace RacePuntos.Controllers {
 		}
 
 		// GET: personas/Delete/5
-		public ActionResult Delete(string id) {
+		public async Task<ActionResult> Delete(string id) {
 			if(id == null) {
 				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 			}
-			personas personas = db.personas.Find(id);
+			personas personas = await db.personas.FindAsync(id);
 			if(personas == null) {
 				return HttpNotFound();
 			}
@@ -118,15 +96,15 @@ namespace RacePuntos.Controllers {
 		// POST: personas/Delete/5
 		[HttpPost, ActionName("Delete")]
 		[ValidateAntiForgeryToken]
-		public ActionResult DeleteConfirmed(string id) {
-			personas personas = db.personas.Find(id);
+		public async Task<ActionResult> DeleteConfirmed(string id) {
+			personas personas = await db.personas.FindAsync(id);
 			db.personas.Remove(personas);
-			db.SaveChanges();
+			await db.SaveChangesAsync();
 			return RedirectToAction("Index");
 		}
 
 		//
-		// GET: /Account/Login
+		// GET: /personas/Login
 		[AllowAnonymous]
 		public ActionResult Login() {
 			//ViewData["Rol"] = "";
@@ -134,21 +112,20 @@ namespace RacePuntos.Controllers {
 		}
 
 		//
-		// POST: /Account/Login
+		// POST: /personas/Login
 		[HttpPost]
 		[AllowAnonymous]
 		[ValidateAntiForgeryToken]
-		public ActionResult Login([Bind(Include = "documento,contrasena")] personas personas) {
+		public ActionResult Login([Bind(Include = "tipo_documento,documento,contrasena,rol,cargo,id_usuario_creacion,nombres,apellidos,fecha_nacimiento,direccion,numero_celular,correoElectronico")] personas personas) {
 			if(!ModelState.IsValid) {
 				Response.Redirect("Login");
 				return null;
 			}
 
-			
 
-			var pass = Security.ParseHexString(personas.contrasena);
 
-			//object val = db.logeo_persona(personas.documento, personas.contrasena);
+			//var pass = Security.ParseHexString(personas.contrasena);
+			var val = db.logeo_persona(personas.documento.ToString(), personas.contrasena.ToString()).ToList();
 			/*int ValidateLogin = db.personas.Where(x => (x.documento == personas.documento && x.contrasena == pass)).Count();
 
 			if(ValidateLogin > 0) {
