@@ -9,9 +9,59 @@
         } else {
             swal("Error", "Se debe diligenciar todos los campos.", "error");
         }
-        
     });
 
+    $('#LisAquisicion').DataTable({
+        "language": {
+            "sPaginationType": "full_numbers",
+            "sProcessing": "",
+            "sLengthMenu": "Mostrar _MENU_ registros",
+            "sZeroRecords": "No se encontraron resultados",
+            "sEmptyTable": "NingÃºn dato disponible en esta tabla",
+            "sInfo": "Registros _START_ al _END_ de _TOTAL_",
+            "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+            "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+            "sInfoPostFix": "",
+            "sSearch": "Buscar:",
+            "oPaginate": {
+                "sFirst": "Primero",
+                "sLast": "Ãšltimo",
+                "sNext": "Siguiente",
+                "sPrevious": "Anterior"
+            },
+        },
+        "bLengthChange": false, //thought this line could hide the LengthMenu
+        "bInfo": false,
+        lengthMenu: [[5], [5]],
+        destroy: true,
+        "sDom": 'T<"clear">lfrtip',
+        "tableTools": {
+            "sSwfPath": '/Scripts/plugins/dataTables/copy_csv_xls_pdf.swf',
+            "aButtons": [
+              {
+                  "sExtends": "collection",
+                  "sButtonText": "exportar",
+                  "aButtons": [
+                    {
+                        "sExtends": "copy",
+                        "sButtonText": "Copiar al portapapeles",
+                        "bHeader": true
+                    },
+                    {
+                        "sExtends": "xls",
+                        "bHeader": true,
+                        "sTitle": "Reporte Ticket Empresa"
+                    },
+                    {
+                        "sExtends": "pdf",
+                        "sPdfOrientation": "landscape",
+                        "sTitle": "Reporte"
+                    }
+                  ]
+              }
+            ]
+        }
+    });
 });
 
 function validaNum(e) {

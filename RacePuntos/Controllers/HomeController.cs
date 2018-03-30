@@ -13,7 +13,6 @@ namespace RacePuntos.Controllers {
 				Response.Redirect("/Personas/Login");
 				return null;
 			}
-
 		}
 
 		public ActionResult QuienesSomos() {

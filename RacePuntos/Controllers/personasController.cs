@@ -140,7 +140,7 @@ namespace RacePuntos.Controllers {
 					Session["ROL"] = db.personas.Where(c => c.documento == documento).First().rol;
 					Session["CARGO"] = db.personas.Where(c => c.documento == documento).First().cargo;
 
-					Response.Redirect("~/Home/Index");
+					Response.Redirect("/Home/Index");
 					return null;
 				}
 			} catch(Exception ex) {

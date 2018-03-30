@@ -11,18 +11,25 @@
     @*JS*@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-    <script src="~/Scripts/alertify.js"></script>
-    <script src="~/Scripts/alertify.min.js"></script>
+    
+
+    <script src="~/Scripts/jquery-1.12.4.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/plugins/dataTables/jquery.dataTables.min.js"></script>
+    <script src="~/Scripts/plugins/dataTables/dataTables.tableTools.js"></script>
     <script src="~/Scripts/jquery.tooltipster.js"></script>
     <script src="~/Scripts/jquery.tooltipster.min.js"></script>
     <script src="~/Scripts/Validations.js"></script>
-
+    
     @*CSS*@
-    <link href="~/Content/alertify.core.css" rel="stylesheet" />
-    <link href="~/Content/alertify.default.css" rel="stylesheet" />
+    
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="~/Content/dataTables.tableTools.css" rel="stylesheet" />
+
     <link href="~/Content/tooltipster.css" rel="stylesheet" />
     <link href="~/Content/Site.css" rel="stylesheet" />
+
 </head>
 <body>
     @*class="navbar navbar-inverse navbar-fixed-top"*@
@@ -33,12 +40,12 @@
                     <div class="wrap">
                         <nav>
                             <ul class="primary">
-                                <li>@Html.ActionLink("Quienes Somos", "Home", "QuienesSomos")</li>
+                                <li>@Html.ActionLink("Quienes Somos", "QuienesSomos", "Home")</li>
                                 <li>
                                     <a href="">Puntos</a>
                                     <ul class="sub">
-                                        <li>@Html.ActionLink("Historial adquisición de puntos", "", "")</li>
-                                        <li>@Html.ActionLink("Historial de servicios redimidos", "", "")</li>
+                                        <li>@Html.ActionLink("Historial adquisición de puntos", "Index", "puntos")</li>
+                                        <li>@Html.ActionLink("Historial de servicios redimidos", "Index2", "puntos")</li>
                                     </ul>
                                 </li>
                                 <li>
