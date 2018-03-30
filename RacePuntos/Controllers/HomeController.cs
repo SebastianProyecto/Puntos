@@ -7,37 +7,63 @@ using System.Web.Mvc;
 namespace RacePuntos.Controllers {
 	public class HomeController : Controller {
 		public ActionResult Index() {
-			return View();
+			if(Session["USUARIO_LOGUEADO"] != null) {
+				return View();
+			} else {
+				Response.Redirect("/Personas/Login");
+				return null;
+			}
+
 		}
 
 		public ActionResult QuienesSomos() {
-			ViewBag.Message = "Your application description page.";
-
-			return View();
+			if(Session["USUARIO_LOGUEADO"] != null) {
+				ViewBag.Message = "Your application description page.";
+				return View();
+			} else {
+				Response.Redirect("/Personas/Login");
+				return null;
+			}
 		}
 
 		public ActionResult Puntos() {
-			ViewBag.Message = "Your application description page.";
-
-			return View();
+			if(Session["USUARIO_LOGUEADO"] != null) {
+				ViewBag.Message = "Your application description page.";
+				return View();
+			} else {
+				Response.Redirect("/Personas/Login");
+				return null;
+			}
 		}
 
 		public ActionResult Gestion() {
-			ViewBag.Message = "Your application description page.";
-
-			return View();
+			if(Session["USUARIO_LOGUEADO"] != null) {
+				ViewBag.Message = "Your application description page.";
+				return View();
+			} else {
+				Response.Redirect("/Personas/Login");
+				return null;
+			}
 		}
 
 		public ActionResult Ayuda() {
-			ViewBag.Message = "Your application description page.";
-
-			return View();
+			if(Session["USUARIO_LOGUEADO"] != null) {
+				ViewBag.Message = "Your application description page.";
+				return View();
+			} else {
+				Response.Redirect("/Personas/Login");
+				return null;
+			}
 		}
 
 		public ActionResult Contact() {
-			ViewBag.Message = "Your contact page.";
-
-			return View();
+			if(Session["USUARIO_LOGUEADO"] != null) {
+				ViewBag.Message = "Your application description page.";
+				return View();
+			} else {
+				Response.Redirect("/Personas/Login");
+				return null;
+			}
 		}
 	}
 }

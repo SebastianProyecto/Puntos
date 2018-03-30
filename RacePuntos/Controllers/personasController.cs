@@ -116,32 +116,47 @@ namespace RacePuntos.Controllers {
 		[HttpPost]
 		[AllowAnonymous]
 		[ValidateAntiForgeryToken]
-		public ActionResult Login([Bind(Include = "tipo_documento,documento,contrasena,rol,cargo,id_usuario_creacion,nombres,apellidos,fecha_nacimiento,direccion,numero_celular,correoElectronico")] personas personas) {
-			if(!ModelState.IsValid) {
-				Response.Redirect("Login");
-				return null;
-			}
+		public ActionResult Login(string documento, string contrasena) {
+			try {
+				if(!ModelState.IsValid) {
+					Response.Redirect("Login");
+					return null;
+				}
 
+				var ValidateLogin = db.logeo_persona(documento.ToString(), contrasena.ToString()).Count();
 
+				
+				if(ValidateLogin > 0) {
+					personas User = new personas {
+						documento = documento,
+						nombres = db.personas.Where(c => c.documento == documento).First().nombres,
+						apellidos = db.personas.Where(c=>c.documento == documento).First().apellidos
+					};
+					Session["USUARIO_LOGUEADO"] = User;
+					
+					Session["DOCUMENTO"] = db.personas.Where(c => c.documento == documento).First().documento;
+					Session["NOMBRES"] = db.personas.Where(c => c.documento == documento).First().nombres;
+					Session["APELLIDOS"] = db.personas.Where(c => c.documento == documento).First().apellidos;
+					Session["ROL"] = db.personas.Where(c => c.documento == documento).First().rol;
+					Session["CARGO"] = db.personas.Where(c => c.documento == documento).First().cargo;
 
-			//var pass = Security.ParseHexString(personas.contrasena);
-			var val = db.logeo_persona(personas.documento.ToString(), personas.contrasena.ToString()).ToList();
-			/*int ValidateLogin = db.personas.Where(x => (x.documento == personas.documento && x.contrasena == pass)).Count();
+					Response.Redirect("~/Home/Index");
+					return null;
+				}
+			} catch(Exception ex) {
 
-			if(ValidateLogin > 0) {
-				TempData["Rol"] = db.personas.Where(c => c.documento == personas.documento).First().rol;
-				Response.Redirect("~/Home/Index");
-				return null;
-			}*/
-			Response.Redirect("Login");
-			return null;
-		}
-
-		protected override void Dispose(bool disposing) {
-			if(disposing) {
+			} finally {
 				db.Dispose();
 			}
-			base.Dispose(disposing);
+			return null;
+
 		}
+
+		//protected override void Dispose(bool disposing) {
+		//	if(disposing) {
+		//		db.Dispose();
+		//	}
+		//	base.Dispose(disposing);
+		//}
 	}
 }

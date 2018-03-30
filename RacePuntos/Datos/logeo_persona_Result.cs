@@ -14,6 +14,6 @@ namespace RacePuntos.Datos
     public partial class logeo_persona_Result
     {
         public string documento { get; set; }
-        public string Column1 { get; set; }
+        public string contrasena { get; set; }
     }
 }

@@ -30,36 +30,38 @@
         <div class="row">
             <div class="col-md-8">
                 <section id="loginForm">
-                    @using(Html.BeginForm("Login", "personas", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form", name = "Login_Form", id = "Login_Form" })) {
-                    @Html.AntiForgeryToken()
-                    <div class='login'>
-                        <h2 class="h_login">Login</h2>
-                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                        <div class="form-group">
-                            <label class="control-label col-md-3 label_login">Usuario</label>
-                            <div class="col-md-9">
-                                <input type="text" id="documento" name="documento" class="form-control InputNum input_login" onkeypress="return validaNum(event)" required />
-                                <span class="field-validation-valid text-danger" data-valmsg-for="documento" data-valmsg-replace="true"></span>
+                   @* @using(Html.BeginForm("Login", "personas", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form", name = "Login_Form", id = "Login_Form" })) {*@
+                    <form id="Login_Form" class = "form-horizontal" name="Login_Form" method="post" action="Personas/Login">
+                        @Html.AntiForgeryToken()
+                        <div class='login'>
+                            <h2 class="h_login">Login</h2>
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="form-group">
+                                <label class="control-label col-md-3 label_login">Usuario</label>
+                                <div class="col-md-9">
+                                    <input type="text" id="documento" name="documento" class="form-control InputNum input_login" onkeypress="return validaNum(event)" required />
+                                    <span class="field-validation-valid text-danger" data-valmsg-for="documento" data-valmsg-replace="true"></span>
+                                </div>
+                            </div>
+                            <div class="form-group" style="margin-bottom:15%">
+                                <label class="control-label col-md-3 label_login">Contraseña</label>
+                                <div class="col-md-9">
+                                    <input type="password" class="form-control input_login" id="contrasena" name="contrasena" required />
+                                    <span class="field-validation-valid text-danger" data-valmsg-for="contrasena" data-valmsg-replace="true"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-3 col-md-10">
+                                    <a class="button_login" id="submit_login" href="#" style="border-radius: 20px !important;">Ingresar</a>
+                                </div>
+                            </div>
+                            <div class="form-group" style="margin-left: 17%;">
+                                <div class="col-md-offset-1 col-md-10">
+                                    <a class="" href="#" style="font-size:10px">Olvido su contraseña</a>
+                                </div>
                             </div>
                         </div>
-                        <div class="form-group" style="margin-bottom:15%">
-                            <label class="control-label col-md-3 label_login">Contraseña</label>
-                            <div class="col-md-9">
-                                <input type="password" class="form-control input_login" id="contrasena" name="contrasena" required />
-                                <span class="field-validation-valid text-danger" data-valmsg-for="contrasena" data-valmsg-replace="true"></span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-md-offset-3 col-md-10">
-                                <a class="button_login" id="submit_login" href="#" style="border-radius: 20px !important;">Ingresar</a>
-                            </div>
-                        </div>
-                        <div class="form-group" style="margin-left: 17%;">
-                            <div class="col-md-offset-1 col-md-10">
-                                <a class="" href="#" style="font-size:10px">Olvido su contraseña</a>
-                            </div>
-                        </div>
-                    </div>}
+                    </form>
                 </section>
             </div>
         </div>

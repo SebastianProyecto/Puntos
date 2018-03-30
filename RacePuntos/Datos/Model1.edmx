@@ -384,7 +384,7 @@ error 6004: Una relación hace referencia a la tabla 'RacePuntos.dbo.vehiculo', 
         </EntityContainer>
         <ComplexType Name="logeo_persona_Result">
           <Property Type="String" Name="documento" Nullable="false" MaxLength="15" />
-          <Property Type="String" Name="Column1" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="contrasena" Nullable="true" MaxLength="30" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -472,7 +472,7 @@ error 6004: Una relación hace referencia a la tabla 'RacePuntos.dbo.vehiculo', 
             <ResultMapping>
               <ComplexTypeMapping TypeName="RacePuntosModel.logeo_persona_Result">
                 <ScalarProperty Name="documento" ColumnName="documento" />
-                <ScalarProperty Name="Column1" ColumnName="Column1" />
+                <ScalarProperty Name="contrasena" ColumnName="contrasena" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
