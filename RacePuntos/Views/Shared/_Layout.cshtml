@@ -11,7 +11,7 @@
     @*JS*@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    
+
 
     <script src="~/Scripts/jquery-1.12.4.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
@@ -20,9 +20,9 @@
     <script src="~/Scripts/jquery.tooltipster.js"></script>
     <script src="~/Scripts/jquery.tooltipster.min.js"></script>
     <script src="~/Scripts/Validations.js"></script>
-    
+
     @*CSS*@
-    
+
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/jquery.dataTables.min.css" rel="stylesheet" />
     <link href="~/Content/dataTables.tableTools.css" rel="stylesheet" />
@@ -51,8 +51,9 @@
                                 <li>
                                     <a href="">Gestión</a>
                                     <ul class="sub">
-                                        <li>@Html.ActionLink("usuarios", "", "")</li>
-                                        <li>@Html.ActionLink("servicios - redimir puntos", "", "")</li>
+                                        <li>@Html.ActionLink("Registrar Nuevo Usuario", "Create", "personas")</li>
+                                        <li>@Html.ActionLink("Informe Usuarios", "Index", "personas")</li>
+                                        <li>@Html.ActionLink("Servicios que ofrecemos", "Servicios", "personas")</li>
                                     </ul>
                                 </li>
                                 <li>@Html.ActionLink("Ayuda", "Ayuda", "Home")</li>
@@ -61,7 +62,10 @@
                         </nav>
                     </div>
                 </div>
-                <div class="col-md-2"><img src="~/Images/Carousel/propuesta 3.png" style="width:60%;" /></div>
+                <div class="col-md-2">
+                    <img src="~/Images/Carousel/propuesta 3.png" style="width:60%;" />
+                    <label class="control-label"><a href="#" id="salir">Cerrar Sesión</a></label>
+                </div>
             </div>
 
 

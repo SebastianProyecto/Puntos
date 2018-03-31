@@ -1,93 +1,43 @@
 ﻿@model IEnumerable<RacePuntos.Datos.personas>
 
 @{
-    ViewBag.Title = "Index";
+  ViewBag.Title = "Informe Usuarios";
+  Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2></h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.tipo_documento)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.contrasena)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.rol)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.id_usuario_creacion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.nombres)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.apellidos)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.fecha_nacimiento)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.direccion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.numero_celular)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.correoElectronico)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.cargos.nombre_cargo)
-        </th>
-        <th></th>
-    </tr>
+<div class="container">
+    <div class="col-md-12 Puntos">
+        <div class="row">
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.tipo_documento)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.contrasena)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.rol)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.id_usuario_creacion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.nombres)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.apellidos)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.fecha_nacimiento)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.direccion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.numero_celular)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.correoElectronico)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.cargos.nombre_cargo)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.documento }) |
-            @Html.ActionLink("Details", "Details", new { id=item.documento }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.documento })
-        </td>
-    </tr>
-}
+            <table id="LisUsuarios" class="table table-responsive cell-border" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Usuario</th>
+                        <th>Vehiculo</th>
+                        <th>Placa</th>
+                        <th>Puntos Redimidos</th>
+                        <th>Total Puntos</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>1032465418</td>
+                        <td>Logan</td>
+                        <td>SON-577</td>
+                        <td>12344</td>
+                        <td>500</td>
+                    </tr>
 
-</table>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

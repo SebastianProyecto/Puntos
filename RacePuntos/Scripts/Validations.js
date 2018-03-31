@@ -11,7 +11,7 @@
         }
     });
 
-    $('#LisAquisicion').DataTable({
+    $('#LisAquisicion, #LisUsuarios').DataTable({
         "language": {
             "sPaginationType": "full_numbers",
             "sProcessing": "",

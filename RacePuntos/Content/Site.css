@@ -212,17 +212,17 @@ ul.primary li:hover > a {
     position: relative;
     color: #000;
     left: 78%;
-    margin: -110px 0px 0px -264px;
+    margin: -45% 0px 0px -75%;
     background: #d6e9d4;
     padding: 1% 5%;
     border-radius: 10px;
     box-shadow: 7px 9px 20px 8px rgba(0, 0, 0, 0.2), inset 0px 0px 79px 0px rgba(0, 0, 0, 0);
 }
 
-.h4_QS{
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-weight:bolder;
-    text-align:center;
+.h4_QS {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: bolder;
+    text-align: center;
 }
 
 /******************************************FIN QUIENES SOMOS**************************************************/
@@ -266,10 +266,10 @@ ul.primary li:hover > a {
     box-shadow: 7px 9px 20px 8px rgba(0, 0, 0, 0.2), inset 0px 0px 79px 0px rgba(0, 0, 0, 0);
 }
 
-.h2_Help{
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-weight:bolder;
-    text-align:center;
+.h2_Help {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: bolder;
+    text-align: center;
 }
 
 .btn-primary_help {
@@ -284,3 +284,174 @@ ul.primary li:hover > a {
 }
 
 /******************************************FIN AYUDA*************************************************/
+
+/******************************************USUARIO NUEVO******************************************************/
+
+.Usuario {
+    width: 85%;
+    height: auto;
+    position: relative;
+    color: #000;
+    left: 78%;
+    margin: 25px 0px 0px -437px;
+    background: #0469b3;
+    padding: 1% 5%;
+    border-radius: 10px;
+    box-shadow: 7px 9px 20px 8px rgba(0, 0, 0, 0.2), inset 0px 0px 79px 0px rgba(0, 0, 0, 0);
+}
+
+.h4_Usr {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: bolder;
+    text-align: center;
+    color: #FFF;
+}
+
+.label_user {
+    font-size: 12px;
+    color: #FFF;
+}
+
+.form-control_user {
+    width: 80%;
+    height: 28px;
+    font-size: 12px;
+    border-radius: 12px;
+}
+
+.btn-default_usr {
+    color: #000;
+    font-weight: bolder;
+    font-size: 17px;
+    background-color: #d4d6d8;
+    border-color: #ffffff;
+    margin-left: 25%;
+    margin-top: 9%;
+    margin-bottom: 15%;
+    width: 60%;
+}
+
+/******************************************FIN USUARIO NUEVO**************************************************/
+
+/******************************************SERVICIOS******************************************************/
+
+.Servicio1 {
+    width: 12%;
+    height: 200px;
+    position: relative;
+    color: #000;
+    left: 78%;
+    margin: -20% 0px 0px -81%;
+    background: #0469b3;
+    padding: 1% 1%;
+    border-radius: 10px;
+    box-shadow: 7px 9px 20px 8px rgba(0, 0, 0, 0.2), inset 0px 0px 79px 0px rgba(0, 0, 0, 0);
+}
+
+.Servicio2 {
+    width: 12%;
+    height: 200px;
+    position: relative;
+    color: #000;
+    left: 78%;
+    margin: -5% 0px 0px -62%;
+    background: #0469b3;
+    padding: 1% 1%;
+    border-radius: 10px;
+    box-shadow: 7px 9px 20px 8px rgba(0, 0, 0, 0.2), inset 0px 0px 79px 0px rgba(0, 0, 0, 0);
+}
+
+.Servicio3 {
+    width: 12%;
+    height: 200px;
+    position: relative;
+    color: #000;
+    left: 78%;
+    margin: -30% 0px 0px -42%;
+    background: #0469b3;
+    padding: 1% 1%;
+    border-radius: 10px;
+    box-shadow: 7px 9px 20px 8px rgba(0, 0, 0, 0.2), inset 0px 0px 79px 0px rgba(0, 0, 0, 0);
+}
+
+.Servicio4 {
+    width: 12%;
+    height: 200px;
+    position: relative;
+    color: #000;
+    left: 78%;
+    margin: -5% 0px 0px -22%;
+    background: #0469b3;
+    padding: 1% 1%;
+    border-radius: 10px;
+    box-shadow: 7px 9px 20px 8px rgba(0, 0, 0, 0.2), inset 0px 0px 79px 0px rgba(0, 0, 0, 0);
+}
+
+.Servicio5 {
+    width: 12%;
+    height: 200px;
+    position: relative;
+    color: #000;
+    left: 78%;
+    margin: -30% 0px 20% -1%;
+    background: #0469b3;
+    padding: 1% 1%;
+    border-radius: 10px;
+    box-shadow: 7px 9px 20px 8px rgba(0, 0, 0, 0.2), inset 0px 0px 79px 0px rgba(0, 0, 0, 0);
+}
+
+.h3_SVR {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: bolder;
+    text-align: center;
+    color: #FFF;
+}
+
+/******************************************FIN SERVICIOS*************************************************/
+
+/******************************************CONTACTENOS*************************************************/
+.contact {
+    width: 31%;
+    position: relative;
+    /* top: 119%; */
+    left: 30%;
+    margin: -1% 0px 0px -28%;
+    background: #0469b3;
+    padding: 20px 30px;
+    border-radius: 18px;
+    box-shadow: 7px 9px 20px 8px rgba(0, 0, 0, 0.2), inset 0px 0px 79px 0px rgba(0, 0, 0, 0);
+}
+
+.input_contact {
+    border-radius: 18px !important;
+    width: 90%;
+    height: 27px;
+}
+
+.label_contact {
+    font-size: 13px;
+    font-weight: normal;
+    color: #FFF;
+}
+
+.h_contact {
+    font-size: 30px;
+    margin-bottom: 7%;
+    font-family: cursive;
+    text-align: center;
+    font-weight: bolder;
+    color: #FFF;
+}
+
+.btn-primary_cont {
+    color: #FFF;
+    font-weight: normal;
+    font-size: 15px;
+    background-color: #093f6f;
+    border-color: #ffffff;
+    margin-left: 31%;
+    margin-top: -5%;
+    margin-bottom: -10%;
+    border-radius: 10px;
+}
+/******************************************FIN CONTACTENOS*************************************************/

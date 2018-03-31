@@ -330,6 +330,11 @@
     <Content Include="Images\Semaforo\cancel-circle.png" />
     <Content Include="Images\Semaforo\check.png" />
     <Content Include="Images\Semaforo\warning.png" />
+    <Content Include="Images\Servicios\533037234.jpg" />
+    <Content Include="Images\Servicios\Best-Synthetic-Oil-to-keep-your-car-running-well.jpg" />
+    <Content Include="Images\Servicios\c700x420.jpg" />
+    <Content Include="Images\Servicios\cambio-refrigerante-anticongelante-liquido-incluido--F1045.jpg" />
+    <Content Include="Images\Servicios\MONTALLATAS-PISTOLA-NEUMATICAS-1024x768.png" />
     <Content Include="Images\Slides\Slide1.png" />
     <Content Include="Images\Slides\Slide2.png" />
     <Content Include="Images\Slides\Slide3.png" />
@@ -526,11 +531,6 @@
     <Content Include="Views\Home\QuienesSomos.cshtml" />
     <Content Include="Views\Home\Gestion.cshtml" />
     <Content Include="Views\Home\Ayuda.cshtml" />
-    <Content Include="Views\personas1\Create.cshtml" />
-    <Content Include="Views\personas1\Delete.cshtml" />
-    <Content Include="Views\personas1\Details.cshtml" />
-    <Content Include="Views\personas1\Edit.cshtml" />
-    <Content Include="Views\personas1\Index.cshtml" />
     <Content Include="Views\personas\Login.cshtml" />
     <Content Include="Views\personas\Create.cshtml" />
     <Content Include="Views\personas\Delete.cshtml" />
@@ -545,6 +545,7 @@
     <Content Include="Scripts\plugins\dataTables\datatable.spanish.json" />
     <Content Include="Scripts\plugins\dataTables\datatable.spanish.lang" />
     <Content Include="Views\puntos\Index2.cshtml" />
+    <Content Include="Views\personas\Servicios.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
