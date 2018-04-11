@@ -12,15 +12,17 @@ namespace RacePuntos.Datos
     using System;
     using System.Collections.Generic;
     
-    public partial class reservas
+    public partial class vehiculo
     {
-        public string id_reserva { get; set; }
-        public Nullable<int> id_estacion { get; set; }
-        public string id_usuario { get; set; }
-        public Nullable<System.DateTime> fecha_reserva { get; set; }
-        public Nullable<int> puntos_redimidos { get; set; }
+        public string documento_usuario { get; set; }
+        public string placa_vehiculo_cliente { get; set; }
+        public string codigo_vehiculo { get; set; }
+        public string marca_vehiculo { get; set; }
+        public string referencia_vehiculo { get; set; }
+        public string cilindraje_vehiculo { get; set; }
+        public int id_vehiculo { get; set; }
     
-        public virtual estaciones_de_servicio estaciones_de_servicio { get; set; }
+        public virtual detalle_vehiculos detalle_vehiculos { get; set; }
         public virtual personas personas { get; set; }
     }
 }

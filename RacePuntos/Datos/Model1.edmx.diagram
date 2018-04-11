@@ -16,6 +16,12 @@
         <AssociationConnector Association="RacePuntosModel.FK__reservas__puntos__5CD6CB2B" ManuallyRouted="false" />
         <AssociationConnector Association="RacePuntosModel.FK__puntos__puntos_a__52593CB8" ManuallyRouted="false" />
         <AssociationConnector Association="RacePuntosModel.FK__reservas__id_usu__5DCAEF64" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="RacePuntosModel.detalle_puntos" Width="1.5" PointX="8.5" PointY="5.75" />
+        <EntityTypeShape EntityType="RacePuntosModel.vehiculo" Width="1.5" PointX="11" PointY="4.625" />
+        <AssociationConnector Association="RacePuntosModel.FK__detalle_p__id_es__5535A963" />
+        <AssociationConnector Association="RacePuntosModel.FK__detalle_p__punto__5441852A" />
+        <AssociationConnector Association="RacePuntosModel.FK__vehiculo__codigo__59FA5E80" />
+        <AssociationConnector Association="RacePuntosModel.FK__vehiculo__cilind__59063A47" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="RacePuntosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="RacePuntosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="cargos">
           <Key>
             <PropertyRef Name="id_cargo" />
@@ -12,22 +12,16 @@
           <Property Name="id_cargo" Type="nvarchar" MaxLength="4" Nullable="false" />
           <Property Name="nombre_cargo" Type="nvarchar" MaxLength="15" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'RacePuntos.dbo.detalle_puntos' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
         <EntityType Name="detalle_puntos">
+          <Key>
+            <PropertyRef Name="id_detalle_puntos" />
+          </Key>
           <Property Name="id_estacion" Type="int" />
           <Property Name="id_puntos_servicio" Type="int" />
           <Property Name="id_puntos_actuales" Type="int" />
           <Property Name="puntos_compra" Type="int" />
-        </EntityType>-->
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'RacePuntos.dbo.detalle_reserva' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-        <EntityType Name="detalle_reserva">
-          <Property Name="id_detalle_reserva" Type="nvarchar" MaxLength="15" />
-          <Property Name="id_reserva" Type="nvarchar" MaxLength="10" />
-          <Property Name="id_servicio" Type="int" />
-          <Property Name="puntos_servicios_redimidos" Type="int" />
-        </EntityType>-->
+          <Property Name="id_detalle_puntos" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
         <EntityType Name="detalle_vehiculos">
           <Key>
             <PropertyRef Name="codigo" />
@@ -90,28 +84,42 @@ advertencia 6013: La tabla o vista 'RacePuntos.dbo.detalle_reserva' no tiene def
           <Property Name="nombre_servicio" Type="nvarchar" MaxLength="50" />
           <Property Name="puntos_servicio" Type="int" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'RacePuntos.dbo.vehiculo' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
         <EntityType Name="vehiculo">
+          <Key>
+            <PropertyRef Name="id_vehiculo" />
+          </Key>
           <Property Name="documento_usuario" Type="nvarchar" MaxLength="15" />
           <Property Name="placa_vehiculo_cliente" Type="nvarchar" MaxLength="7" />
           <Property Name="codigo_vehiculo" Type="nvarchar" MaxLength="7" />
           <Property Name="marca_vehiculo" Type="nvarchar" MaxLength="20" />
           <Property Name="referencia_vehiculo" Type="nvarchar" MaxLength="20" />
           <Property Name="cilindraje_vehiculo" Type="nvarchar" MaxLength="15" />
-        </EntityType>-->
-        <!--Errores durante la generación:
-error 6004: Una relación hace referencia a la tabla 'RacePuntos.dbo.detalle_puntos', pero no se encuentra la tabla.
-        <Association Name="FK__detalle_p__id_es__5535A963" />-->
-        <!--Errores durante la generación:
-error 6004: Una relación hace referencia a la tabla 'RacePuntos.dbo.detalle_puntos', pero no se encuentra la tabla.
-        <Association Name="FK__detalle_p__punto__5441852A" />-->
-        <!--Errores durante la generación:
-error 6004: Una relación hace referencia a la tabla 'RacePuntos.dbo.detalle_reserva', pero no se encuentra la tabla.
-        <Association Name="FK__detalle_r__id_se__60A75C0F" />-->
-        <!--Errores durante la generación:
-error 6004: Una relación hace referencia a la tabla 'RacePuntos.dbo.detalle_reserva', pero no se encuentra la tabla.
-        <Association Name="FK__detalle_r__punto__5FB337D6" />-->
+          <Property Name="id_vehiculo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__detalle_p__id_es__5535A963">
+          <End Role="estaciones_de_servicio" Type="Self.estaciones_de_servicio" Multiplicity="0..1" />
+          <End Role="detalle_puntos" Type="Self.detalle_puntos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="estaciones_de_servicio">
+              <PropertyRef Name="id_estacion" />
+            </Principal>
+            <Dependent Role="detalle_puntos">
+              <PropertyRef Name="id_estacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__detalle_p__punto__5441852A">
+          <End Role="puntos" Type="Self.puntos" Multiplicity="0..1" />
+          <End Role="detalle_puntos" Type="Self.detalle_puntos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="puntos">
+              <PropertyRef Name="id_puntos_actuales" />
+            </Principal>
+            <Dependent Role="detalle_puntos">
+              <PropertyRef Name="id_puntos_actuales" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__personas__numero__4BAC3F29">
           <End Role="cargos" Type="Self.cargos" Multiplicity="0..1" />
           <End Role="personas" Type="Self.personas" Multiplicity="*" />
@@ -160,12 +168,30 @@ error 6004: Una relación hace referencia a la tabla 'RacePuntos.dbo.detalle_res
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <!--Errores durante la generación:
-error 6004: Una relación hace referencia a la tabla 'RacePuntos.dbo.vehiculo', pero no se encuentra la tabla.
-        <Association Name="FK__vehiculo__cilind__59063A47" />-->
-        <!--Errores durante la generación:
-error 6004: Una relación hace referencia a la tabla 'RacePuntos.dbo.vehiculo', pero no se encuentra la tabla.
-        <Association Name="FK__vehiculo__codigo__59FA5E80" />-->
+        <Association Name="FK__vehiculo__cilind__59063A47">
+          <End Role="personas" Type="Self.personas" Multiplicity="0..1" />
+          <End Role="vehiculo" Type="Self.vehiculo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="personas">
+              <PropertyRef Name="documento" />
+            </Principal>
+            <Dependent Role="vehiculo">
+              <PropertyRef Name="documento_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__vehiculo__codigo__59FA5E80">
+          <End Role="detalle_vehiculos" Type="Self.detalle_vehiculos" Multiplicity="0..1" />
+          <End Role="vehiculo" Type="Self.vehiculo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="detalle_vehiculos">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="vehiculo">
+              <PropertyRef Name="codigo_vehiculo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Function Name="logeo_persona" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="documento_ingresado" Type="nvarchar" Mode="In" />
           <Parameter Name="contrasena_ingresada" Type="nvarchar" Mode="In" />
@@ -184,14 +210,38 @@ error 6004: Una relación hace referencia a la tabla 'RacePuntos.dbo.vehiculo', 
           <Parameter Name="numero_celular_ingresado" Type="nvarchar" Mode="In" />
           <Parameter Name="correo_ingresado" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="spCreaUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="tipo_documento_ingresado" Type="nvarchar" Mode="In" />
+          <Parameter Name="documento_ingresado" Type="nvarchar" Mode="In" />
+          <Parameter Name="contrasena_ingresada" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="rol_ingresado" Type="nvarchar" Mode="In" />
+          <Parameter Name="cargo_ingresado" Type="nvarchar" Mode="In" />
+          <Parameter Name="id_usuario_creacion" Type="nvarchar" Mode="In" />
+          <Parameter Name="nombres_ingresados" Type="nvarchar" Mode="In" />
+          <Parameter Name="apellidos_ingresados" Type="nvarchar" Mode="In" />
+          <Parameter Name="fecha_nacimiento_ingresado" Type="nvarchar" Mode="In" />
+          <Parameter Name="direccion_ingresado" Type="nvarchar" Mode="In" />
+          <Parameter Name="numero_celular_ingresado" Type="nvarchar" Mode="In" />
+          <Parameter Name="correo_ingresado" Type="nvarchar" Mode="In" />
+        </Function>
         <EntityContainer Name="RacePuntosModelStoreContainer">
           <EntitySet Name="cargos" EntityType="Self.cargos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="detalle_puntos" EntityType="Self.detalle_puntos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="detalle_vehiculos" EntityType="Self.detalle_vehiculos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="estaciones_de_servicio" EntityType="Self.estaciones_de_servicio" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="personas" EntityType="Self.personas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="puntos" EntityType="Self.puntos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="reservas" EntityType="Self.reservas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="servicios" EntityType="Self.servicios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vehiculo" EntityType="Self.vehiculo" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__detalle_p__id_es__5535A963" Association="Self.FK__detalle_p__id_es__5535A963">
+            <End Role="estaciones_de_servicio" EntitySet="estaciones_de_servicio" />
+            <End Role="detalle_puntos" EntitySet="detalle_puntos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__detalle_p__punto__5441852A" Association="Self.FK__detalle_p__punto__5441852A">
+            <End Role="puntos" EntitySet="puntos" />
+            <End Role="detalle_puntos" EntitySet="detalle_puntos" />
+          </AssociationSet>
           <AssociationSet Name="FK__personas__numero__4BAC3F29" Association="Self.FK__personas__numero__4BAC3F29">
             <End Role="cargos" EntitySet="cargos" />
             <End Role="personas" EntitySet="personas" />
@@ -208,9 +258,16 @@ error 6004: Una relación hace referencia a la tabla 'RacePuntos.dbo.vehiculo', 
             <End Role="estaciones_de_servicio" EntitySet="estaciones_de_servicio" />
             <End Role="reservas" EntitySet="reservas" />
           </AssociationSet>
+          <AssociationSet Name="FK__vehiculo__cilind__59063A47" Association="Self.FK__vehiculo__cilind__59063A47">
+            <End Role="personas" EntitySet="personas" />
+            <End Role="vehiculo" EntitySet="vehiculo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__vehiculo__codigo__59FA5E80" Association="Self.FK__vehiculo__codigo__59FA5E80">
+            <End Role="detalle_vehiculos" EntitySet="detalle_vehiculos" />
+            <End Role="vehiculo" EntitySet="vehiculo" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="RacePuntosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -230,6 +287,7 @@ error 6004: Una relación hace referencia a la tabla 'RacePuntos.dbo.vehiculo', 
           <Property Name="marca" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="referencia" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="cilindraje" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="vehiculo" Relationship="RacePuntosModel.FK__vehiculo__codigo__59FA5E80" FromRole="detalle_vehiculos" ToRole="vehiculo" />
         </EntityType>
         <EntityType Name="estaciones_de_servicio">
           <Key>
@@ -240,6 +298,7 @@ error 6004: Una relación hace referencia a la tabla 'RacePuntos.dbo.vehiculo', 
           <Property Name="sede_estacion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="direccion_estacion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="reservas" Relationship="Self.FK__reservas__puntos__5CD6CB2B" FromRole="estaciones_de_servicio" ToRole="reservas" />
+          <NavigationProperty Name="detalle_puntos" Relationship="RacePuntosModel.FK__detalle_p__id_es__5535A963" FromRole="estaciones_de_servicio" ToRole="detalle_puntos" />
         </EntityType>
         <EntityType Name="personas">
           <Key>
@@ -260,6 +319,7 @@ error 6004: Una relación hace referencia a la tabla 'RacePuntos.dbo.vehiculo', 
           <NavigationProperty Name="cargos" Relationship="Self.FK__personas__numero__4BAC3F29" FromRole="personas" ToRole="cargos" />
           <NavigationProperty Name="puntos" Relationship="Self.FK__puntos__puntos_a__52593CB8" FromRole="personas" ToRole="puntos" />
           <NavigationProperty Name="reservas" Relationship="Self.FK__reservas__id_usu__5DCAEF64" FromRole="personas" ToRole="reservas" />
+          <NavigationProperty Name="vehiculo" Relationship="RacePuntosModel.FK__vehiculo__cilind__59063A47" FromRole="personas" ToRole="vehiculo" />
         </EntityType>
         <EntityType Name="puntos">
           <Key>
@@ -270,6 +330,7 @@ error 6004: Una relación hace referencia a la tabla 'RacePuntos.dbo.vehiculo', 
           <Property Name="id_usuario_plataforma" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
           <Property Name="puntos_acumulados" Type="Int32" />
           <NavigationProperty Name="personas" Relationship="Self.FK__puntos__puntos_a__52593CB8" FromRole="puntos" ToRole="personas" />
+          <NavigationProperty Name="detalle_puntos" Relationship="RacePuntosModel.FK__detalle_p__punto__5441852A" FromRole="puntos" ToRole="detalle_puntos" />
         </EntityType>
         <EntityType Name="reservas">
           <Key>
@@ -381,11 +442,117 @@ error 6004: Una relación hace referencia a la tabla 'RacePuntos.dbo.vehiculo', 
             <Parameter Name="numero_celular_ingresado" Mode="In" Type="String" />
             <Parameter Name="correo_ingresado" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="spCreaUsuario" ReturnType="Collection(String)">
+            <Parameter Name="tipo_documento_ingresado" Mode="In" Type="String" />
+            <Parameter Name="documento_ingresado" Mode="In" Type="String" />
+            <Parameter Name="contrasena_ingresada" Mode="In" Type="String" />
+            <Parameter Name="rol_ingresado" Mode="In" Type="String" />
+            <Parameter Name="cargo_ingresado" Mode="In" Type="String" />
+            <Parameter Name="id_usuario_creacion" Mode="In" Type="String" />
+            <Parameter Name="nombres_ingresados" Mode="In" Type="String" />
+            <Parameter Name="apellidos_ingresados" Mode="In" Type="String" />
+            <Parameter Name="fecha_nacimiento_ingresado" Mode="In" Type="String" />
+            <Parameter Name="direccion_ingresado" Mode="In" Type="String" />
+            <Parameter Name="numero_celular_ingresado" Mode="In" Type="String" />
+            <Parameter Name="correo_ingresado" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="detalle_puntos" EntityType="RacePuntosModel.detalle_puntos" />
+          <EntitySet Name="vehiculo" EntityType="RacePuntosModel.vehiculo" />
+          <AssociationSet Name="FK__detalle_p__id_es__5535A963" Association="RacePuntosModel.FK__detalle_p__id_es__5535A963">
+            <End Role="estaciones_de_servicio" EntitySet="estaciones_de_servicio" />
+            <End Role="detalle_puntos" EntitySet="detalle_puntos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__detalle_p__punto__5441852A" Association="RacePuntosModel.FK__detalle_p__punto__5441852A">
+            <End Role="puntos" EntitySet="puntos" />
+            <End Role="detalle_puntos" EntitySet="detalle_puntos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__vehiculo__codigo__59FA5E80" Association="RacePuntosModel.FK__vehiculo__codigo__59FA5E80">
+            <End Role="detalle_vehiculos" EntitySet="detalle_vehiculos" />
+            <End Role="vehiculo" EntitySet="vehiculo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__vehiculo__cilind__59063A47" Association="RacePuntosModel.FK__vehiculo__cilind__59063A47">
+            <End Role="personas" EntitySet="personas" />
+            <End Role="vehiculo" EntitySet="vehiculo" />
+          </AssociationSet>
         </EntityContainer>
         <ComplexType Name="logeo_persona_Result">
           <Property Type="String" Name="documento" Nullable="false" MaxLength="15" />
           <Property Type="String" Name="contrasena" Nullable="true" MaxLength="30" />
         </ComplexType>
+        <EntityType Name="detalle_puntos">
+          <Key>
+            <PropertyRef Name="id_detalle_puntos" />
+          </Key>
+          <Property Name="id_estacion" Type="Int32" />
+          <Property Name="id_puntos_servicio" Type="Int32" />
+          <Property Name="id_puntos_actuales" Type="Int32" />
+          <Property Name="puntos_compra" Type="Int32" />
+          <Property Name="id_detalle_puntos" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="estaciones_de_servicio" Relationship="RacePuntosModel.FK__detalle_p__id_es__5535A963" FromRole="detalle_puntos" ToRole="estaciones_de_servicio" />
+          <NavigationProperty Name="puntos" Relationship="RacePuntosModel.FK__detalle_p__punto__5441852A" FromRole="detalle_puntos" ToRole="puntos" />
+        </EntityType>
+        <EntityType Name="vehiculo">
+          <Key>
+            <PropertyRef Name="id_vehiculo" />
+          </Key>
+          <Property Name="documento_usuario" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="placa_vehiculo_cliente" Type="String" MaxLength="7" FixedLength="false" Unicode="true" />
+          <Property Name="codigo_vehiculo" Type="String" MaxLength="7" FixedLength="false" Unicode="true" />
+          <Property Name="marca_vehiculo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="referencia_vehiculo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="cilindraje_vehiculo" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="id_vehiculo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="detalle_vehiculos" Relationship="RacePuntosModel.FK__vehiculo__codigo__59FA5E80" FromRole="vehiculo" ToRole="detalle_vehiculos" />
+          <NavigationProperty Name="personas" Relationship="RacePuntosModel.FK__vehiculo__cilind__59063A47" FromRole="vehiculo" ToRole="personas" />
+        </EntityType>
+        <Association Name="FK__detalle_p__id_es__5535A963">
+          <End Type="RacePuntosModel.estaciones_de_servicio" Role="estaciones_de_servicio" Multiplicity="0..1" />
+          <End Type="RacePuntosModel.detalle_puntos" Role="detalle_puntos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="estaciones_de_servicio">
+              <PropertyRef Name="id_estacion" />
+            </Principal>
+            <Dependent Role="detalle_puntos">
+              <PropertyRef Name="id_estacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__detalle_p__punto__5441852A">
+          <End Type="RacePuntosModel.puntos" Role="puntos" Multiplicity="0..1" />
+          <End Type="RacePuntosModel.detalle_puntos" Role="detalle_puntos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="puntos">
+              <PropertyRef Name="id_puntos_actuales" />
+            </Principal>
+            <Dependent Role="detalle_puntos">
+              <PropertyRef Name="id_puntos_actuales" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__vehiculo__codigo__59FA5E80">
+          <End Type="RacePuntosModel.detalle_vehiculos" Role="detalle_vehiculos" Multiplicity="0..1" />
+          <End Type="RacePuntosModel.vehiculo" Role="vehiculo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="detalle_vehiculos">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="vehiculo">
+              <PropertyRef Name="codigo_vehiculo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__vehiculo__cilind__59063A47">
+          <End Type="RacePuntosModel.personas" Role="personas" Multiplicity="0..1" />
+          <End Type="RacePuntosModel.vehiculo" Role="vehiculo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="personas">
+              <PropertyRef Name="documento" />
+            </Principal>
+            <Dependent Role="vehiculo">
+              <PropertyRef Name="documento_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -477,6 +644,31 @@ error 6004: Una relación hace referencia a la tabla 'RacePuntos.dbo.vehiculo', 
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="registro_persona" FunctionName="RacePuntosModel.Store.registro_persona" />
+          <FunctionImportMapping FunctionImportName="spCreaUsuario" FunctionName="RacePuntosModel.Store.spCreaUsuario" />
+          <EntitySetMapping Name="detalle_puntos">
+            <EntityTypeMapping TypeName="RacePuntosModel.detalle_puntos">
+              <MappingFragment StoreEntitySet="detalle_puntos">
+                <ScalarProperty Name="id_detalle_puntos" ColumnName="id_detalle_puntos" />
+                <ScalarProperty Name="puntos_compra" ColumnName="puntos_compra" />
+                <ScalarProperty Name="id_puntos_actuales" ColumnName="id_puntos_actuales" />
+                <ScalarProperty Name="id_puntos_servicio" ColumnName="id_puntos_servicio" />
+                <ScalarProperty Name="id_estacion" ColumnName="id_estacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vehiculo">
+            <EntityTypeMapping TypeName="RacePuntosModel.vehiculo">
+              <MappingFragment StoreEntitySet="vehiculo">
+                <ScalarProperty Name="id_vehiculo" ColumnName="id_vehiculo" />
+                <ScalarProperty Name="cilindraje_vehiculo" ColumnName="cilindraje_vehiculo" />
+                <ScalarProperty Name="referencia_vehiculo" ColumnName="referencia_vehiculo" />
+                <ScalarProperty Name="marca_vehiculo" ColumnName="marca_vehiculo" />
+                <ScalarProperty Name="codigo_vehiculo" ColumnName="codigo_vehiculo" />
+                <ScalarProperty Name="placa_vehiculo_cliente" ColumnName="placa_vehiculo_cliente" />
+                <ScalarProperty Name="documento_usuario" ColumnName="documento_usuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

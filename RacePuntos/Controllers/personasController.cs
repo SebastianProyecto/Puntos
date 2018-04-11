@@ -57,16 +57,27 @@ namespace RacePuntos.Controllers {
 		// más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public async Task<ActionResult> Create([Bind(Include = "tipo_documento,documento,contrasena,rol,cargo,id_usuario_creacion,nombres,apellidos,fecha_nacimiento,direccion,numero_celular,correoElectronico")] personas personas) {
+		public async Task<ActionResult> Create(string tipo_documento, string documento, string contrasena, string rol, string cargo, string id_usuario_creacion, string nombres, string apellidos, string fecha_nacimiento, string direccion, string numero_celular, string correoElectronico) {
 			if(Session["USUARIO_LOGUEADO"] != null) {
+				TempData["Mensaje"] = "";
 				if(ModelState.IsValid) {
-					db.personas.Add(personas);
-					await db.SaveChangesAsync();
-					return RedirectToAction("Index");
+					int usr = db.personas.Where(c => c.documento == documento).Count();
+					if(usr == 0) {
+						db.registro_persona(tipo_documento, documento, contrasena, rol, cargo, id_usuario_creacion, nombres, apellidos, fecha_nacimiento, direccion, numero_celular, correoElectronico).ToString();
+						TempData["Mensaje"] = "0~Usuario Creado con exito";
+					}else {
+						TempData["Mensaje"] = "1~Usuario ya existe, verifique";
+					}
+
+					//db.personas.Add(personas);
+					//await db.SaveChangesAsync();
+					Response.Redirect("/Personas/Create");
+					return null;
 				}
 
-				ViewBag.cargo = new SelectList(db.cargos, "id_cargo", "nombre_cargo", personas.cargo);
-				return View(personas);
+				ViewBag.cargo = new SelectList(db.cargos, "id_cargo", "nombre_cargo", cargo);
+				Response.Redirect("/Personas/Create");
+				return null;
 			} else {
 				Response.Redirect("/Personas/Login");
 				return null;
@@ -172,7 +183,7 @@ namespace RacePuntos.Controllers {
 					Response.Redirect("Login");
 					return null;
 				}
-
+				TempData["Error"] = "";
 				var ValidateLogin = db.logeo_persona(documento.ToString(), contrasena.ToString()).Count();
 
 
@@ -193,6 +204,7 @@ namespace RacePuntos.Controllers {
 					Response.Redirect("/Home/Index");
 					return null;
 				} else {
+					TempData["Error"] = "Datos incorrectos, verifique.";
 					Response.Redirect("~/Personas/Login");
 					return null;
 				}

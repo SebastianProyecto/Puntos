@@ -7,11 +7,25 @@
 }
 
 @*@using(Html.BeginForm()) {*@
+
+<script>
+    $(document).ready(function () {
+        Message = "@TempData["Mensaje"]";
+        if (Message != "") {
+            if (Message.split("~")[0] == "0") {
+                swal("Correcto", Message.split("~")[1], "success");
+            } else {
+                swal("Error", Message.split("~")[1], "error");
+            }
+        }
+    });
+</script>
+
 <div class="container">
     <div class="row">
         <div class="col-md-6">
             <div class="Usuario">
-                @using(Html.BeginForm("Create", "personas", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form", name = "Create_Form", id = "Create_Form" })) {
+                @using(Html.BeginForm("Create", "personas", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form", name = "Create_User", id = "Create_User" })) {
                 @Html.AntiForgeryToken()
                 <h4 class="h4_Usr">Registro nuevo usuario de la web</h4>
                 <hr />
@@ -76,6 +90,14 @@
                         <input type="text" class="form-control form-control_user" id="numero_celular" name="numero_celular" onkeypress="return validaNum(event)" required />
                         <span class="field-validation-valid text-danger" data-valmsg-for="numero_celular" data-valmsg-replace="true"></span>
                     </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-4 label_user">Correo:</label>
+                    <div class="col-md-8">
+                        <input type="email" class="form-control form-control_user" id="correoElectronico" name="correoElectronico" required />
+                        <span class="field-validation-valid text-danger" data-valmsg-for="correoElectronico" data-valmsg-replace="true"></span>
+                    </div>
                 </div>    if(Session["CARGO"].ToString() == "1") {
                     <div class="form-group">
                         <label class="control-label col-md-4 label_user">Rol:</label>
@@ -83,6 +105,7 @@
                             <select id="rol" name="rol" class="form-control form-control_user" required>
                                 <option value="">[SELECCIONE]</option>
                                 <option value="ADMIN">Administrador</option>
+                                <option value="EMPLEADO">Empleado</option>
                                 <option value="USUARIO">Usuario</option>
                             </select>
                             <span class="field-validation-valid text-danger" data-valmsg-for="rol" data-valmsg-replace="true"></span>
@@ -97,6 +120,22 @@
                     </div>
                 </div>
 
+                <div class="form-group" style="display:none;">
+                    <label class="control-label col-md-4 label_user">Cargo:</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control form-control_user" id="cargo" name="cargo" value="2" required />
+                        <span class="field-validation-valid text-danger" data-valmsg-for="cargo" data-valmsg-replace="true"></span>
+                    </div>
+                </div>
+
+                <div class="form-group" style="display:none;">
+                    <label class="control-label col-md-4 label_user">Id Usuario:</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control form-control_user" id="id_usuario_creacion" name="id_usuario_creacion" value="WEB" required />
+                        <span class="field-validation-valid text-danger" data-valmsg-for="id_usuario_creacion" data-valmsg-replace="true"></span>
+                    </div>
+                </div>
+
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-8">
                         <button type="button" class="btn btn-default btn-default_usr" id="guarda_usr">Registrar</button>
@@ -106,7 +145,7 @@
         </div>
         <div class="col-md-6">
             <div class="Usuario">
-                @using(Html.BeginForm("Create", "personas", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form", name = "Create_Form", id = "Create_Form" })) {
+                @using(Html.BeginForm("", "personas", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form", name = "Create_Vehi", id = "Create_Form" })) {
                 @Html.AntiForgeryToken()
                 <h4 class="h4_Usr">Registro nuevo vehiculo</h4>
                 <hr />
