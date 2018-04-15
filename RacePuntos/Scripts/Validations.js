@@ -1,7 +1,14 @@
 ﻿jQuery(function ($) {
+    emailRegExp = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
     $("#contrasena").focusout(function () {
         Validar_Password($("#contrasena").val());
     });
+
+    $("#correoElectronico").focusout(function () {
+        if (!emailRegExp.test($(this).val())) {
+            swal("Error", "Correo electronico incorrecto.", "error");
+        }
+    })
 
     $("#submit_login").click(function () {
         if ($("#documento").val() != "" && $("#contrasena").val() != "") {
@@ -12,6 +19,13 @@
     });
 
     $("#guarda_usr").click(function () {
+        var Error = 0;
+        Error = ValidateForm("Create_User", "input,select");
+        if (Error > 0) {
+            swal("Error", "Todos los campos deben estar diligenciados.", "error");
+            return false;
+        }
+
         $("#Create_User").submit();
     });
 
@@ -93,4 +107,15 @@ function Validar_Password(clave) {
         $("#contrasena").val("");
         return false;
     }
+}
+
+function ValidateForm(form, Tcampo) {
+    var Error = 0;
+    $("#" + form + " " + Tcampo + " ").each(function () {
+        if ($(this).val() == "") {
+            Error++;
+        }
+    });
+
+    return Error;
 }
