@@ -203,6 +203,7 @@
     <Compile Include="Controllers\personasController.cs" />
     <Compile Include="Controllers\puntosController.cs" />
     <Compile Include="Controllers\Security.cs" />
+    <Compile Include="Controllers\vehiculoController.cs" />
     <Compile Include="Datos\cargos.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -216,6 +217,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Datos\logeo_persona_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Datos\MarcasVehiculo_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Datos\Model1.Context.cs">
@@ -243,6 +247,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Datos\servicios.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Datos\UsuariosVehiculo1_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Datos\vehiculo.cs">
@@ -556,6 +563,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\css\" />
+    <Folder Include="Views\vehiculo\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

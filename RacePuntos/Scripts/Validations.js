@@ -4,11 +4,11 @@
         Validar_Password($("#contrasena").val());
     });
 
-    $("#correoElectronico").focusout(function () {
-        if (!emailRegExp.test($(this).val())) {
-            swal("Error", "Correo electronico incorrecto.", "error");
-        }
-    })
+    //$("#correoElectronico").focusout(function () {
+    //    if (!emailRegExp.test($(this).val())) {
+    //        swal("Error", "Correo electronico incorrecto.", "error");
+    //    }
+    //});
 
     $("#submit_login").click(function () {
         if ($("#documento").val() != "" && $("#contrasena").val() != "") {
@@ -18,9 +18,24 @@
         }
     });
 
+    $("#rol").change(function () {
+        switch ($(this).val()) {
+            case "ADMIN":
+                $("#cargo").val("1");
+                break;
+            case "USUARIO":
+                $("#cargo").val("2");
+                break;
+            case "N/A":
+                $("#cargo").val("3");
+                break;
+        }
+    });
+
     $("#guarda_usr").click(function () {
         var Error = 0;
-        Error = ValidateForm("Create_User", "input,select");
+        var valid = "#Create_User input, #Create_User select";
+        Error = ValidateForm(valid);
         if (Error > 0) {
             swal("Error", "Todos los campos deben estar diligenciados.", "error");
             return false;
@@ -28,6 +43,31 @@
 
         $("#Create_User").submit();
     });
+
+    $("#guarda_veh").click(function () {
+        //var Error = 0;
+        //var valid = "#Create_Vehi input, #Create_Vehi select";
+        //Error = ValidateForm(valid);
+        if (
+            $("#documento_usuario").val() == "" ||
+            $("#placa_vehiculo_cliente").val() == "" ||
+            $("#marca_vehiculo").val() == "" ||
+            $("#referencia_vehiculo").val() == "" ||
+            $("#cilindraje_vehiculo").val() == ""
+            ) {
+            swal("Error", "Todos los campos deben estar diligenciados.", "error");
+            return false;
+        }
+
+        $("#Create_Vehi").submit();
+    });
+
+    if ($(".selectpicker").length > 0) {
+        $('.selectpicker').selectpicker({
+            style: 'btn-default',
+            size: 2
+        });
+    }
 
     if ($("#LisAquisicion").length > 0 || $("#LisUsuarios").length > 0) {
         $('#LisAquisicion, #LisUsuarios').DataTable({
@@ -109,10 +149,11 @@ function Validar_Password(clave) {
     }
 }
 
-function ValidateForm(form, Tcampo) {
+function ValidateForm(CampValidate) {
     var Error = 0;
-    $("#" + form + " " + Tcampo + " ").each(function () {
+    $("" + CampValidate + "").each(function () {        
         if ($(this).val() == "") {
+            console.log("id: " + $(this).attr("id") + " -> value: " + $(this).val());
             Error++;
         }
     });

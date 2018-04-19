@@ -1,19 +1,31 @@
 ﻿body {
-    background-image: url('../Images/fonts/fondo-de-pantalla-degradado-azul.png') ;
-    background-size:cover;
+    background-image: url('../Images/fonts/fondo-de-pantalla-degradado-azul.png');
+    background-size: cover;
     background-repeat: no-repeat;
     background-position: top center;
-    background-attachment:fixed;
-    overflow:auto;
+    background-attachment: fixed;
+    overflow: auto;
 }
 
 @media only screen and (min-width: 767px) {
-  body {
-    background-image: url('../Images/fonts/fondo-de-pantalla-degradado-azul.png');
-    overflow:visible;
-  }
+    body {
+        background-image: url('../Images/fonts/fondo-de-pantalla-degradado-azul.png');
+        overflow: visible;
+    }
 }
 
+.dropdown-menu>li>a{
+    color:#000 !important;
+}
+
+.dropdown-menu > .active > a, .dropdown-menu > .active > a:hover, .dropdown-menu > .active > a:focus{
+    background-color:#FFF !important;
+}
+
+
+input {
+    text-transform: uppercase;
+}
 
 
 /* Set padding to keep content from hitting the edges */

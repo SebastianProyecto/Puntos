@@ -14,23 +14,35 @@
 
 
     <script src="~/Scripts/jquery-1.12.4.js"></script>
-    <script src="~/Scripts/sweetalert.min.js"></script>
+    @*<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>*@
     <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/js/bootstrap-select.min.js"></script>
+    <script src="~/Scripts/sweetalert.min.js"></script>
     <script src="~/Scripts/plugins/dataTables/jquery.dataTables.min.js"></script>
     <script src="~/Scripts/plugins/dataTables/dataTables.tableTools.js"></script>
     <script src="~/Scripts/jquery.tooltipster.js"></script>
     <script src="~/Scripts/jquery.tooltipster.min.js"></script>
     <script src="~/Scripts/Validations.js"></script>
 
+
+   
+
     @*CSS*@
 
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/css/bootstrap-select.min.css" />
     <link href="~/Content/jquery.dataTables.min.css" rel="stylesheet" />
     <link href="~/Content/dataTables.tableTools.css" rel="stylesheet" />
 
     <link href="~/Content/tooltipster.css" rel="stylesheet" />
     <link href="~/Content/Site.css" rel="stylesheet" />
 
+
+    @*<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    
+    *@
+    
 </head>
 <body>
     @*class="navbar navbar-inverse navbar-fixed-top"*@
@@ -65,7 +77,7 @@
                 </div>
                 <div class="col-md-2">
                     <img src="~/Images/Carousel/propuesta 3.png" style="width:60%;" />
-                    <label class="control-label"><a href="#" id="salir">Cerrar Sesión</a></label>
+                    <label class="control-label">@Html.ActionLink("Cerrar Sesión", "Logout", "personas")</label>
                 </div>
             </div>
 

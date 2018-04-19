@@ -196,6 +196,7 @@
           <Parameter Name="documento_ingresado" Type="nvarchar" Mode="In" />
           <Parameter Name="contrasena_ingresada" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="MarcasVehiculo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="registro_persona" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="tipo_documento_ingresado" Type="nvarchar" Mode="In" />
           <Parameter Name="documento_ingresado" Type="nvarchar" Mode="In" />
@@ -224,6 +225,14 @@
           <Parameter Name="numero_celular_ingresado" Type="nvarchar" Mode="In" />
           <Parameter Name="correo_ingresado" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="spInsertVehiculo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="usuario" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="placa" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="marca" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="referencia" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="cilindraje" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="UsuariosVehiculo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="RacePuntosModelStoreContainer">
           <EntitySet Name="cargos" EntityType="Self.cargos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="detalle_puntos" EntityType="Self.detalle_puntos" Schema="dbo" store:Type="Tables" />
@@ -474,6 +483,16 @@
             <End Role="personas" EntitySet="personas" />
             <End Role="vehiculo" EntitySet="vehiculo" />
           </AssociationSet>
+          <FunctionImport Name="UsuariosVehiculo" />
+          <FunctionImport Name="UsuariosVehiculo1" ReturnType="Collection(RacePuntosModel.UsuariosVehiculo1_Result)" />
+          <FunctionImport Name="MarcasVehiculo" ReturnType="Collection(RacePuntosModel.MarcasVehiculo_Result)" />
+          <FunctionImport Name="spInsertVehiculo" ReturnType="Collection(String)">
+            <Parameter Name="usuario" Mode="In" Type="String" />
+            <Parameter Name="placa" Mode="In" Type="String" />
+            <Parameter Name="marca" Mode="In" Type="String" />
+            <Parameter Name="referencia" Mode="In" Type="String" />
+            <Parameter Name="cilindraje" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="logeo_persona_Result">
           <Property Type="String" Name="documento" Nullable="false" MaxLength="15" />
@@ -553,6 +572,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="UsuariosVehiculo1_Result">
+          <Property Type="String" Name="documento" Nullable="false" MaxLength="15" />
+          <Property Type="String" Name="Nombres" Nullable="false" MaxLength="61" />
+          <Property Type="String" Name="rol" Nullable="true" MaxLength="14" />
+        </ComplexType>
+        <ComplexType Name="MarcasVehiculo_Result">
+          <Property Type="String" Name="codigo" Nullable="false" MaxLength="7" />
+          <Property Type="String" Name="marca" Nullable="true" MaxLength="20" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -669,6 +697,24 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="UsuariosVehiculo1" FunctionName="RacePuntosModel.Store.UsuariosVehiculo">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RacePuntosModel.UsuariosVehiculo1_Result">
+                <ScalarProperty Name="documento" ColumnName="documento" />
+                <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+                <ScalarProperty Name="rol" ColumnName="rol" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="MarcasVehiculo" FunctionName="RacePuntosModel.Store.MarcasVehiculo">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RacePuntosModel.MarcasVehiculo_Result">
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="marca" ColumnName="marca" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spInsertVehiculo" FunctionName="RacePuntosModel.Store.spInsertVehiculo" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
