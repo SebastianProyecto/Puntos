@@ -25,6 +25,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -469,6 +470,7 @@
     <Content Include="Scripts\bootstrap-datepicker-1.6.1-dist\css\bootstrap-datepicker3.min.css.map" />
     <Content Include="Scripts\bootstrap-datepicker-1.6.1-dist\css\bootstrap-datepicker3.standalone.css.map" />
     <Content Include="Scripts\bootstrap-datepicker-1.6.1-dist\css\bootstrap-datepicker3.standalone.min.css.map" />
+    <Content Include="Manuales\Manuales de configuración Switch y Router.pdf" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\DateTimePicker-i18n-es.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
