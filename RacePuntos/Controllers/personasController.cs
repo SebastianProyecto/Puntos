@@ -9,6 +9,8 @@ using System.Web;
 using System.Web.Mvc;
 using RacePuntos.Datos;
 using System.Web.UI.WebControls;
+using Microsoft.Reporting.WebForms;
+using System.IO;
 
 namespace RacePuntos.Controllers
 {
@@ -22,6 +24,10 @@ namespace RacePuntos.Controllers
             if (Session["USUARIO_LOGUEADO"] != null)
             {
                 var personas = db.personas.Include(p => p.cargos);
+                List<sp_RepUsuarios_Result> lstUsu = db.sp_RepUsuarios().ToList();
+                Table ta = new Table();
+                string TableUsuarios = UsuariosT(ta, lstUsu);
+                ViewData["_TableUsuarios"] = TableUsuarios;
                 return View(await personas.ToListAsync());
             }
             else
@@ -95,6 +101,23 @@ namespace RacePuntos.Controllers
             }
             ListMarc += "</select>";
             return ListMarc;
+        }
+
+        public string UsuariosT(Table ta, List<sp_RepUsuarios_Result> lsUsr)
+        {
+            string ListUsr = "";
+            foreach (var item in lsUsr)
+            {
+                ListUsr += "<tr>";
+                ListUsr += "<td>" + item.documento + " </td>";
+                ListUsr += "<td>" + item.nombres + " " + item.apellidos + "  </td>";
+                ListUsr += " <td>" + item.marca + "  </td>";
+                ListUsr += "<td>" + item.placa + "  </td>";
+                ListUsr += " <td>" + item.puntos_redimidos + "  </td>";
+                ListUsr += "  <td>" + item.puntos_acumulados + "  </td>";
+                ListUsr += " </tr>";
+            }
+            return ListUsr;
         }
 
         // POST: personas/Create
@@ -325,11 +348,58 @@ namespace RacePuntos.Controllers
             return null;
         }
 
-        //protected override void Dispose(bool disposing) {
-        //	if(disposing) {
-        //		db.Dispose();
-        //	}
-        //	base.Dispose(disposing);
-        //}
+        public ActionResult Report(string id, string rdlc, string NameDataSet)
+        {
+            LocalReport lr = new LocalReport();
+            string path = Path.Combine(Server.MapPath("~/ReportViewer"), rdlc+".rdlc");
+            if (System.IO.File.Exists(path))
+            {
+                lr.ReportPath = path;
+            }
+            else
+            {
+                return View("Index");
+            }
+            List<sp_RepUsuarios_Result> cm = new List<sp_RepUsuarios_Result>();
+            using (RacePuntosEntities dc = new RacePuntosEntities())
+            {
+                cm = dc.sp_RepUsuarios().ToList();
+            }
+            ReportDataSource rd = new ReportDataSource(NameDataSet, cm);
+            lr.DataSources.Add(rd);
+            string reportType = id;
+            string mimeType;
+            string encoding;
+            string fileNameExtension;
+
+
+
+            string deviceInfo =
+
+            "<DeviceInfo>" +
+            "  <OutputFormat>" + id + "</OutputFormat>" +
+            "  <PageWidth>8.5in</PageWidth>" +
+            "  <PageHeight>11in</PageHeight>" +
+            "  <MarginTop>0.5in</MarginTop>" +
+            "  <MarginLeft>1in</MarginLeft>" +
+            "  <MarginRight>1in</MarginRight>" +
+            "  <MarginBottom>0.5in</MarginBottom>" +
+            "</DeviceInfo>";
+
+            Warning[] warnings;
+            string[] streams;
+            byte[] renderedBytes;
+
+            renderedBytes = lr.Render(
+                reportType,
+                deviceInfo,
+                out mimeType,
+                out encoding,
+                out fileNameExtension,
+                out streams,
+                out warnings);
+            return File(renderedBytes, mimeType);
+
+        }
     }
 }

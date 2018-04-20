@@ -11,9 +11,14 @@ namespace RacePuntos.Datos
 {
     using System;
     
-    public partial class MarcasVehiculo_Result
+    public partial class sp_RepUsuarios_Result
     {
-        public string codigo { get; set; }
+        public string documento { get; set; }
+        public string nombres { get; set; }
+        public string apellidos { get; set; }
+        public string placa { get; set; }
         public string marca { get; set; }
+        public Nullable<int> puntos_redimidos { get; set; }
+        public Nullable<int> puntos_acumulados { get; set; }
     }
 }
