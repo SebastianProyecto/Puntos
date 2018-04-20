@@ -211,6 +211,7 @@
           <Parameter Name="numero_celular_ingresado" Type="nvarchar" Mode="In" />
           <Parameter Name="correo_ingresado" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="sp_RepUsuarios" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="spCreaUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="tipo_documento_ingresado" Type="nvarchar" Mode="In" />
           <Parameter Name="documento_ingresado" Type="nvarchar" Mode="In" />
@@ -493,6 +494,7 @@
             <Parameter Name="referencia" Mode="In" Type="String" />
             <Parameter Name="cilindraje" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="sp_RepUsuarios" ReturnType="Collection(RacePuntosModel.sp_RepUsuarios_Result)" />
         </EntityContainer>
         <ComplexType Name="logeo_persona_Result">
           <Property Type="String" Name="documento" Nullable="false" MaxLength="15" />
@@ -580,6 +582,15 @@
         <ComplexType Name="MarcasVehiculo_Result">
           <Property Type="String" Name="codigo" Nullable="false" MaxLength="7" />
           <Property Type="String" Name="marca" Nullable="true" MaxLength="20" />
+        </ComplexType>
+        <ComplexType Name="sp_RepUsuarios_Result">
+          <Property Type="String" Name="documento" Nullable="false" MaxLength="15" />
+          <Property Type="String" Name="nombres" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="apellidos" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="placa" Nullable="true" MaxLength="7" />
+          <Property Type="String" Name="marca" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="puntos_redimidos" Nullable="true" />
+          <Property Type="Int32" Name="puntos_acumulados" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -715,6 +726,19 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="spInsertVehiculo" FunctionName="RacePuntosModel.Store.spInsertVehiculo" />
+          <FunctionImportMapping FunctionImportName="sp_RepUsuarios" FunctionName="RacePuntosModel.Store.sp_RepUsuarios">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RacePuntosModel.sp_RepUsuarios_Result">
+                <ScalarProperty Name="documento" ColumnName="documento" />
+                <ScalarProperty Name="nombres" ColumnName="nombres" />
+                <ScalarProperty Name="apellidos" ColumnName="apellidos" />
+                <ScalarProperty Name="placa" ColumnName="placa" />
+                <ScalarProperty Name="marca" ColumnName="marca" />
+                <ScalarProperty Name="puntos_redimidos" ColumnName="puntos_redimidos" />
+                <ScalarProperty Name="puntos_acumulados" ColumnName="puntos_acumulados" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -195,5 +195,10 @@ namespace RacePuntos.Datos
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("spInsertVehiculo", usuarioParameter, placaParameter, marcaParameter, referenciaParameter, cilindrajeParameter);
         }
+    
+        public virtual ObjectResult<sp_RepUsuarios_Result> sp_RepUsuarios()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RepUsuarios_Result>("sp_RepUsuarios");
+        }
     }
 }
