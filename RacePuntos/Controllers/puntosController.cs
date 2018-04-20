@@ -8,6 +8,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using RacePuntos.Datos;
+using System.Web.UI.WebControls;
 
 namespace RacePuntos.Controllers {
 	public class puntosController : Controller {
@@ -15,13 +16,31 @@ namespace RacePuntos.Controllers {
 
 		// GET: puntos
 		public async Task<ActionResult> Index() {
-			var puntos = db.puntos.Include(p => p.personas);
-			return View(await puntos.ToListAsync());
+            List<sp_RepHistAdqPuntos_Result> lstUsu = db.sp_RepHistAdqPuntos().ToList();
+            Table ta = new Table();
+            string TableHistorial1 = TableHistorial1T(ta, lstUsu);
+            ViewData["_TableHistorial1"] = TableHistorial1;
+
+            return View();
 		}
 
+        public string TableHistorial1T(Table ta, List<sp_RepHistAdqPuntos_Result> lsHistory1)
+        {
+            string ListUsr = "";
+            foreach (var item in lsHistory1)
+            {
+                ListUsr += "<tr>";
+                ListUsr += "<td>" + item.documento + " </td>";
+                ListUsr += "<td>" + item.nombres + " " + item.apellidos + "  </td>";
+                ListUsr += "  <td>" + item.puntos_acumulados + "  </td>";
+                ListUsr += " </tr>";
+            }
+            return ListUsr;
+        }
 
-		// GET: puntos
-		public async Task<ActionResult> Index2() {
+
+        // GET: puntos
+        public async Task<ActionResult> Index2() {
 			var puntos = db.puntos.Include(p => p.personas);
 			return View(await puntos.ToListAsync());
 		}

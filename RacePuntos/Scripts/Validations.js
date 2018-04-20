@@ -93,33 +93,33 @@
             "bInfo": false,
             lengthMenu: [[5], [5]],
             destroy: true,
-            "sDom": 'T<"clear">lfrtip',
-            "tableTools": {
-                "sSwfPath": '/Scripts/plugins/dataTables/copy_csv_xls_pdf.swf',
-                "aButtons": [
-                  {
-                      "sExtends": "collection",
-                      "sButtonText": "exportar",
-                      "aButtons": [
-                        {
-                            "sExtends": "copy",
-                            "sButtonText": "Copiar al portapapeles",
-                            "bHeader": true
-                        },
-                        {
-                            "sExtends": "xls",
-                            "bHeader": true,
-                            "sTitle": "Reporte Ticket Empresa"
-                        },
-                        {
-                            "sExtends": "pdf",
-                            "sPdfOrientation": "landscape",
-                            "sTitle": "Reporte"
-                        }
-                      ]
-                  }
-                ]
-            }
+            //"sDom": 'T<"clear">lfrtip',
+            //"tableTools": {
+            //    "sSwfPath": '/Scripts/plugins/dataTables/copy_csv_xls_pdf.swf',
+            //    "aButtons": [
+            //      {
+            //          "sExtends": "collection",
+            //          "sButtonText": "exportar",
+            //          "aButtons": [
+            //            {
+            //                "sExtends": "copy",
+            //                "sButtonText": "Copiar al portapapeles",
+            //                "bHeader": true
+            //            },
+            //            {
+            //                "sExtends": "xls",
+            //                "bHeader": true,
+            //                "sTitle": "Reporte Ticket Empresa"
+            //            },
+            //            {
+            //                "sExtends": "pdf",
+            //                "sPdfOrientation": "landscape",
+            //                "sTitle": "Reporte"
+            //            }
+            //          ]
+            //      }
+            //    ]
+            //}
         });
     }
 

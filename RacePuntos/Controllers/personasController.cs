@@ -24,6 +24,10 @@ namespace RacePuntos.Controllers
             if (Session["USUARIO_LOGUEADO"] != null)
             {
                 var personas = db.personas.Include(p => p.cargos);
+                List<sp_RepUsuarios_Result> lstUsu = db.sp_RepUsuarios().ToList();
+                Table ta = new Table();
+                string TableUsuarios = UsuariosT(ta, lstUsu);
+                ViewData["_TableUsuarios"] = TableUsuarios;
                 return View(await personas.ToListAsync());
             }
             else
@@ -97,6 +101,23 @@ namespace RacePuntos.Controllers
             }
             ListMarc += "</select>";
             return ListMarc;
+        }
+
+        public string UsuariosT(Table ta, List<sp_RepUsuarios_Result> lsUsr)
+        {
+            string ListUsr = "";
+            foreach (var item in lsUsr)
+            {
+                ListUsr += "<tr>";
+                ListUsr += "<td>" + item.documento + " </td>";
+                ListUsr += "<td>" + item.nombres + " " + item.apellidos + "  </td>";
+                ListUsr += " <td>" + item.marca + "  </td>";
+                ListUsr += "<td>" + item.placa + "  </td>";
+                ListUsr += " <td>" + item.puntos_redimidos + "  </td>";
+                ListUsr += "  <td>" + item.puntos_acumulados + "  </td>";
+                ListUsr += " </tr>";
+            }
+            return ListUsr;
         }
 
         // POST: personas/Create
@@ -327,10 +348,10 @@ namespace RacePuntos.Controllers
             return null;
         }
 
-        public ActionResult Report(string id)
+        public ActionResult Report(string id, string rdlc, string NameDataSet)
         {
             LocalReport lr = new LocalReport();
-            string path = Path.Combine(Server.MapPath("~/ReportViewer"), "Usuarios.rdlc");
+            string path = Path.Combine(Server.MapPath("~/ReportViewer"), rdlc+".rdlc");
             if (System.IO.File.Exists(path))
             {
                 lr.ReportPath = path;
@@ -344,7 +365,7 @@ namespace RacePuntos.Controllers
             {
                 cm = dc.sp_RepUsuarios().ToList();
             }
-            ReportDataSource rd = new ReportDataSource("Usuarios", cm);
+            ReportDataSource rd = new ReportDataSource(NameDataSet, cm);
             lr.DataSources.Add(rd);
             string reportType = id;
             string mimeType;
