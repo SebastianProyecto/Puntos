@@ -212,6 +212,11 @@
           <Parameter Name="correo_ingresado" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="sp_RepHistAdqPuntos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_RepHistRedmPuntos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Fecha_I" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Fecha_F" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Servicios" Type="nvarchar(max)" Mode="In" />
+        </Function>
         <Function Name="sp_RepUsuarios" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="spCreaUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="tipo_documento_ingresado" Type="nvarchar" Mode="In" />
@@ -497,6 +502,11 @@
           </FunctionImport>
           <FunctionImport Name="sp_RepUsuarios" ReturnType="Collection(RacePuntosModel.sp_RepUsuarios_Result)" />
           <FunctionImport Name="sp_RepHistAdqPuntos" ReturnType="Collection(RacePuntosModel.sp_RepHistAdqPuntos_Result)" />
+          <FunctionImport Name="sp_RepHistRedmPuntos" ReturnType="Collection(RacePuntosModel.sp_RepHistRedmPuntos_Result)">
+            <Parameter Name="Fecha_I" Mode="In" Type="String" />
+            <Parameter Name="Fecha_F" Mode="In" Type="String" />
+            <Parameter Name="Servicios" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="logeo_persona_Result">
           <Property Type="String" Name="documento" Nullable="false" MaxLength="15" />
@@ -599,6 +609,12 @@
           <Property Type="String" Name="nombres" Nullable="true" MaxLength="30" />
           <Property Type="String" Name="apellidos" Nullable="true" MaxLength="30" />
           <Property Type="Int32" Name="puntos_acumulados" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_RepHistRedmPuntos_Result">
+          <Property Type="String" Name="documento" Nullable="false" MaxLength="15" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="61" />
+          <Property Type="String" Name="nombre_servicio" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="fecha_reserva" Nullable="true" Precision="23" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -754,6 +770,16 @@
                 <ScalarProperty Name="nombres" ColumnName="nombres" />
                 <ScalarProperty Name="apellidos" ColumnName="apellidos" />
                 <ScalarProperty Name="puntos_acumulados" ColumnName="puntos_acumulados" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_RepHistRedmPuntos" FunctionName="RacePuntosModel.Store.sp_RepHistRedmPuntos">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RacePuntosModel.sp_RepHistRedmPuntos_Result">
+                <ScalarProperty Name="documento" ColumnName="documento" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="nombre_servicio" ColumnName="nombre_servicio" />
+                <ScalarProperty Name="fecha_reserva" ColumnName="fecha_reserva" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

@@ -9,20 +9,31 @@ using System.Web;
 using System.Web.Mvc;
 using RacePuntos.Datos;
 using System.Web.UI.WebControls;
+using Microsoft.Reporting.WebForms;
+using System.IO;
 
-namespace RacePuntos.Controllers {
-	public class puntosController : Controller {
-		private RacePuntosEntities db = new RacePuntosEntities();
-
-		// GET: puntos
-		public async Task<ActionResult> Index() {
-            List<sp_RepHistAdqPuntos_Result> lstUsu = db.sp_RepHistAdqPuntos().ToList();
-            Table ta = new Table();
-            string TableHistorial1 = TableHistorial1T(ta, lstUsu);
-            ViewData["_TableHistorial1"] = TableHistorial1;
-
-            return View();
-		}
+namespace RacePuntos.Controllers
+{
+    public class puntosController : Controller
+    {
+        private RacePuntosEntities db = new RacePuntosEntities();
+        // GET: puntos
+        public async Task<ActionResult> Index()
+        {
+            if (Session["USUARIO_LOGUEADO"] != null)
+            {
+                List<sp_RepHistAdqPuntos_Result> lstUsu = db.sp_RepHistAdqPuntos().ToList();
+                Table ta = new Table();
+                string TableHistorial1 = TableHistorial1T(ta, lstUsu);
+                ViewData["_TableHistorial1"] = TableHistorial1;
+                return View();
+            }
+            else
+            {
+                Response.Redirect("/Personas/Login");
+                return null;
+            }
+        }
 
         public string TableHistorial1T(Table ta, List<sp_RepHistAdqPuntos_Result> lsHistory1)
         {
@@ -40,100 +51,140 @@ namespace RacePuntos.Controllers {
 
 
         // GET: puntos
-        public async Task<ActionResult> Index2() {
-			var puntos = db.puntos.Include(p => p.personas);
-			return View(await puntos.ToListAsync());
-		}
+        public async Task<ActionResult> Index2()
+        {
+            if (Session["USUARIO_LOGUEADO"] != null)
+            {
+                ViewData["Servicios"] = VehService();
+                List<sp_RepHistRedmPuntos_Result> lstHist2 = db.sp_RepHistRedmPuntos(null, null, null).ToList();
+                ViewData["Parameters"] = "cDesde='" + null + "', cHasta='" + null + "', servicios='" + null + "'";
+                Table ta = new Table();
+                string TableHistorial2 = TableHistorial2T(ta, lstHist2);
+                ViewData["_TableHistorial2"] = TableHistorial2;
+                return View();
+            }
+            else
+            {
+                Response.Redirect("/Personas/Login");
+                return null;
+            }
+        }
 
-		// GET: puntos/Details/5
-		public async Task<ActionResult> Details(int? id) {
-			if(id == null) {
-				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-			}
-			puntos puntos = await db.puntos.FindAsync(id);
-			if(puntos == null) {
-				return HttpNotFound();
-			}
-			return View(puntos);
-		}
+        [HttpPost]
+        public HtmlString FiltroHist2(string cDesde = null, string cHasta = null, string servicios = null)
+        {
 
-		// GET: puntos/Create
-		public ActionResult Create() {
-			ViewBag.id_usuario_puntos = new SelectList(db.personas, "documento", "tipo_documento");
-			return View();
-		}
+            cDesde = (cDesde != "") ? cDesde : null;
+            cHasta = (cHasta != "") ? cHasta : null;
+            servicios = (servicios != "") ? servicios : null;
 
-		// POST: puntos/Create
-		// Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
-		// más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
-		[HttpPost]
-		[ValidateAntiForgeryToken]
-		public async Task<ActionResult> Create([Bind(Include = "id_puntos_actuales,id_usuario_puntos,id_usuario_plataforma,puntos_acumulados")] puntos puntos) {
-			if(ModelState.IsValid) {
-				db.puntos.Add(puntos);
-				await db.SaveChangesAsync();
-				return RedirectToAction("Index");
-			}
+            List<sp_RepHistRedmPuntos_Result> lstHist2 = db.sp_RepHistRedmPuntos(cDesde, cHasta, servicios).ToList();
+            Table ta = new Table();
+            string TableHistorial2 = TableHistorial2T(ta, lstHist2);
+            ViewData["Parameters"] = "cDesde='" + cDesde + "', cHasta='" + cHasta + "', servicios='" + servicios + "'";
+            return new HtmlString(TableHistorial2);
+        }
 
-			ViewBag.id_usuario_puntos = new SelectList(db.personas, "documento", "tipo_documento", puntos.id_usuario_puntos);
-			return View(puntos);
-		}
+        public string VehService()
+        {
+            var Servicios = (from ser in db.servicios
+                             select ser).ToList();
+            string s_Service = "<select class='form-control' name='servicios' id='servicios'>";
+            s_Service += "<option value=''>[SELECCIONE]</option>";
+            foreach (var item in Servicios.ToList())
+            {
+                s_Service += "<option value='" + item.id_servicio + "'>" + item.nombre_servicio + "</option>";
+            }
+            s_Service += "</select>";
+            return s_Service;
+        }
 
-		// GET: puntos/Edit/5
-		public async Task<ActionResult> Edit(int? id) {
-			if(id == null) {
-				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-			}
-			puntos puntos = await db.puntos.FindAsync(id);
-			if(puntos == null) {
-				return HttpNotFound();
-			}
-			ViewBag.id_usuario_puntos = new SelectList(db.personas, "documento", "tipo_documento", puntos.id_usuario_puntos);
-			return View(puntos);
-		}
+        public string TableHistorial2T(Table ta, List<sp_RepHistRedmPuntos_Result> lsHistory2)
+        {
+            string ListHist2 = "";
+            foreach (var item in lsHistory2)
+            {
+                DateTime fecha = DateTime.Parse(item.fecha_reserva.ToString());
+                ListHist2 += "<tr>";
+                ListHist2 += "<td>" + item.documento + " </td>";
+                ListHist2 += "<td>" + item.Nombre + "  </td>";
+                ListHist2 += "<td>" + item.nombre_servicio + "  </td>";
+                ListHist2 += "<td>" + fecha.ToShortDateString() + "  </td>";
+                ListHist2 += "</tr>";
+            }
+            return ListHist2;
+        }
 
-		// POST: puntos/Edit/5
-		// Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
-		// más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
-		[HttpPost]
-		[ValidateAntiForgeryToken]
-		public async Task<ActionResult> Edit([Bind(Include = "id_puntos_actuales,id_usuario_puntos,id_usuario_plataforma,puntos_acumulados")] puntos puntos) {
-			if(ModelState.IsValid) {
-				db.Entry(puntos).State = EntityState.Modified;
-				await db.SaveChangesAsync();
-				return RedirectToAction("Index");
-			}
-			ViewBag.id_usuario_puntos = new SelectList(db.personas, "documento", "tipo_documento", puntos.id_usuario_puntos);
-			return View(puntos);
-		}
+        public ActionResult Report(string id, string rdlc, string NameDataSet, string cDesde, string cHasta, string servicios)
+        {
+            cDesde = (cDesde != "" && cDesde != "null") ? cDesde : null;
+            cHasta = (cHasta != "" && cHasta != "null") ? cHasta : null;
+            servicios = (servicios != "" && servicios != "null") ? servicios : null;
+            LocalReport lr = new LocalReport();
 
-		// GET: puntos/Delete/5
-		public async Task<ActionResult> Delete(int? id) {
-			if(id == null) {
-				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-			}
-			puntos puntos = await db.puntos.FindAsync(id);
-			if(puntos == null) {
-				return HttpNotFound();
-			}
-			return View(puntos);
-		}
+            string path = Path.Combine(Server.MapPath("~/ReportViewer"), rdlc + ".rdlc");
+            if (System.IO.File.Exists(path))
+            {
+                lr.ReportPath = path;
+            }
+            else
+            {
+                return View("Index");
+            }
+            List<sp_RepHistRedmPuntos_Result> cm = new List<sp_RepHistRedmPuntos_Result>();
+            using (RacePuntosEntities dc = new RacePuntosEntities())
+            {
+                cm = dc.sp_RepHistRedmPuntos(cDesde, cHasta, servicios).ToList();
+            }
+            ReportDataSource rd = new ReportDataSource(NameDataSet, cm);
+            lr.DataSources.Add(rd);
+            ReportParameter[] parameters = new ReportParameter[3];
+            parameters[0] = new ReportParameter("Fecha_I", cDesde);
+            parameters[1] = new ReportParameter("Fecha_F", cHasta);
+            parameters[2] = new ReportParameter("Servicios", servicios);
+            lr.SetParameters(parameters);
+            string reportType = id;
+            string mimeType;
+            string encoding;
+            string fileNameExtension;
 
-		// POST: puntos/Delete/5
-		[HttpPost, ActionName("Delete")]
-		[ValidateAntiForgeryToken]
-		public async Task<ActionResult> DeleteConfirmed(int id) {
-			puntos puntos = await db.puntos.FindAsync(id);
-			db.puntos.Remove(puntos);
-			await db.SaveChangesAsync();
-			return RedirectToAction("Index");
-		}
 
-		protected override void Dispose(bool disposing) {
-			if(disposing) {
-				db.Dispose();
-			}
-			base.Dispose(disposing);
-		}
-	}
+
+            string deviceInfo =
+
+            "<DeviceInfo>" +
+            "  <OutputFormat>" + id + "</OutputFormat>" +
+            "  <PageWidth>8.5in</PageWidth>" +
+            "  <PageHeight>11in</PageHeight>" +
+            "  <MarginTop>0.5in</MarginTop>" +
+            "  <MarginLeft>1in</MarginLeft>" +
+            "  <MarginRight>1in</MarginRight>" +
+            "  <MarginBottom>0.5in</MarginBottom>" +
+            "</DeviceInfo>";
+
+            Warning[] warnings;
+            string[] streams;
+            byte[] renderedBytes;
+
+            renderedBytes = lr.Render(
+                reportType,
+                deviceInfo,
+                out mimeType,
+                out encoding,
+                out fileNameExtension,
+                out streams,
+                out warnings);
+            return File(renderedBytes, mimeType);
+
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+    }
 }

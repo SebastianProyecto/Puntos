@@ -1,8 +1,8 @@
 ﻿@model IEnumerable<RacePuntos.Datos.puntos>
 
 @{
-  ViewBag.Title = "Historial de servicios redimidos";
-  Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Historial de servicios redimidos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2></h2>
@@ -26,16 +26,18 @@
 
                 <div class="col-md-3">
                     <label class="control-label">Tipo de servicio: </label>
-                    <select name="tipService" id="tipService" class="form-control">
-                        <option value="">[SELECCIONE]</option>
-                        <option value="">Servicio 1</option>
-                        <option value="">Servicio 2</option>
-                        <option value="">Servicio 3</option>
-                    </select>
+                    @Html.Raw(ViewData["Servicios"])
                 </div>
 
                 <div class="col-md-1">
                     <img title="Buscar" src="~/Images/search-icon.png" id="buscar" style="width:60%; margin-top:38%; cursor:pointer;" />
+                </div>
+                <div class="col-md-2">
+                    <button type="button" class="btn btn-default">
+                        <a href="#" id="g_Report" target="_blank" style="color:#000 !important; font-weight:bolder;" onclick="navegate()">
+                        Descargar Informe
+                        </a>
+                    </button>
                 </div>
             </div>
         </div>
@@ -51,17 +53,10 @@
                         <th>Fecha</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Sebastian</td>
-                        <td>Lavado Vehiculo</td>
-                        <td>29/03/2018</td>
-                    </tr>
-
+                <tbody id="tb_Hist2">
+                    @Html.Raw(ViewData["_TableHistorial2"])
                 </tbody>
             </table>
         </div>
     </div>
 </div>
-

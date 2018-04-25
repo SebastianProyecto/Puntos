@@ -123,6 +123,39 @@
         });
     }
 
+    $("#buscar").click(function () {
+        console.log("hola click");
+        var cDesde, cHasta, servicios;
+        cDesde = ($("#cDesde").val() != "") ? $("#cDesde").val() : null;
+        cHasta = ($("#cHasta").val() != "") ? $("#cHasta").val() : null;
+        servicios = ($("#servicios").val() != "") ? $("#servicios").val() : null;
+        $.ajax({
+            type: "POST",
+            url: "/puntos/FiltroHist2",
+            data: { cDesde: cDesde, cHasta: cHasta, servicios: servicios },
+            dataType: "HTML",
+            success: function (data) {
+                console.log(data);
+                $("#tb_Hist2").html("");
+                $("#tb_Hist2").html(data);
+            },
+            error: function () {
+                alert("Error occured!!")
+            }
+        });
+    });
+
+    //$("#g_Report").click(function () {
+    //    debugger;
+    //    var cDesde, cHasta, servicios;
+    //    cDesde = ($("#cDesde").val() != "") ? $("#cDesde").val() : null;
+    //    cHasta = ($("#cHasta").val() != "") ? $("#cHasta").val() : null;
+    //    servicios = ($("#servicios").val() != "") ? $("#servicios").val() : null;
+    //    href = "/puntos/Report/PDF?rdlc=History2&NameDataSet=History2&cDesde=" + cDesde + "&cHasta=" + cHasta + "&servicios=" + servicios;
+    //    //window.open = (href, "_blank")
+    //    window.location.href = href;
+    //})
+
 });
 
 function validaNum(e) {
@@ -151,7 +184,7 @@ function Validar_Password(clave) {
 
 function ValidateForm(CampValidate) {
     var Error = 0;
-    $("" + CampValidate + "").each(function () {        
+    $("" + CampValidate + "").each(function () {
         if ($(this).val() == "") {
             console.log("id: " + $(this).attr("id") + " -> value: " + $(this).val());
             Error++;
@@ -159,4 +192,17 @@ function ValidateForm(CampValidate) {
     });
 
     return Error;
+}
+
+function navegate() {
+    var cDesde, cHasta, servicios;
+    cDesde = ($("#cDesde").val() != "") ? $("#cDesde").val() : null;
+    cHasta = ($("#cHasta").val() != "") ? $("#cHasta").val() : null;
+    servicios = ($("#servicios").val() != "") ? $("#servicios").val() : null;
+    var a = document.createElement("a");
+    href = "/puntos/Report/PDF?rdlc=History2&NameDataSet=History2&cDesde=" + cDesde + "&cHasta=" + cHasta + "&servicios=" + servicios;
+    a.target = "_blank";
+    a.href = href;
+    //a.click();
+    $("#g_Report").attr("href", href);
 }

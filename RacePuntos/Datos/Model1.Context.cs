@@ -205,5 +205,22 @@ namespace RacePuntos.Datos
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RepHistAdqPuntos_Result>("sp_RepHistAdqPuntos");
         }
+    
+        public virtual ObjectResult<sp_RepHistRedmPuntos_Result> sp_RepHistRedmPuntos(string fecha_I, string fecha_F, string servicios)
+        {
+            var fecha_IParameter = fecha_I != null ?
+                new ObjectParameter("Fecha_I", fecha_I) :
+                new ObjectParameter("Fecha_I", typeof(string));
+    
+            var fecha_FParameter = fecha_F != null ?
+                new ObjectParameter("Fecha_F", fecha_F) :
+                new ObjectParameter("Fecha_F", typeof(string));
+    
+            var serviciosParameter = servicios != null ?
+                new ObjectParameter("Servicios", servicios) :
+                new ObjectParameter("Servicios", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_RepHistRedmPuntos_Result>("sp_RepHistRedmPuntos", fecha_IParameter, fecha_FParameter, serviciosParameter);
+        }
     }
 }

@@ -42,7 +42,9 @@
                             <TextRun>
                               <Value>Documento</Value>
                               <Style>
+                                <FontSize>12pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
+                                <Color>#ffffff</Color>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -76,6 +78,7 @@
                           <Style>Solid</Style>
                           <Width>1pt</Width>
                         </RightBorder>
+                        <BackgroundColor>Black</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -95,7 +98,9 @@
                             <TextRun>
                               <Value>Nombres</Value>
                               <Style>
+                                <FontSize>12pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
+                                <Color>#ffffff</Color>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -129,6 +134,7 @@
                           <Style>Solid</Style>
                           <Width>1pt</Width>
                         </RightBorder>
+                        <BackgroundColor>Black</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -148,7 +154,9 @@
                             <TextRun>
                               <Value>Apellidos</Value>
                               <Style>
+                                <FontSize>12pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
+                                <Color>#ffffff</Color>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -182,6 +190,7 @@
                           <Style>Solid</Style>
                           <Width>1pt</Width>
                         </RightBorder>
+                        <BackgroundColor>Black</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -201,7 +210,9 @@
                             <TextRun>
                               <Value>Placa</Value>
                               <Style>
+                                <FontSize>12pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
+                                <Color>#ffffff</Color>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -235,6 +246,7 @@
                           <Style>Solid</Style>
                           <Width>1pt</Width>
                         </RightBorder>
+                        <BackgroundColor>Black</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -254,7 +266,9 @@
                             <TextRun>
                               <Value>Marca</Value>
                               <Style>
+                                <FontSize>12pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
+                                <Color>#ffffff</Color>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -288,6 +302,7 @@
                           <Style>Solid</Style>
                           <Width>1pt</Width>
                         </RightBorder>
+                        <BackgroundColor>Black</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -307,7 +322,9 @@
                             <TextRun>
                               <Value>Puntos redimidos</Value>
                               <Style>
+                                <FontSize>12pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
+                                <Color>#ffffff</Color>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -341,6 +358,7 @@
                           <Style>Solid</Style>
                           <Width>1pt</Width>
                         </RightBorder>
+                        <BackgroundColor>Black</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -360,7 +378,9 @@
                             <TextRun>
                               <Value>Total puntos</Value>
                               <Style>
+                                <FontSize>12pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
+                                <Color>#ffffff</Color>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -394,6 +414,7 @@
                           <Style>Solid</Style>
                           <Width>1pt</Width>
                         </RightBorder>
+                        <BackgroundColor>Black</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -793,7 +814,7 @@
         <Top>0.07056cm</Top>
         <Left>0.02817cm</Left>
         <Height>1.8985cm</Height>
-        <Width>16.39809cm</Width>
+        <Width>16.39808cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -801,7 +822,7 @@
         </Style>
       </Tablix>
     </ReportItems>
-    <Height>0.77522in</Height>
+    <Height>0.87522in</Height>
     <Style>
       <Border>
         <Style>Solid</Style>
@@ -825,6 +846,8 @@
                   <Value>REPORTE DE USUARIOS</Value>
                   <Style>
                     <FontSize>24pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                    <Color>#0090ff</Color>
                   </Style>
                 </TextRun>
               </TextRuns>
@@ -850,7 +873,7 @@
           <Source>Embedded</Source>
           <Value>HOME3</Value>
           <Sizing>FitProportional</Sizing>
-          <Left>12.95161cm</Left>
+          <Left>13.67127cm</Left>
           <Height>2.35486cm</Height>
           <Width>2.75498cm</Width>
           <ZIndex>1</ZIndex>
@@ -868,7 +891,7 @@
       </Style>
     </PageHeader>
     <PageFooter>
-      <Height>2.54cm</Height>
+      <Height>1.09954cm</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
@@ -887,8 +910,8 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>OverallPageNumber</rd:DefaultName>
-          <Top>1.36737cm</Top>
-          <Left>10.87825cm</Left>
+          <Top>0.49954cm</Top>
+          <Left>11.59793cm</Left>
           <Height>0.6cm</Height>
           <Width>4.82833cm</Width>
           <Style>
@@ -916,7 +939,7 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>ExecutionTime</rd:DefaultName>
-          <Top>1.36737cm</Top>
+          <Top>0.49954cm</Top>
           <Height>0.6cm</Height>
           <Width>4.89183cm</Width>
           <ZIndex>1</ZIndex>
