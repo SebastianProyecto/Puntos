@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="db40e174a9314f00b069570b650b6a09" Name="Diagram1">
+        <EntityTypeShape EntityType="RacePuntosModel.cargos" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="RacePuntosModel.detalle_puntos" Width="1.5" PointX="7.5" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RacePuntosModel.detalle_reserva" Width="1.5" PointX="7.5" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="RacePuntosModel.detalle_vehiculos" Width="1.5" PointX="3" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="RacePuntosModel.estaciones_de_servicio" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="RacePuntosModel.personas" Width="1.5" PointX="3" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="RacePuntosModel.puntos" Width="1.5" PointX="5.25" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RacePuntosModel.reservas" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RacePuntosModel.servicios" Width="1.5" PointX="5.25" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="RacePuntosModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="RacePuntosModel.vehiculo" Width="1.5" PointX="5.25" PointY="8.75" IsExpanded="true" />
+        <AssociationConnector Association="RacePuntosModel.FK__personas__numero__4BAC3F29" ManuallyRouted="false" />
+        <AssociationConnector Association="RacePuntosModel.FK__detalle_puntos__5FB337D6" ManuallyRouted="false" />
+        <AssociationConnector Association="RacePuntosModel.FK__id_estaciones__5FB337D6" ManuallyRouted="false" />
+        <AssociationConnector Association="RacePuntosModel.FK__detalle_r__id_se__58D1301D" ManuallyRouted="false" />
+        <AssociationConnector Association="RacePuntosModel.FK__detalle_r__punto__57DD0BE4" ManuallyRouted="false" />
+        <AssociationConnector Association="RacePuntosModel.FK__vehiculo__codigo__59FA5E80" ManuallyRouted="false" />
+        <AssociationConnector Association="RacePuntosModel.FK__reservas__puntos__4E53A1AA" ManuallyRouted="false" />
+        <AssociationConnector Association="RacePuntosModel.FK__puntos__puntos_a__52593CB8" ManuallyRouted="false" />
+        <AssociationConnector Association="RacePuntosModel.FK__reservas__id_usu__4F47C5E3" ManuallyRouted="false" />
+        <AssociationConnector Association="RacePuntosModel.FK__vehiculo__cilind__59063A47" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

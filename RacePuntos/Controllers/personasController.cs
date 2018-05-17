@@ -65,7 +65,7 @@ namespace RacePuntos.Controllers
         {
             if (Session["USUARIO_LOGUEADO"] != null)
             {
-                List<UsuariosVehiculo1_Result> lstUsuarios = db.UsuariosVehiculo1().ToList();
+                List<UsuariosVehiculo_Result> lstUsuarios = db.UsuariosVehiculo().ToList();
                 List<MarcasVehiculo_Result> lstMarca = db.MarcasVehiculo().ToList();
                 Table ta = new Table();
                 string TableUsuarios = UsuariosVehiculo(ta, lstUsuarios);
@@ -81,7 +81,7 @@ namespace RacePuntos.Controllers
             }
         }
 
-        public string UsuariosVehiculo(Table ta, List<UsuariosVehiculo1_Result> lsUsrVehiculo)
+        public string UsuariosVehiculo(Table ta, List<UsuariosVehiculo_Result> lsUsrVehiculo)
         {
             string ListUsu = "<select class='selectpicker' name='documento_usuario' id='documento_usuario' data-live-search='true' title='[SELECCIONE]'>";
             for (int i = 0; i < lsUsrVehiculo.Count; i++)

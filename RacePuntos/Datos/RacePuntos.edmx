@@ -1,0 +1,1196 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="RacePuntosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="cargos">
+          <Key>
+            <PropertyRef Name="id_cargo" />
+          </Key>
+          <Property Name="id_cargo" Type="nvarchar" MaxLength="4" Nullable="false" />
+          <Property Name="nombre_cargo" Type="nvarchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="detalle_puntos">
+          <Key>
+            <PropertyRef Name="id_detalle_puntos" />
+          </Key>
+          <Property Name="id_estacion" Type="int" />
+          <Property Name="id_puntos_servicio" Type="int" />
+          <Property Name="id_puntos_actuales" Type="int" />
+          <Property Name="puntos_compra" Type="int" />
+          <Property Name="id_detalle_puntos" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="detalle_reserva">
+          <Key>
+            <PropertyRef Name="id_detalle_reserva" />
+          </Key>
+          <Property Name="id_detalle_reserva" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_reserva" Type="int" />
+          <Property Name="id_servicio" Type="int" />
+          <Property Name="puntos_servicios_redimidos" Type="int" />
+        </EntityType>
+        <EntityType Name="detalle_vehiculos">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="nvarchar" MaxLength="7" Nullable="false" />
+          <Property Name="marca" Type="nvarchar" MaxLength="20" />
+          <Property Name="referencia" Type="nvarchar" MaxLength="20" />
+          <Property Name="cilindraje" Type="nvarchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="estaciones_de_servicio">
+          <Key>
+            <PropertyRef Name="id_estacion" />
+          </Key>
+          <Property Name="id_estacion" Type="int" Nullable="false" />
+          <Property Name="empresa_estacion" Type="nvarchar" MaxLength="50" />
+          <Property Name="sede_estacion" Type="nvarchar" MaxLength="50" />
+          <Property Name="direccion_estacion" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="personas">
+          <Key>
+            <PropertyRef Name="documento" />
+          </Key>
+          <Property Name="tipo_documento" Type="nvarchar" MaxLength="4" />
+          <Property Name="documento" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="contrasena" Type="varbinary(max)" />
+          <Property Name="rol" Type="nvarchar" MaxLength="14" />
+          <Property Name="cargo" Type="nvarchar" MaxLength="4" />
+          <Property Name="id_usuario_creacion" Type="nvarchar" MaxLength="15" />
+          <Property Name="nombres" Type="nvarchar" MaxLength="30" />
+          <Property Name="apellidos" Type="nvarchar" MaxLength="30" />
+          <Property Name="fecha_nacimiento" Type="nvarchar" MaxLength="50" />
+          <Property Name="direccion" Type="nvarchar" MaxLength="50" />
+          <Property Name="numero_celular" Type="nvarchar" MaxLength="50" />
+          <Property Name="correoElectronico" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="puntos">
+          <Key>
+            <PropertyRef Name="id_puntos_actuales" />
+          </Key>
+          <Property Name="id_puntos_actuales" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_usuario_puntos" Type="nvarchar" MaxLength="15" />
+          <Property Name="id_usuario_plataforma" Type="nvarchar" MaxLength="15" />
+          <Property Name="puntos_acumulados" Type="int" />
+        </EntityType>
+        <EntityType Name="reservas">
+          <Key>
+            <PropertyRef Name="id_reserva" />
+          </Key>
+          <Property Name="id_reserva" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_estacion" Type="int" />
+          <Property Name="id_usuario" Type="nvarchar" MaxLength="15" />
+          <Property Name="fecha_reserva" Type="nvarchar" MaxLength="11" />
+          <Property Name="puntos_redimidos" Type="int" />
+          <Property Name="hora_reserva" Type="int" />
+        </EntityType>
+        <EntityType Name="servicios">
+          <Key>
+            <PropertyRef Name="id_servicio" />
+          </Key>
+          <Property Name="id_servicio" Type="int" Nullable="false" />
+          <Property Name="nombre_servicio" Type="nvarchar" MaxLength="50" />
+          <Property Name="puntos_servicio" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="vehiculo">
+          <Key>
+            <PropertyRef Name="id_vehiculo" />
+          </Key>
+          <Property Name="documento_usuario" Type="nvarchar" MaxLength="15" />
+          <Property Name="placa_vehiculo_cliente" Type="nvarchar" MaxLength="7" />
+          <Property Name="codigo_vehiculo" Type="nvarchar" MaxLength="7" />
+          <Property Name="marca_vehiculo" Type="nvarchar" MaxLength="20" />
+          <Property Name="referencia_vehiculo" Type="nvarchar" MaxLength="20" />
+          <Property Name="cilindraje_vehiculo" Type="nvarchar" MaxLength="15" />
+          <Property Name="id_vehiculo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__detalle_puntos__5FB337D6">
+          <End Role="puntos" Type="Self.puntos" Multiplicity="0..1" />
+          <End Role="detalle_puntos" Type="Self.detalle_puntos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="puntos">
+              <PropertyRef Name="id_puntos_actuales" />
+            </Principal>
+            <Dependent Role="detalle_puntos">
+              <PropertyRef Name="id_puntos_actuales" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__detalle_r__id_se__58D1301D">
+          <End Role="servicios" Type="Self.servicios" Multiplicity="0..1" />
+          <End Role="detalle_reserva" Type="Self.detalle_reserva" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="servicios">
+              <PropertyRef Name="id_servicio" />
+            </Principal>
+            <Dependent Role="detalle_reserva">
+              <PropertyRef Name="id_servicio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__detalle_r__punto__57DD0BE4">
+          <End Role="reservas" Type="Self.reservas" Multiplicity="0..1" />
+          <End Role="detalle_reserva" Type="Self.detalle_reserva" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="reservas">
+              <PropertyRef Name="id_reserva" />
+            </Principal>
+            <Dependent Role="detalle_reserva">
+              <PropertyRef Name="id_reserva" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__id_estaciones__5FB337D6">
+          <End Role="estaciones_de_servicio" Type="Self.estaciones_de_servicio" Multiplicity="0..1" />
+          <End Role="detalle_puntos" Type="Self.detalle_puntos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="estaciones_de_servicio">
+              <PropertyRef Name="id_estacion" />
+            </Principal>
+            <Dependent Role="detalle_puntos">
+              <PropertyRef Name="id_estacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__personas__numero__4BAC3F29">
+          <End Role="cargos" Type="Self.cargos" Multiplicity="0..1" />
+          <End Role="personas" Type="Self.personas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cargos">
+              <PropertyRef Name="id_cargo" />
+            </Principal>
+            <Dependent Role="personas">
+              <PropertyRef Name="cargo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__puntos__puntos_a__52593CB8">
+          <End Role="personas" Type="Self.personas" Multiplicity="0..1" />
+          <End Role="puntos" Type="Self.puntos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="personas">
+              <PropertyRef Name="documento" />
+            </Principal>
+            <Dependent Role="puntos">
+              <PropertyRef Name="id_usuario_puntos" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__reservas__id_usu__4F47C5E3">
+          <End Role="personas" Type="Self.personas" Multiplicity="0..1" />
+          <End Role="reservas" Type="Self.reservas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="personas">
+              <PropertyRef Name="documento" />
+            </Principal>
+            <Dependent Role="reservas">
+              <PropertyRef Name="id_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__reservas__puntos__4E53A1AA">
+          <End Role="estaciones_de_servicio" Type="Self.estaciones_de_servicio" Multiplicity="0..1" />
+          <End Role="reservas" Type="Self.reservas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="estaciones_de_servicio">
+              <PropertyRef Name="id_estacion" />
+            </Principal>
+            <Dependent Role="reservas">
+              <PropertyRef Name="id_estacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__vehiculo__cilind__59063A47">
+          <End Role="personas" Type="Self.personas" Multiplicity="0..1" />
+          <End Role="vehiculo" Type="Self.vehiculo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="personas">
+              <PropertyRef Name="documento" />
+            </Principal>
+            <Dependent Role="vehiculo">
+              <PropertyRef Name="documento_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__vehiculo__codigo__59FA5E80">
+          <End Role="detalle_vehiculos" Type="Self.detalle_vehiculos" Multiplicity="0..1" />
+          <End Role="vehiculo" Type="Self.vehiculo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="detalle_vehiculos">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="vehiculo">
+              <PropertyRef Name="codigo_vehiculo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="consulta_disponibilidad_estacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_estacion_recibida" Type="int" Mode="In" />
+          <Parameter Name="fecha_recibida" Type="nvarchar" Mode="In" />
+          <Parameter Name="hora_recibida" Type="int" Mode="In" />
+        </Function>
+        <Function Name="consulta_puntos_acumulados" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_usuario_ingreso" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="ingreso_detalle_puntos_reserva" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_estacion_recibido" Type="int" Mode="In" />
+          <Parameter Name="id_puntos_servicio_recibido" Type="int" Mode="In" />
+          <Parameter Name="id_puntos_actuales_recibido" Type="int" Mode="In" />
+          <Parameter Name="puntos_reserva_recibido" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ingreso_detalle_reserva" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_reserva_recibida" Type="int" Mode="In" />
+          <Parameter Name="id_servicio_recibido" Type="int" Mode="In" />
+          <Parameter Name="puntos_reserva_redimidos" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ingreso_puntos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_usuario_recibido" Type="nvarchar" Mode="In" />
+          <Parameter Name="id_usuario_plataforma_recibido" Type="nvarchar" Mode="In" />
+          <Parameter Name="puntos_acumulados_recibidos" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ingreso_reserva" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_estacion_recibido" Type="int" Mode="In" />
+          <Parameter Name="id_usuario_recibido" Type="nvarchar" Mode="In" />
+          <Parameter Name="fecha_reserva_recibida" Type="nvarchar" Mode="In" />
+          <Parameter Name="puntos_reserva_recibido" Type="int" Mode="In" />
+          <Parameter Name="hora_reserva_recibida" Type="int" Mode="In" />
+        </Function>
+        <Function Name="logeo_persona" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="documento_ingresado" Type="nvarchar" Mode="In" />
+          <Parameter Name="contrasena_ingresada" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="MarcasVehiculo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="obtener_id_estacion_servicio" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nombre_estacion" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="obtener_id_puntos_actual_max" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_usuario" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="obtener_id_puntos_actual_max_para_ingreso_detalle_puntos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_usuario_recibido" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="obtener_id_puntos_actuales" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_usuario_ingreso" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="obtener_id_puntos_servicio" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nombre_servicio_recibido" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="obtener_id_reserva_ultima" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_usuario_recibido" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="obtener_id_servicio_puntos_compra" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_puntos_actuales_ingreso" Type="int" Mode="In" />
+        </Function>
+        <Function Name="obtener_nombre_servicio" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_servicio_ingreso" Type="int" Mode="In" />
+        </Function>
+        <Function Name="obtener_puntos_acumulados_actual" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_puntos_maximo" Type="int" Mode="In" />
+        </Function>
+        <Function Name="registro_persona" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="tipo_documento_ingresado" Type="nvarchar" Mode="In" />
+          <Parameter Name="documento_ingresado" Type="nvarchar" Mode="In" />
+          <Parameter Name="contrasena_ingresada" Type="nvarchar" Mode="In" />
+          <Parameter Name="rol_ingresado" Type="nvarchar" Mode="In" />
+          <Parameter Name="cargo_ingresado" Type="nvarchar" Mode="In" />
+          <Parameter Name="id_usuario_creacion" Type="nvarchar" Mode="In" />
+          <Parameter Name="nombres_ingresados" Type="nvarchar" Mode="In" />
+          <Parameter Name="apellidos_ingresados" Type="nvarchar" Mode="In" />
+          <Parameter Name="fecha_nacimiento_ingresado" Type="nvarchar" Mode="In" />
+          <Parameter Name="direccion_ingresado" Type="nvarchar" Mode="In" />
+          <Parameter Name="numero_celular_ingresado" Type="nvarchar" Mode="In" />
+          <Parameter Name="correo_ingresado" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_RepHistAdqPuntos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_RepHistRedmPuntos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Fecha_I" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Fecha_F" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Servicios" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_RepUsuarios" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="spCreaUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="tipo_documento_ingresado" Type="nvarchar" Mode="In" />
+          <Parameter Name="documento_ingresado" Type="nvarchar" Mode="In" />
+          <Parameter Name="contrasena_ingresada" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="rol_ingresado" Type="nvarchar" Mode="In" />
+          <Parameter Name="cargo_ingresado" Type="nvarchar" Mode="In" />
+          <Parameter Name="id_usuario_creacion" Type="nvarchar" Mode="In" />
+          <Parameter Name="nombres_ingresados" Type="nvarchar" Mode="In" />
+          <Parameter Name="apellidos_ingresados" Type="nvarchar" Mode="In" />
+          <Parameter Name="fecha_nacimiento_ingresado" Type="nvarchar" Mode="In" />
+          <Parameter Name="direccion_ingresado" Type="nvarchar" Mode="In" />
+          <Parameter Name="numero_celular_ingresado" Type="nvarchar" Mode="In" />
+          <Parameter Name="correo_ingresado" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="spInsertVehiculo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="usuario" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="placa" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="marca" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="referencia" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="cilindraje" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="UsuariosVehiculo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="RacePuntosModelStoreContainer">
+          <EntitySet Name="cargos" EntityType="Self.cargos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="detalle_puntos" EntityType="Self.detalle_puntos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="detalle_reserva" EntityType="Self.detalle_reserva" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="detalle_vehiculos" EntityType="Self.detalle_vehiculos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="estaciones_de_servicio" EntityType="Self.estaciones_de_servicio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="personas" EntityType="Self.personas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="puntos" EntityType="Self.puntos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="reservas" EntityType="Self.reservas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="servicios" EntityType="Self.servicios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vehiculo" EntityType="Self.vehiculo" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__detalle_puntos__5FB337D6" Association="Self.FK__detalle_puntos__5FB337D6">
+            <End Role="puntos" EntitySet="puntos" />
+            <End Role="detalle_puntos" EntitySet="detalle_puntos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__detalle_r__id_se__58D1301D" Association="Self.FK__detalle_r__id_se__58D1301D">
+            <End Role="servicios" EntitySet="servicios" />
+            <End Role="detalle_reserva" EntitySet="detalle_reserva" />
+          </AssociationSet>
+          <AssociationSet Name="FK__detalle_r__punto__57DD0BE4" Association="Self.FK__detalle_r__punto__57DD0BE4">
+            <End Role="reservas" EntitySet="reservas" />
+            <End Role="detalle_reserva" EntitySet="detalle_reserva" />
+          </AssociationSet>
+          <AssociationSet Name="FK__id_estaciones__5FB337D6" Association="Self.FK__id_estaciones__5FB337D6">
+            <End Role="estaciones_de_servicio" EntitySet="estaciones_de_servicio" />
+            <End Role="detalle_puntos" EntitySet="detalle_puntos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__personas__numero__4BAC3F29" Association="Self.FK__personas__numero__4BAC3F29">
+            <End Role="cargos" EntitySet="cargos" />
+            <End Role="personas" EntitySet="personas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__puntos__puntos_a__52593CB8" Association="Self.FK__puntos__puntos_a__52593CB8">
+            <End Role="personas" EntitySet="personas" />
+            <End Role="puntos" EntitySet="puntos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__reservas__id_usu__4F47C5E3" Association="Self.FK__reservas__id_usu__4F47C5E3">
+            <End Role="personas" EntitySet="personas" />
+            <End Role="reservas" EntitySet="reservas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__reservas__puntos__4E53A1AA" Association="Self.FK__reservas__puntos__4E53A1AA">
+            <End Role="estaciones_de_servicio" EntitySet="estaciones_de_servicio" />
+            <End Role="reservas" EntitySet="reservas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__vehiculo__cilind__59063A47" Association="Self.FK__vehiculo__cilind__59063A47">
+            <End Role="personas" EntitySet="personas" />
+            <End Role="vehiculo" EntitySet="vehiculo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__vehiculo__codigo__59FA5E80" Association="Self.FK__vehiculo__codigo__59FA5E80">
+            <End Role="detalle_vehiculos" EntitySet="detalle_vehiculos" />
+            <End Role="vehiculo" EntitySet="vehiculo" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="RacePuntosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="cargos">
+          <Key>
+            <PropertyRef Name="id_cargo" />
+          </Key>
+          <Property Name="id_cargo" Type="String" MaxLength="4" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="nombre_cargo" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="personas" Relationship="Self.FK__personas__numero__4BAC3F29" FromRole="cargos" ToRole="personas" />
+        </EntityType>
+        <EntityType Name="detalle_puntos">
+          <Key>
+            <PropertyRef Name="id_detalle_puntos" />
+          </Key>
+          <Property Name="id_estacion" Type="Int32" />
+          <Property Name="id_puntos_servicio" Type="Int32" />
+          <Property Name="id_puntos_actuales" Type="Int32" />
+          <Property Name="puntos_compra" Type="Int32" />
+          <Property Name="id_detalle_puntos" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="puntos" Relationship="Self.FK__detalle_puntos__5FB337D6" FromRole="detalle_puntos" ToRole="puntos" />
+          <NavigationProperty Name="estaciones_de_servicio" Relationship="Self.FK__id_estaciones__5FB337D6" FromRole="detalle_puntos" ToRole="estaciones_de_servicio" />
+        </EntityType>
+        <EntityType Name="detalle_reserva">
+          <Key>
+            <PropertyRef Name="id_detalle_reserva" />
+          </Key>
+          <Property Name="id_detalle_reserva" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_reserva" Type="Int32" />
+          <Property Name="id_servicio" Type="Int32" />
+          <Property Name="puntos_servicios_redimidos" Type="Int32" />
+          <NavigationProperty Name="servicios" Relationship="Self.FK__detalle_r__id_se__58D1301D" FromRole="detalle_reserva" ToRole="servicios" />
+          <NavigationProperty Name="reservas" Relationship="Self.FK__detalle_r__punto__57DD0BE4" FromRole="detalle_reserva" ToRole="reservas" />
+        </EntityType>
+        <EntityType Name="detalle_vehiculos">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="String" MaxLength="7" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="marca" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="referencia" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="cilindraje" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="vehiculo" Relationship="Self.FK__vehiculo__codigo__59FA5E80" FromRole="detalle_vehiculos" ToRole="vehiculo" />
+        </EntityType>
+        <EntityType Name="estaciones_de_servicio">
+          <Key>
+            <PropertyRef Name="id_estacion" />
+          </Key>
+          <Property Name="id_estacion" Type="Int32" Nullable="false" />
+          <Property Name="empresa_estacion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sede_estacion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="direccion_estacion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="detalle_puntos" Relationship="Self.FK__id_estaciones__5FB337D6" FromRole="estaciones_de_servicio" ToRole="detalle_puntos" />
+          <NavigationProperty Name="reservas" Relationship="Self.FK__reservas__puntos__4E53A1AA" FromRole="estaciones_de_servicio" ToRole="reservas" />
+        </EntityType>
+        <EntityType Name="personas">
+          <Key>
+            <PropertyRef Name="documento" />
+          </Key>
+          <Property Name="tipo_documento" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="documento" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="contrasena" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="rol" Type="String" MaxLength="14" FixedLength="false" Unicode="true" />
+          <Property Name="cargo" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="id_usuario_creacion" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="nombres" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="apellidos" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="fecha_nacimiento" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="direccion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="numero_celular" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="correoElectronico" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="cargos" Relationship="Self.FK__personas__numero__4BAC3F29" FromRole="personas" ToRole="cargos" />
+          <NavigationProperty Name="puntos" Relationship="Self.FK__puntos__puntos_a__52593CB8" FromRole="personas" ToRole="puntos" />
+          <NavigationProperty Name="reservas" Relationship="Self.FK__reservas__id_usu__4F47C5E3" FromRole="personas" ToRole="reservas" />
+          <NavigationProperty Name="vehiculo" Relationship="Self.FK__vehiculo__cilind__59063A47" FromRole="personas" ToRole="vehiculo" />
+        </EntityType>
+        <EntityType Name="puntos">
+          <Key>
+            <PropertyRef Name="id_puntos_actuales" />
+          </Key>
+          <Property Name="id_puntos_actuales" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_usuario_puntos" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="id_usuario_plataforma" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="puntos_acumulados" Type="Int32" />
+          <NavigationProperty Name="detalle_puntos" Relationship="Self.FK__detalle_puntos__5FB337D6" FromRole="puntos" ToRole="detalle_puntos" />
+          <NavigationProperty Name="personas" Relationship="Self.FK__puntos__puntos_a__52593CB8" FromRole="puntos" ToRole="personas" />
+        </EntityType>
+        <EntityType Name="reservas">
+          <Key>
+            <PropertyRef Name="id_reserva" />
+          </Key>
+          <Property Name="id_reserva" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_estacion" Type="Int32" />
+          <Property Name="id_usuario" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="fecha_reserva" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="puntos_redimidos" Type="Int32" />
+          <Property Name="hora_reserva" Type="Int32" />
+          <NavigationProperty Name="detalle_reserva" Relationship="Self.FK__detalle_r__punto__57DD0BE4" FromRole="reservas" ToRole="detalle_reserva" />
+          <NavigationProperty Name="estaciones_de_servicio" Relationship="Self.FK__reservas__puntos__4E53A1AA" FromRole="reservas" ToRole="estaciones_de_servicio" />
+          <NavigationProperty Name="personas" Relationship="Self.FK__reservas__id_usu__4F47C5E3" FromRole="reservas" ToRole="personas" />
+        </EntityType>
+        <EntityType Name="servicios">
+          <Key>
+            <PropertyRef Name="id_servicio" />
+          </Key>
+          <Property Name="id_servicio" Type="Int32" Nullable="false" />
+          <Property Name="nombre_servicio" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="puntos_servicio" Type="Int32" />
+          <NavigationProperty Name="detalle_reserva" Relationship="Self.FK__detalle_r__id_se__58D1301D" FromRole="servicios" ToRole="detalle_reserva" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="vehiculo">
+          <Key>
+            <PropertyRef Name="id_vehiculo" />
+          </Key>
+          <Property Name="documento_usuario" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="placa_vehiculo_cliente" Type="String" MaxLength="7" FixedLength="false" Unicode="true" />
+          <Property Name="codigo_vehiculo" Type="String" MaxLength="7" FixedLength="false" Unicode="true" />
+          <Property Name="marca_vehiculo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="referencia_vehiculo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="cilindraje_vehiculo" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="id_vehiculo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="detalle_vehiculos" Relationship="Self.FK__vehiculo__codigo__59FA5E80" FromRole="vehiculo" ToRole="detalle_vehiculos" />
+          <NavigationProperty Name="personas" Relationship="Self.FK__vehiculo__cilind__59063A47" FromRole="vehiculo" ToRole="personas" />
+        </EntityType>
+        <Association Name="FK__personas__numero__4BAC3F29">
+          <End Role="cargos" Type="Self.cargos" Multiplicity="0..1" />
+          <End Role="personas" Type="Self.personas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cargos">
+              <PropertyRef Name="id_cargo" />
+            </Principal>
+            <Dependent Role="personas">
+              <PropertyRef Name="cargo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__detalle_puntos__5FB337D6">
+          <End Role="puntos" Type="Self.puntos" Multiplicity="0..1" />
+          <End Role="detalle_puntos" Type="Self.detalle_puntos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="puntos">
+              <PropertyRef Name="id_puntos_actuales" />
+            </Principal>
+            <Dependent Role="detalle_puntos">
+              <PropertyRef Name="id_puntos_actuales" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__id_estaciones__5FB337D6">
+          <End Role="estaciones_de_servicio" Type="Self.estaciones_de_servicio" Multiplicity="0..1" />
+          <End Role="detalle_puntos" Type="Self.detalle_puntos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="estaciones_de_servicio">
+              <PropertyRef Name="id_estacion" />
+            </Principal>
+            <Dependent Role="detalle_puntos">
+              <PropertyRef Name="id_estacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__detalle_r__id_se__58D1301D">
+          <End Role="servicios" Type="Self.servicios" Multiplicity="0..1" />
+          <End Role="detalle_reserva" Type="Self.detalle_reserva" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="servicios">
+              <PropertyRef Name="id_servicio" />
+            </Principal>
+            <Dependent Role="detalle_reserva">
+              <PropertyRef Name="id_servicio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__detalle_r__punto__57DD0BE4">
+          <End Role="reservas" Type="Self.reservas" Multiplicity="0..1" />
+          <End Role="detalle_reserva" Type="Self.detalle_reserva" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="reservas">
+              <PropertyRef Name="id_reserva" />
+            </Principal>
+            <Dependent Role="detalle_reserva">
+              <PropertyRef Name="id_reserva" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__vehiculo__codigo__59FA5E80">
+          <End Role="detalle_vehiculos" Type="Self.detalle_vehiculos" Multiplicity="0..1" />
+          <End Role="vehiculo" Type="Self.vehiculo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="detalle_vehiculos">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="vehiculo">
+              <PropertyRef Name="codigo_vehiculo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__reservas__puntos__4E53A1AA">
+          <End Role="estaciones_de_servicio" Type="Self.estaciones_de_servicio" Multiplicity="0..1" />
+          <End Role="reservas" Type="Self.reservas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="estaciones_de_servicio">
+              <PropertyRef Name="id_estacion" />
+            </Principal>
+            <Dependent Role="reservas">
+              <PropertyRef Name="id_estacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__puntos__puntos_a__52593CB8">
+          <End Role="personas" Type="Self.personas" Multiplicity="0..1" />
+          <End Role="puntos" Type="Self.puntos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="personas">
+              <PropertyRef Name="documento" />
+            </Principal>
+            <Dependent Role="puntos">
+              <PropertyRef Name="id_usuario_puntos" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__reservas__id_usu__4F47C5E3">
+          <End Role="personas" Type="Self.personas" Multiplicity="0..1" />
+          <End Role="reservas" Type="Self.reservas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="personas">
+              <PropertyRef Name="documento" />
+            </Principal>
+            <Dependent Role="reservas">
+              <PropertyRef Name="id_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__vehiculo__cilind__59063A47">
+          <End Role="personas" Type="Self.personas" Multiplicity="0..1" />
+          <End Role="vehiculo" Type="Self.vehiculo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="personas">
+              <PropertyRef Name="documento" />
+            </Principal>
+            <Dependent Role="vehiculo">
+              <PropertyRef Name="documento_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RacePuntosEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="cargos" EntityType="Self.cargos" />
+          <EntitySet Name="detalle_puntos" EntityType="Self.detalle_puntos" />
+          <EntitySet Name="detalle_reserva" EntityType="Self.detalle_reserva" />
+          <EntitySet Name="detalle_vehiculos" EntityType="Self.detalle_vehiculos" />
+          <EntitySet Name="estaciones_de_servicio" EntityType="Self.estaciones_de_servicio" />
+          <EntitySet Name="personas" EntityType="Self.personas" />
+          <EntitySet Name="puntos" EntityType="Self.puntos" />
+          <EntitySet Name="reservas" EntityType="Self.reservas" />
+          <EntitySet Name="servicios" EntityType="Self.servicios" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="vehiculo" EntityType="Self.vehiculo" />
+          <AssociationSet Name="FK__personas__numero__4BAC3F29" Association="Self.FK__personas__numero__4BAC3F29">
+            <End Role="cargos" EntitySet="cargos" />
+            <End Role="personas" EntitySet="personas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__detalle_puntos__5FB337D6" Association="Self.FK__detalle_puntos__5FB337D6">
+            <End Role="puntos" EntitySet="puntos" />
+            <End Role="detalle_puntos" EntitySet="detalle_puntos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__id_estaciones__5FB337D6" Association="Self.FK__id_estaciones__5FB337D6">
+            <End Role="estaciones_de_servicio" EntitySet="estaciones_de_servicio" />
+            <End Role="detalle_puntos" EntitySet="detalle_puntos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__detalle_r__id_se__58D1301D" Association="Self.FK__detalle_r__id_se__58D1301D">
+            <End Role="servicios" EntitySet="servicios" />
+            <End Role="detalle_reserva" EntitySet="detalle_reserva" />
+          </AssociationSet>
+          <AssociationSet Name="FK__detalle_r__punto__57DD0BE4" Association="Self.FK__detalle_r__punto__57DD0BE4">
+            <End Role="reservas" EntitySet="reservas" />
+            <End Role="detalle_reserva" EntitySet="detalle_reserva" />
+          </AssociationSet>
+          <AssociationSet Name="FK__vehiculo__codigo__59FA5E80" Association="Self.FK__vehiculo__codigo__59FA5E80">
+            <End Role="detalle_vehiculos" EntitySet="detalle_vehiculos" />
+            <End Role="vehiculo" EntitySet="vehiculo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__reservas__puntos__4E53A1AA" Association="Self.FK__reservas__puntos__4E53A1AA">
+            <End Role="estaciones_de_servicio" EntitySet="estaciones_de_servicio" />
+            <End Role="reservas" EntitySet="reservas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__puntos__puntos_a__52593CB8" Association="Self.FK__puntos__puntos_a__52593CB8">
+            <End Role="personas" EntitySet="personas" />
+            <End Role="puntos" EntitySet="puntos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__reservas__id_usu__4F47C5E3" Association="Self.FK__reservas__id_usu__4F47C5E3">
+            <End Role="personas" EntitySet="personas" />
+            <End Role="reservas" EntitySet="reservas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__vehiculo__cilind__59063A47" Association="Self.FK__vehiculo__cilind__59063A47">
+            <End Role="personas" EntitySet="personas" />
+            <End Role="vehiculo" EntitySet="vehiculo" />
+          </AssociationSet>
+          <FunctionImport Name="consulta_disponibilidad_estacion" ReturnType="Collection(RacePuntosModel.consulta_disponibilidad_estacion_Result)">
+            <Parameter Name="id_estacion_recibida" Mode="In" Type="Int32" />
+            <Parameter Name="fecha_recibida" Mode="In" Type="String" />
+            <Parameter Name="hora_recibida" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="consulta_puntos_acumulados" ReturnType="Collection(Int32)">
+            <Parameter Name="id_usuario_ingreso" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ingreso_detalle_puntos_reserva">
+            <Parameter Name="id_estacion_recibido" Mode="In" Type="Int32" />
+            <Parameter Name="id_puntos_servicio_recibido" Mode="In" Type="Int32" />
+            <Parameter Name="id_puntos_actuales_recibido" Mode="In" Type="Int32" />
+            <Parameter Name="puntos_reserva_recibido" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ingreso_detalle_reserva">
+            <Parameter Name="id_reserva_recibida" Mode="In" Type="Int32" />
+            <Parameter Name="id_servicio_recibido" Mode="In" Type="Int32" />
+            <Parameter Name="puntos_reserva_redimidos" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ingreso_puntos">
+            <Parameter Name="id_usuario_recibido" Mode="In" Type="String" />
+            <Parameter Name="id_usuario_plataforma_recibido" Mode="In" Type="String" />
+            <Parameter Name="puntos_acumulados_recibidos" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ingreso_reserva">
+            <Parameter Name="id_estacion_recibido" Mode="In" Type="Int32" />
+            <Parameter Name="id_usuario_recibido" Mode="In" Type="String" />
+            <Parameter Name="fecha_reserva_recibida" Mode="In" Type="String" />
+            <Parameter Name="puntos_reserva_recibido" Mode="In" Type="Int32" />
+            <Parameter Name="hora_reserva_recibida" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="logeo_persona" ReturnType="Collection(RacePuntosModel.logeo_persona_Result)">
+            <Parameter Name="documento_ingresado" Mode="In" Type="String" />
+            <Parameter Name="contrasena_ingresada" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="MarcasVehiculo" ReturnType="Collection(RacePuntosModel.MarcasVehiculo_Result)" />
+          <FunctionImport Name="obtener_id_estacion_servicio" ReturnType="Collection(Int32)">
+            <Parameter Name="nombre_estacion" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="obtener_id_puntos_actual_max" ReturnType="Collection(Int32)">
+            <Parameter Name="id_usuario" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="obtener_id_puntos_actual_max_para_ingreso_detalle_puntos" ReturnType="Collection(Int32)">
+            <Parameter Name="id_usuario_recibido" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="obtener_id_puntos_actuales" ReturnType="Collection(Int32)">
+            <Parameter Name="id_usuario_ingreso" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="obtener_id_puntos_servicio" ReturnType="Collection(Int32)">
+            <Parameter Name="nombre_servicio_recibido" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="obtener_id_reserva_ultima" ReturnType="Collection(Int32)">
+            <Parameter Name="id_usuario_recibido" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="obtener_id_servicio_puntos_compra" ReturnType="Collection(RacePuntosModel.obtener_id_servicio_puntos_compra_Result)">
+            <Parameter Name="id_puntos_actuales_ingreso" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="obtener_nombre_servicio" ReturnType="Collection(String)">
+            <Parameter Name="id_servicio_ingreso" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="obtener_puntos_acumulados_actual" ReturnType="Collection(Int32)">
+            <Parameter Name="id_puntos_maximo" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="registro_persona">
+            <Parameter Name="tipo_documento_ingresado" Mode="In" Type="String" />
+            <Parameter Name="documento_ingresado" Mode="In" Type="String" />
+            <Parameter Name="contrasena_ingresada" Mode="In" Type="String" />
+            <Parameter Name="rol_ingresado" Mode="In" Type="String" />
+            <Parameter Name="cargo_ingresado" Mode="In" Type="String" />
+            <Parameter Name="id_usuario_creacion" Mode="In" Type="String" />
+            <Parameter Name="nombres_ingresados" Mode="In" Type="String" />
+            <Parameter Name="apellidos_ingresados" Mode="In" Type="String" />
+            <Parameter Name="fecha_nacimiento_ingresado" Mode="In" Type="String" />
+            <Parameter Name="direccion_ingresado" Mode="In" Type="String" />
+            <Parameter Name="numero_celular_ingresado" Mode="In" Type="String" />
+            <Parameter Name="correo_ingresado" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(RacePuntosModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(RacePuntosModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_RepHistAdqPuntos" ReturnType="Collection(RacePuntosModel.sp_RepHistAdqPuntos_Result)" />
+          <FunctionImport Name="sp_RepHistRedmPuntos" ReturnType="Collection(RacePuntosModel.sp_RepHistRedmPuntos_Result)">
+            <Parameter Name="Fecha_I" Mode="In" Type="String" />
+            <Parameter Name="Fecha_F" Mode="In" Type="String" />
+            <Parameter Name="Servicios" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_RepUsuarios" ReturnType="Collection(RacePuntosModel.sp_RepUsuarios_Result)" />
+          <FunctionImport Name="sp_upgraddiagrams" />
+          <FunctionImport Name="spCreaUsuario" ReturnType="Collection(String)">
+            <Parameter Name="tipo_documento_ingresado" Mode="In" Type="String" />
+            <Parameter Name="documento_ingresado" Mode="In" Type="String" />
+            <Parameter Name="contrasena_ingresada" Mode="In" Type="String" />
+            <Parameter Name="rol_ingresado" Mode="In" Type="String" />
+            <Parameter Name="cargo_ingresado" Mode="In" Type="String" />
+            <Parameter Name="id_usuario_creacion" Mode="In" Type="String" />
+            <Parameter Name="nombres_ingresados" Mode="In" Type="String" />
+            <Parameter Name="apellidos_ingresados" Mode="In" Type="String" />
+            <Parameter Name="fecha_nacimiento_ingresado" Mode="In" Type="String" />
+            <Parameter Name="direccion_ingresado" Mode="In" Type="String" />
+            <Parameter Name="numero_celular_ingresado" Mode="In" Type="String" />
+            <Parameter Name="correo_ingresado" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spInsertVehiculo" ReturnType="Collection(String)">
+            <Parameter Name="usuario" Mode="In" Type="String" />
+            <Parameter Name="placa" Mode="In" Type="String" />
+            <Parameter Name="marca" Mode="In" Type="String" />
+            <Parameter Name="referencia" Mode="In" Type="String" />
+            <Parameter Name="cilindraje" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UsuariosVehiculo" ReturnType="Collection(RacePuntosModel.UsuariosVehiculo_Result)" />
+        </EntityContainer>
+        <ComplexType Name="consulta_disponibilidad_estacion_Result">
+          <Property Type="String" Name="fecha_reserva" Nullable="true" MaxLength="11" />
+          <Property Type="Int32" Name="hora_reserva" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="logeo_persona_Result">
+          <Property Type="String" Name="documento" Nullable="false" MaxLength="15" />
+          <Property Type="String" Name="contrasena" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="rol" Nullable="true" MaxLength="14" />
+          <Property Type="String" Name="cargo" Nullable="true" MaxLength="4" />
+        </ComplexType>
+        <ComplexType Name="MarcasVehiculo_Result">
+          <Property Type="String" Name="codigo" Nullable="false" MaxLength="7" />
+          <Property Type="String" Name="marca" Nullable="true" MaxLength="20" />
+        </ComplexType>
+        <ComplexType Name="obtener_id_servicio_puntos_compra_Result">
+          <Property Type="Int32" Name="id_puntos_servicio" Nullable="true" />
+          <Property Type="Int32" Name="puntos_compra" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="sp_RepHistAdqPuntos_Result">
+          <Property Type="String" Name="documento" Nullable="false" MaxLength="15" />
+          <Property Type="String" Name="nombres" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="apellidos" Nullable="true" MaxLength="30" />
+          <Property Type="Int32" Name="puntos_acumulados" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_RepHistRedmPuntos_Result">
+          <Property Type="String" Name="documento" Nullable="false" MaxLength="15" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="61" />
+          <Property Type="String" Name="nombre_servicio" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="fecha_reserva" Nullable="true" MaxLength="11" />
+        </ComplexType>
+        <ComplexType Name="sp_RepUsuarios_Result">
+          <Property Type="String" Name="documento" Nullable="false" MaxLength="15" />
+          <Property Type="String" Name="nombres" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="apellidos" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="placa" Nullable="true" MaxLength="7" />
+          <Property Type="String" Name="marca" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="puntos_redimidos" Nullable="true" />
+          <Property Type="Int32" Name="puntos_acumulados" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="UsuariosVehiculo_Result">
+          <Property Type="String" Name="documento" Nullable="false" MaxLength="15" />
+          <Property Type="String" Name="Nombres" Nullable="false" MaxLength="61" />
+          <Property Type="String" Name="rol" Nullable="true" MaxLength="14" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="RacePuntosModelStoreContainer" CdmEntityContainer="RacePuntosEntities">
+          <EntitySetMapping Name="cargos">
+            <EntityTypeMapping TypeName="RacePuntosModel.cargos">
+              <MappingFragment StoreEntitySet="cargos">
+                <ScalarProperty Name="id_cargo" ColumnName="id_cargo" />
+                <ScalarProperty Name="nombre_cargo" ColumnName="nombre_cargo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="detalle_puntos">
+            <EntityTypeMapping TypeName="RacePuntosModel.detalle_puntos">
+              <MappingFragment StoreEntitySet="detalle_puntos">
+                <ScalarProperty Name="id_estacion" ColumnName="id_estacion" />
+                <ScalarProperty Name="id_puntos_servicio" ColumnName="id_puntos_servicio" />
+                <ScalarProperty Name="id_puntos_actuales" ColumnName="id_puntos_actuales" />
+                <ScalarProperty Name="puntos_compra" ColumnName="puntos_compra" />
+                <ScalarProperty Name="id_detalle_puntos" ColumnName="id_detalle_puntos" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="detalle_reserva">
+            <EntityTypeMapping TypeName="RacePuntosModel.detalle_reserva">
+              <MappingFragment StoreEntitySet="detalle_reserva">
+                <ScalarProperty Name="id_detalle_reserva" ColumnName="id_detalle_reserva" />
+                <ScalarProperty Name="id_reserva" ColumnName="id_reserva" />
+                <ScalarProperty Name="id_servicio" ColumnName="id_servicio" />
+                <ScalarProperty Name="puntos_servicios_redimidos" ColumnName="puntos_servicios_redimidos" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="detalle_vehiculos">
+            <EntityTypeMapping TypeName="RacePuntosModel.detalle_vehiculos">
+              <MappingFragment StoreEntitySet="detalle_vehiculos">
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="marca" ColumnName="marca" />
+                <ScalarProperty Name="referencia" ColumnName="referencia" />
+                <ScalarProperty Name="cilindraje" ColumnName="cilindraje" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="estaciones_de_servicio">
+            <EntityTypeMapping TypeName="RacePuntosModel.estaciones_de_servicio">
+              <MappingFragment StoreEntitySet="estaciones_de_servicio">
+                <ScalarProperty Name="id_estacion" ColumnName="id_estacion" />
+                <ScalarProperty Name="empresa_estacion" ColumnName="empresa_estacion" />
+                <ScalarProperty Name="sede_estacion" ColumnName="sede_estacion" />
+                <ScalarProperty Name="direccion_estacion" ColumnName="direccion_estacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="personas">
+            <EntityTypeMapping TypeName="RacePuntosModel.personas">
+              <MappingFragment StoreEntitySet="personas">
+                <ScalarProperty Name="tipo_documento" ColumnName="tipo_documento" />
+                <ScalarProperty Name="documento" ColumnName="documento" />
+                <ScalarProperty Name="contrasena" ColumnName="contrasena" />
+                <ScalarProperty Name="rol" ColumnName="rol" />
+                <ScalarProperty Name="cargo" ColumnName="cargo" />
+                <ScalarProperty Name="id_usuario_creacion" ColumnName="id_usuario_creacion" />
+                <ScalarProperty Name="nombres" ColumnName="nombres" />
+                <ScalarProperty Name="apellidos" ColumnName="apellidos" />
+                <ScalarProperty Name="fecha_nacimiento" ColumnName="fecha_nacimiento" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="numero_celular" ColumnName="numero_celular" />
+                <ScalarProperty Name="correoElectronico" ColumnName="correoElectronico" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="puntos">
+            <EntityTypeMapping TypeName="RacePuntosModel.puntos">
+              <MappingFragment StoreEntitySet="puntos">
+                <ScalarProperty Name="id_puntos_actuales" ColumnName="id_puntos_actuales" />
+                <ScalarProperty Name="id_usuario_puntos" ColumnName="id_usuario_puntos" />
+                <ScalarProperty Name="id_usuario_plataforma" ColumnName="id_usuario_plataforma" />
+                <ScalarProperty Name="puntos_acumulados" ColumnName="puntos_acumulados" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="reservas">
+            <EntityTypeMapping TypeName="RacePuntosModel.reservas">
+              <MappingFragment StoreEntitySet="reservas">
+                <ScalarProperty Name="id_reserva" ColumnName="id_reserva" />
+                <ScalarProperty Name="id_estacion" ColumnName="id_estacion" />
+                <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+                <ScalarProperty Name="fecha_reserva" ColumnName="fecha_reserva" />
+                <ScalarProperty Name="puntos_redimidos" ColumnName="puntos_redimidos" />
+                <ScalarProperty Name="hora_reserva" ColumnName="hora_reserva" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="servicios">
+            <EntityTypeMapping TypeName="RacePuntosModel.servicios">
+              <MappingFragment StoreEntitySet="servicios">
+                <ScalarProperty Name="id_servicio" ColumnName="id_servicio" />
+                <ScalarProperty Name="nombre_servicio" ColumnName="nombre_servicio" />
+                <ScalarProperty Name="puntos_servicio" ColumnName="puntos_servicio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="RacePuntosModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vehiculo">
+            <EntityTypeMapping TypeName="RacePuntosModel.vehiculo">
+              <MappingFragment StoreEntitySet="vehiculo">
+                <ScalarProperty Name="documento_usuario" ColumnName="documento_usuario" />
+                <ScalarProperty Name="placa_vehiculo_cliente" ColumnName="placa_vehiculo_cliente" />
+                <ScalarProperty Name="codigo_vehiculo" ColumnName="codigo_vehiculo" />
+                <ScalarProperty Name="marca_vehiculo" ColumnName="marca_vehiculo" />
+                <ScalarProperty Name="referencia_vehiculo" ColumnName="referencia_vehiculo" />
+                <ScalarProperty Name="cilindraje_vehiculo" ColumnName="cilindraje_vehiculo" />
+                <ScalarProperty Name="id_vehiculo" ColumnName="id_vehiculo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="consulta_disponibilidad_estacion" FunctionName="RacePuntosModel.Store.consulta_disponibilidad_estacion">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RacePuntosModel.consulta_disponibilidad_estacion_Result">
+                <ScalarProperty Name="fecha_reserva" ColumnName="fecha_reserva" />
+                <ScalarProperty Name="hora_reserva" ColumnName="hora_reserva" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="consulta_puntos_acumulados" FunctionName="RacePuntosModel.Store.consulta_puntos_acumulados" />
+          <FunctionImportMapping FunctionImportName="ingreso_detalle_puntos_reserva" FunctionName="RacePuntosModel.Store.ingreso_detalle_puntos_reserva" />
+          <FunctionImportMapping FunctionImportName="ingreso_detalle_reserva" FunctionName="RacePuntosModel.Store.ingreso_detalle_reserva" />
+          <FunctionImportMapping FunctionImportName="ingreso_puntos" FunctionName="RacePuntosModel.Store.ingreso_puntos" />
+          <FunctionImportMapping FunctionImportName="ingreso_reserva" FunctionName="RacePuntosModel.Store.ingreso_reserva" />
+          <FunctionImportMapping FunctionImportName="logeo_persona" FunctionName="RacePuntosModel.Store.logeo_persona">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RacePuntosModel.logeo_persona_Result">
+                <ScalarProperty Name="documento" ColumnName="documento" />
+                <ScalarProperty Name="contrasena" ColumnName="contrasena" />
+                <ScalarProperty Name="rol" ColumnName="rol" />
+                <ScalarProperty Name="cargo" ColumnName="cargo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="MarcasVehiculo" FunctionName="RacePuntosModel.Store.MarcasVehiculo">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RacePuntosModel.MarcasVehiculo_Result">
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="marca" ColumnName="marca" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="obtener_id_estacion_servicio" FunctionName="RacePuntosModel.Store.obtener_id_estacion_servicio" />
+          <FunctionImportMapping FunctionImportName="obtener_id_puntos_actual_max" FunctionName="RacePuntosModel.Store.obtener_id_puntos_actual_max" />
+          <FunctionImportMapping FunctionImportName="obtener_id_puntos_actual_max_para_ingreso_detalle_puntos" FunctionName="RacePuntosModel.Store.obtener_id_puntos_actual_max_para_ingreso_detalle_puntos" />
+          <FunctionImportMapping FunctionImportName="obtener_id_puntos_actuales" FunctionName="RacePuntosModel.Store.obtener_id_puntos_actuales" />
+          <FunctionImportMapping FunctionImportName="obtener_id_puntos_servicio" FunctionName="RacePuntosModel.Store.obtener_id_puntos_servicio" />
+          <FunctionImportMapping FunctionImportName="obtener_id_reserva_ultima" FunctionName="RacePuntosModel.Store.obtener_id_reserva_ultima" />
+          <FunctionImportMapping FunctionImportName="obtener_id_servicio_puntos_compra" FunctionName="RacePuntosModel.Store.obtener_id_servicio_puntos_compra">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RacePuntosModel.obtener_id_servicio_puntos_compra_Result">
+                <ScalarProperty Name="id_puntos_servicio" ColumnName="id_puntos_servicio" />
+                <ScalarProperty Name="puntos_compra" ColumnName="puntos_compra" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="obtener_nombre_servicio" FunctionName="RacePuntosModel.Store.obtener_nombre_servicio" />
+          <FunctionImportMapping FunctionImportName="obtener_puntos_acumulados_actual" FunctionName="RacePuntosModel.Store.obtener_puntos_acumulados_actual" />
+          <FunctionImportMapping FunctionImportName="registro_persona" FunctionName="RacePuntosModel.Store.registro_persona" />
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="RacePuntosModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="RacePuntosModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="RacePuntosModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="RacePuntosModel.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RacePuntosModel.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="RacePuntosModel.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RacePuntosModel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="RacePuntosModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_RepHistAdqPuntos" FunctionName="RacePuntosModel.Store.sp_RepHistAdqPuntos">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RacePuntosModel.sp_RepHistAdqPuntos_Result">
+                <ScalarProperty Name="documento" ColumnName="documento" />
+                <ScalarProperty Name="nombres" ColumnName="nombres" />
+                <ScalarProperty Name="apellidos" ColumnName="apellidos" />
+                <ScalarProperty Name="puntos_acumulados" ColumnName="puntos_acumulados" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_RepHistRedmPuntos" FunctionName="RacePuntosModel.Store.sp_RepHistRedmPuntos">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RacePuntosModel.sp_RepHistRedmPuntos_Result">
+                <ScalarProperty Name="documento" ColumnName="documento" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="nombre_servicio" ColumnName="nombre_servicio" />
+                <ScalarProperty Name="fecha_reserva" ColumnName="fecha_reserva" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_RepUsuarios" FunctionName="RacePuntosModel.Store.sp_RepUsuarios">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RacePuntosModel.sp_RepUsuarios_Result">
+                <ScalarProperty Name="documento" ColumnName="documento" />
+                <ScalarProperty Name="nombres" ColumnName="nombres" />
+                <ScalarProperty Name="apellidos" ColumnName="apellidos" />
+                <ScalarProperty Name="placa" ColumnName="placa" />
+                <ScalarProperty Name="marca" ColumnName="marca" />
+                <ScalarProperty Name="puntos_redimidos" ColumnName="puntos_redimidos" />
+                <ScalarProperty Name="puntos_acumulados" ColumnName="puntos_acumulados" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="RacePuntosModel.Store.sp_upgraddiagrams" />
+          <FunctionImportMapping FunctionImportName="spCreaUsuario" FunctionName="RacePuntosModel.Store.spCreaUsuario" />
+          <FunctionImportMapping FunctionImportName="spInsertVehiculo" FunctionName="RacePuntosModel.Store.spInsertVehiculo" />
+          <FunctionImportMapping FunctionImportName="UsuariosVehiculo" FunctionName="RacePuntosModel.Store.UsuariosVehiculo">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RacePuntosModel.UsuariosVehiculo_Result">
+                <ScalarProperty Name="documento" ColumnName="documento" />
+                <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+                <ScalarProperty Name="rol" ColumnName="rol" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
