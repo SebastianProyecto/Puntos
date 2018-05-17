@@ -12,15 +12,12 @@ namespace RacePuntos.Datos
     using System;
     using System.Collections.Generic;
     
-    public partial class detalle_puntos
+    public partial class sysdiagrams
     {
-        public Nullable<int> id_estacion { get; set; }
-        public Nullable<int> id_puntos_servicio { get; set; }
-        public Nullable<int> id_puntos_actuales { get; set; }
-        public Nullable<int> puntos_compra { get; set; }
-        public int id_detalle_puntos { get; set; }
-    
-        public virtual puntos puntos { get; set; }
-        public virtual estaciones_de_servicio estaciones_de_servicio { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

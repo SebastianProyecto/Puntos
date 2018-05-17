@@ -205,64 +205,82 @@
     <Compile Include="Controllers\puntosController.cs" />
     <Compile Include="Controllers\vehiculoController.cs" />
     <Compile Include="Datos\cargos.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>RacePuntos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Datos\consulta_disponibilidad_estacion_Result.cs">
+      <DependentUpon>RacePuntos.tt</DependentUpon>
     </Compile>
     <Compile Include="Datos\detalle_puntos.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>RacePuntos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Datos\detalle_reserva.cs">
+      <DependentUpon>RacePuntos.tt</DependentUpon>
     </Compile>
     <Compile Include="Datos\detalle_vehiculos.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>RacePuntos.tt</DependentUpon>
     </Compile>
     <Compile Include="Datos\estaciones_de_servicio.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>RacePuntos.tt</DependentUpon>
     </Compile>
     <Compile Include="Datos\logeo_persona_Result.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>RacePuntos.tt</DependentUpon>
     </Compile>
     <Compile Include="Datos\MarcasVehiculo_Result.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>RacePuntos.tt</DependentUpon>
     </Compile>
-    <Compile Include="Datos\Model1.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Datos\Model1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Datos\Model1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.edmx</DependentUpon>
+    <Compile Include="Datos\obtener_id_servicio_puntos_compra_Result.cs">
+      <DependentUpon>RacePuntos.tt</DependentUpon>
     </Compile>
     <Compile Include="Datos\personas.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>RacePuntos.tt</DependentUpon>
     </Compile>
     <Compile Include="Datos\puntos.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>RacePuntos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Datos\RacePuntos.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RacePuntos.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Datos\RacePuntos.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RacePuntos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Datos\RacePuntos.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RacePuntos.edmx</DependentUpon>
     </Compile>
     <Compile Include="Datos\reservas.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>RacePuntos.tt</DependentUpon>
     </Compile>
     <Compile Include="Datos\servicios.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>RacePuntos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Datos\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>RacePuntos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Datos\sp_helpdiagrams_Result.cs">
+      <DependentUpon>RacePuntos.tt</DependentUpon>
     </Compile>
     <Compile Include="Datos\sp_RepHistAdqPuntos_Result.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>RacePuntos.tt</DependentUpon>
     </Compile>
     <Compile Include="Datos\sp_RepHistRedmPuntos_Result.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>RacePuntos.tt</DependentUpon>
     </Compile>
     <Compile Include="Datos\sp_RepUsuarios_Result.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>RacePuntos.tt</DependentUpon>
     </Compile>
-    <Compile Include="Datos\UsuariosVehiculo1_Result.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+    <Compile Include="Datos\sysdiagrams.cs">
+      <DependentUpon>RacePuntos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Datos\UsuariosVehiculo_Result.cs">
+      <DependentUpon>RacePuntos.tt</DependentUpon>
     </Compile>
     <Compile Include="Datos\vehiculo.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>RacePuntos.tt</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -288,15 +306,15 @@
     <Content Include="Content\jquery.dataTables.min.css" />
     <Content Include="Content\style.css" />
     <Content Include="Content\tooltipster.css" />
-    <Content Include="Datos\Model1.Context.tt">
+    <Content Include="Datos\RacePuntos.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model1.edmx</DependentUpon>
-      <LastGenOutput>Model1.Context.cs</LastGenOutput>
+      <DependentUpon>RacePuntos.edmx</DependentUpon>
+      <LastGenOutput>RacePuntos.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Datos\Model1.tt">
+    <Content Include="Datos\RacePuntos.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model1.edmx</DependentUpon>
-      <LastGenOutput>Model1.cs</LastGenOutput>
+      <DependentUpon>RacePuntos.edmx</DependentUpon>
+      <LastGenOutput>RacePuntos.cs</LastGenOutput>
     </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -467,13 +485,6 @@
     <Content Include="Images\fonts\BebasNeue-webfont.eot" />
     <Content Include="Images\fonts\BebasNeue-webfont.ttf" />
     <Content Include="Images\fonts\BebasNeue-webfont.woff" />
-    <EntityDeploy Include="Datos\Model1.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Datos\Model1.edmx.diagram">
-      <DependentUpon>Model1.edmx</DependentUpon>
-    </Content>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Scripts\bootstrap-datepicker-1.6.1-dist\css\bootstrap-datepicker.css.map" />
     <Content Include="Scripts\bootstrap-datepicker-1.6.1-dist\css\bootstrap-datepicker.min.css.map" />
@@ -485,6 +496,13 @@
     <Content Include="Scripts\bootstrap-datepicker-1.6.1-dist\css\bootstrap-datepicker3.standalone.min.css.map" />
     <Content Include="ReportViewer\RepUsers.xsc">
       <DependentUpon>RepUsers.xsd</DependentUpon>
+    </Content>
+    <EntityDeploy Include="Datos\RacePuntos.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>RacePuntos.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Datos\RacePuntos.edmx.diagram">
+      <DependentUpon>RacePuntos.edmx</DependentUpon>
     </Content>
     <None Include="ReportViewer\RepUsers.xsd">
       <SubType>Designer</SubType>

@@ -10,17 +10,13 @@
 namespace RacePuntos.Datos
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class detalle_puntos
+    public partial class sp_helpdiagrams_Result
     {
-        public Nullable<int> id_estacion { get; set; }
-        public Nullable<int> id_puntos_servicio { get; set; }
-        public Nullable<int> id_puntos_actuales { get; set; }
-        public Nullable<int> puntos_compra { get; set; }
-        public int id_detalle_puntos { get; set; }
-    
-        public virtual puntos puntos { get; set; }
-        public virtual estaciones_de_servicio estaciones_de_servicio { get; set; }
+        public string Database { get; set; }
+        public string Name { get; set; }
+        public int ID { get; set; }
+        public string Owner { get; set; }
+        public int OwnerID { get; set; }
     }
 }
