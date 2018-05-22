@@ -200,7 +200,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\Parameter.cs" />
     <Compile Include="Controllers\personasController.cs" />
     <Compile Include="Controllers\puntosController.cs" />
     <Compile Include="Controllers\vehiculoController.cs" />
@@ -504,6 +503,7 @@
     <Content Include="Datos\RacePuntos.edmx.diagram">
       <DependentUpon>RacePuntos.edmx</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\RacePuntos.pubxml" />
     <None Include="ReportViewer\RepUsers.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
@@ -572,10 +572,6 @@
     <Content Include="Views\personas\Details.cshtml" />
     <Content Include="Views\personas\Edit.cshtml" />
     <Content Include="Views\personas\Index.cshtml" />
-    <Content Include="Views\puntos\Create.cshtml" />
-    <Content Include="Views\puntos\Delete.cshtml" />
-    <Content Include="Views\puntos\Details.cshtml" />
-    <Content Include="Views\puntos\Edit.cshtml" />
     <Content Include="Views\puntos\Index.cshtml" />
     <Content Include="Scripts\plugins\dataTables\datatable.spanish.json" />
     <Content Include="Scripts\plugins\dataTables\datatable.spanish.lang" />

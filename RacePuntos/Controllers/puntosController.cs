@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Entity;
 using System.Linq;
-using System.Threading.Tasks;
-using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using RacePuntos.Datos;
@@ -18,7 +15,7 @@ namespace RacePuntos.Controllers
     {
         private RacePuntosEntities db = new RacePuntosEntities();
         // GET: puntos
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
             if (Session["USUARIO_LOGUEADO"] != null)
             {
@@ -51,7 +48,7 @@ namespace RacePuntos.Controllers
 
 
         // GET: puntos
-        public async Task<ActionResult> Index2()
+        public ActionResult Index2()
         {
             if (Session["USUARIO_LOGUEADO"] != null)
             {

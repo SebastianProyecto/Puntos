@@ -1,5 +1,5 @@
 ﻿@{
-  object validate = TempData["Rol"];
+    object validate = TempData["Rol"];
 }
 <!DOCTYPE html>
 <html>
@@ -7,6 +7,9 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
     <title>@ViewBag.Title - RacePuntos</title>
     @*JS*@
     @Styles.Render("~/Content/css")
@@ -25,24 +28,14 @@
     <script src="~/Scripts/jquery.tooltipster.min.js"></script>
     <script src="~/Scripts/Validations.js"></script>
 
-
-   
-
     @*CSS*@
 
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/css/bootstrap-select.min.css" />
     <link href="~/Content/jquery.dataTables.min.css" rel="stylesheet" />
     <link href="~/Content/dataTables.tableTools.css" rel="stylesheet" />
-
     <link href="~/Content/tooltipster.css" rel="stylesheet" />
     <link href="~/Content/Site.css" rel="stylesheet" />
-
-
-    @*<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
-    
-    *@
-    
 </head>
 <body>
     @*class="navbar navbar-inverse navbar-fixed-top"*@

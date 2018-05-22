@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
-using System.Threading.Tasks;
-using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using RacePuntos.Datos;
 using System.Web.UI.WebControls;
@@ -19,7 +15,7 @@ namespace RacePuntos.Controllers
         private RacePuntosEntities db = new RacePuntosEntities();
 
         // GET: personas
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
             if (Session["USUARIO_LOGUEADO"] != null)
             {
@@ -28,30 +24,7 @@ namespace RacePuntos.Controllers
                 Table ta = new Table();
                 string TableUsuarios = UsuariosT(ta, lstUsu);
                 ViewData["_TableUsuarios"] = TableUsuarios;
-                return View(await personas.ToListAsync());
-            }
-            else
-            {
-                Response.Redirect("/Personas/Login");
-                return null;
-            }
-        }
-
-        // GET: personas/Details/5
-        public async Task<ActionResult> Details(string id)
-        {
-            if (Session["USUARIO_LOGUEADO"] != null)
-            {
-                if (id == null)
-                {
-                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-                }
-                personas personas = await db.personas.FindAsync(id);
-                if (personas == null)
-                {
-                    return HttpNotFound();
-                }
-                return View(personas);
+                return View();
             }
             else
             {
@@ -125,7 +98,7 @@ namespace RacePuntos.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(string tipo_documento, string documento, string contrasena, string rol, string cargo, string id_usuario_creacion, string nombres, string apellidos, string fecha_nacimiento, string direccion, string numero_celular, string correoElectronico)
+        public ActionResult Create(string tipo_documento, string documento, string contrasena, string rol, string cargo, string id_usuario_creacion, string nombres, string apellidos, string fecha_nacimiento, string direccion, string numero_celular, string correoElectronico)
         {
             if (Session["USUARIO_LOGUEADO"] != null)
             {
@@ -143,9 +116,7 @@ namespace RacePuntos.Controllers
                     {
                         TempData["Mensaje"] = "1~Usuario ya existe, verifique";
                     }
-
-                    //db.personas.Add(personas);
-                    //await db.SaveChangesAsync();
+                    
                     Response.Redirect("/Personas/Create");
                     return null;
                 }
@@ -161,99 +132,10 @@ namespace RacePuntos.Controllers
             }
         }
 
-        // GET: personas/Edit/5
-        public async Task<ActionResult> Edit(string id)
-        {
-            if (Session["USUARIO_LOGUEADO"] != null)
-            {
-                if (id == null)
-                {
-                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-                }
-                personas personas = await db.personas.FindAsync(id);
-                if (personas == null)
-                {
-                    return HttpNotFound();
-                }
-                ViewBag.cargo = new SelectList(db.cargos, "id_cargo", "nombre_cargo", personas.cargo);
-                return View(personas);
-            }
-            else
-            {
-                Response.Redirect("/Personas/Login");
-                return null;
-            }
-        }
-
-        // POST: personas/Edit/5
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
-        // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "tipo_documento,documento,contrasena,rol,cargo,id_usuario_creacion,nombres,apellidos,fecha_nacimiento,direccion,numero_celular,correoElectronico")] personas personas)
-        {
-            if (Session["USUARIO_LOGUEADO"] != null)
-            {
-                if (ModelState.IsValid)
-                {
-                    db.Entry(personas).State = EntityState.Modified;
-                    await db.SaveChangesAsync();
-                    return RedirectToAction("Index");
-                }
-                ViewBag.cargo = new SelectList(db.cargos, "id_cargo", "nombre_cargo", personas.cargo);
-                return View(personas);
-            }
-            else
-            {
-                Response.Redirect("/Personas/Login");
-                return null;
-            }
-        }
-
-        // GET: personas/Delete/5
-        public async Task<ActionResult> Delete(string id)
-        {
-            if (Session["USUARIO_LOGUEADO"] != null)
-            {
-                if (id == null)
-                {
-                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-                }
-                personas personas = await db.personas.FindAsync(id);
-                if (personas == null)
-                {
-                    return HttpNotFound();
-                }
-                return View(personas);
-            }
-            else
-            {
-                Response.Redirect("/Personas/Login");
-                return null;
-            }
-        }
-
-        // POST: personas/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(string id)
-        {
-            if (Session["USUARIO_LOGUEADO"] != null)
-            {
-                personas personas = await db.personas.FindAsync(id);
-                db.personas.Remove(personas);
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
-            }
-            else
-            {
-                Response.Redirect("/Personas/Login");
-                return null;
-            }
-        }
-
         // GET: personas/servicios
-        public async Task<ActionResult> Servicios()
+        [HttpGet]
+        [AllowAnonymous]
+        public ActionResult Servicios()
         {
             if (Session["USUARIO_LOGUEADO"] != null)
             {
@@ -326,7 +208,7 @@ namespace RacePuntos.Controllers
                     return null;
                 }
             }
-            catch (Exception ex)
+            catch
             {
 
             }
@@ -351,7 +233,7 @@ namespace RacePuntos.Controllers
         public ActionResult Report(string id, string rdlc, string NameDataSet)
         {
             LocalReport lr = new LocalReport();
-            string path = Path.Combine(Server.MapPath("~/ReportViewer"), rdlc+".rdlc");
+            string path = Path.Combine(Server.MapPath("~/ReportViewer"), rdlc + ".rdlc");
             if (System.IO.File.Exists(path))
             {
                 lr.ReportPath = path;
